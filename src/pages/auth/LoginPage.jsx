@@ -74,7 +74,7 @@ const LoginPage = () => {
                 </button>
                 <div className="text-center">
                   <span className="text-xs font-semibold text-gray-900">
-                    <span>Already have an account?</span>
+                    <span>Dont have an account?</span>
                     <a
                       className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
                       href="#"
