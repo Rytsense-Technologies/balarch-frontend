@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "../components/_app/Layout";
 import Home from "../pages/Home";
+import Professionals from "../pages/Professionals";
 import Projects from "../pages/Projects";
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
@@ -23,6 +24,14 @@ const Router = () => {
         element={
           <Layout>
             <Projects />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profesionaless"
+        element={
+          <Layout>
+            <Professionals />
           </Layout>
         }
       />

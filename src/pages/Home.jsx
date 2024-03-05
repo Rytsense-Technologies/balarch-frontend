@@ -1,4 +1,4 @@
-import ExploreProjects from "../components/home/ExploreProjects";
+import ExploreProjects from "../components/common/ExploreProjects";
 import TopProjects from "../components/home/TopProjects";
 import BannerCarousal from "./../components/common/BannerCarousal";
 

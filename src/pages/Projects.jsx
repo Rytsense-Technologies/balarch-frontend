@@ -1,6 +1,6 @@
 import BannerCarousal from "../components/common/BannerCarousal";
+import ExploreProjects from "../components/common/ExploreProjects";
 import PagesHeading from "../components/common/PagesHeading";
-import ExploreProjects from "../components/home/ExploreProjects";
 import ProjectsList from "../components/projects/ProjectsList";
 
 const Projects = () => {

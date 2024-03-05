@@ -25,7 +25,7 @@ export const Navbar = () => {
             PROYECTS
           </NavLink>
           <NavLink
-            to="/proyectoss"
+            to="/profesionaless"
             className={({ isActive }) =>
               isActive
                 ? "underline underline-offset-8"

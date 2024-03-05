@@ -22,13 +22,15 @@ const ProjectsList = () => {
         <div className="grid grid-cols-3 gap-8 mt-5">
           {projects.map((project, index) => (
             <React.Fragment key={index}>
-              <div className=" relative">
+              <div className="relative">
                 <img src={project.img} alt="Image 1" className="w-full h-60" />
-                <div className="absolute inset-0 flex flex-col gap-4 items-center justify-end  opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black  bg-opacity-50 text-white">
-                  <p className="text-xl text-center font-bold">
-                    {project.title}
-                  </p>
-                  <p className="text-sm">{project.subtitle}</p>
+                <div className="absolute inset-0 flex flex-col gap-4 items-center justify-end opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50 text-white">
+                  <div className="border-2 border-white p-4 hover:border-transparent hover:border-white hover:rounded-lg hover:p-6 hover:mx-4 hover:my-4">
+                    <p className="text-xl text-center font-bold">
+                      {project.title}
+                    </p>
+                    <p className="text-sm">{project.subtitle}</p>
+                  </div>
                 </div>
               </div>
             </React.Fragment>
