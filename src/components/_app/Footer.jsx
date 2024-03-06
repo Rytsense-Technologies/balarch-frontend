@@ -4,8 +4,10 @@ const Footer = () => {
   return (
     <div className="bg-gray-900">
       <div className="lg:px-40 py-20">
-        <div className="flex justify-center items-center gap-4 text-white text-xl font-bold border-2   border-white p-2">
-          Publica tu Proyecto <FaArrowRightLong />
+        <div className="flex justify-center items-center gap-4 text-white text-xl font-bold">
+          <span className="flex items-center gap-4 border-2 border-white p-2">
+            Publica tu Proyecto <FaArrowRightLong />
+          </span>
         </div>
         <footer className="text-white body-font">
           <div className="container px-5 py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">

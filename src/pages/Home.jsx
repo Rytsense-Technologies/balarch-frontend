@@ -7,7 +7,9 @@ const Home = () => {
     <div className="">
       <BannerCarousal />
       <TopProjects />
-      <ExploreProjects />
+      <div className="bg-gray-200 py-5 lg:px-40">
+        <ExploreProjects />
+      </div>
     </div>
   );
 };

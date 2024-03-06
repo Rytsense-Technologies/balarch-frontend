@@ -1,3 +1,9 @@
+import p1 from "../assets/images/p1.png";
+import p2 from "../assets/images/p2.png";
+import p3 from "../assets/images/p3.png";
+import p4 from "../assets/images/p4.png";
+import p5 from "../assets/images/p5.png";
+
 export const projects = [
   {
     img: "https://stage-dihomx.com/wp-content/uploads/2023/11/MG_5664_65.jpg",
@@ -42,28 +48,28 @@ export const projects = [
 ];
 export const cards = [
   {
-    img: "https://t3.ftcdn.net/jpg/04/06/91/62/360_F_406916265_hxmrv7wgw9SZN9871yebxQJAX7HsHdNp.jpg",
+    img: p1,
     title: "ArquiTechs",
     subtitle: "GUADALAJARA, MX",
   },
   {
-    img: "https://t3.ftcdn.net/jpg/04/06/91/62/360_F_406916265_hxmrv7wgw9SZN9871yebxQJAX7HsHdNp.jpg",
-    title: "ArquiTechs",
-    subtitle: "GUADALAJARA, MX",
+    img: p2,
+    title: "Soft Arquitectos",
+    subtitle: "Monterrey, MX",
   },
   {
-    img: "https://t3.ftcdn.net/jpg/04/06/91/62/360_F_406916265_hxmrv7wgw9SZN9871yebxQJAX7HsHdNp.jpg",
-    title: "ArquiTechs",
-    subtitle: "GUADALAJARA, MX",
+    img: p3,
+    title: "Alazrraqui Arquitectos",
+    subtitle: "Quintana Roo, MX",
   },
   {
-    img: "https://t3.ftcdn.net/jpg/04/06/91/62/360_F_406916265_hxmrv7wgw9SZN9871yebxQJAX7HsHdNp.jpg",
+    img: p4,
     title: "ArquiTechs",
-    subtitle: "GUADALAJARA, MX",
+    subtitle: "Guadalajara, MX",
   },
   {
-    img: "https://t3.ftcdn.net/jpg/04/06/91/62/360_F_406916265_hxmrv7wgw9SZN9871yebxQJAX7HsHdNp.jpg",
-    title: "ArquiTechs",
-    subtitle: "GUADALAJARA, MX",
+    img: p5,
+    title: "Soft Arquitectos",
+    subtitle: "Monterrey, MX",
   },
 ];

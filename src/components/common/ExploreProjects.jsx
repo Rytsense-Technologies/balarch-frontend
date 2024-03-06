@@ -26,21 +26,20 @@ const ExploreProjects = () => {
     "CDMX",
     "México",
   ];
+
   return (
-    <div className="bg-gray-200">
-      <div className="py-20 lg:px-60 flex flex-col items-center justify-center">
-        <h1 className="text-2xl flex items-center gap-4 font-semibold mb-20">
-          <FiSearch /> Explorar Proyectos
-        </h1>
-        <div className="grid grid-cols-5 gap-10">
-          {projectNames.map((projectName, index) => (
-            <div key={index}>
-              <span className="text-xl font-semibold underline hover:text-sky-600 cursor-pointer">
-                {projectName}
-              </span>
-            </div>
-          ))}
-        </div>
+    <div className="  sm:px-6">
+      <h1 className="text-2xl flex items-center justify-center gap-4 font-semibold mb-8 mt-10">
+        <FiSearch /> Explorar Proyectos
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-8">
+        {projectNames.map((projectName, index) => (
+          <div key={index} className="text-center">
+            <span className="text-lg font-semibold underline  hover:text-sky-600 cursor-pointer">
+              {projectName}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );

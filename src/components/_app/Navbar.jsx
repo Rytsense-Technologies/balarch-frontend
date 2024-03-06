@@ -1,19 +1,82 @@
-import { FaUserCircle } from "react-icons/fa";
+import { useState } from "react";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <>
       <div>
-        <div className="flex h-10 items-center justify-end gap-4 bg-gray-900 px-4 text-sm font-normal text-gray-200 sm:px-6 lg:px-40">
-          <p>Revisto Impresa</p>
-          <p>ESP / ING</p>
+        {/* Desktop Navbar */}
+        <div className="flex h-10 items-center gap-2 justify-end bg-gray-900 px-4 text-sm font-normal text-gray-200 sm:px-6 lg:px-40">
+          <div className="flex items-center gap-2 font-medium">
+            <p>Revisto Impresa</p>
+            <p>ESP / ING</p>
+          </div>
           <div className="flex items-center gap-2 font-medium">
             <p>Ingresar</p>
             <FaUserCircle className="text-lg" />
           </div>
         </div>
-        <div className="py-5 flex items-center justify-center text-gray-900 font-bold gap-12">
+
+        {/* Mobile Navbar */}
+        <div className="sm:hidden  px-4 py-2 flex justify-between items-center">
+          <Link to="">
+            <img
+              src="https://stage-dihomx.com/wp-content/uploads/2023/09/logo.png"
+              className="w-20"
+              alt="logo-balarch"
+            />
+          </Link>
+          <FaBars
+            className="text-gray-800 text-2xl cursor-pointer"
+            onClick={toggleMobileMenu}
+          />
+        </div>
+
+        {/* Mobile Menu Popup */}
+        {isMobileMenuOpen && (
+          <div className="sm:hidden fixed inset-0 bg-gray-900 bg-opacity-75 z-50">
+            <div className="flex flex-col items-center justify-center h-full">
+              <NavLink
+                to="/proyectoss"
+                className="text-gray-200 text-xl py-2"
+                onClick={toggleMobileMenu}
+              >
+                PROYECTS
+              </NavLink>
+              <NavLink
+                to="/profesionaless"
+                className="text-gray-200 text-xl py-2"
+                onClick={toggleMobileMenu}
+              >
+                PROFESSIONALES
+              </NavLink>
+              <NavLink
+                to="/productos"
+                className="text-gray-200 text-xl py-2"
+                onClick={toggleMobileMenu}
+              >
+                PRODUCTOS
+              </NavLink>
+              <NavLink
+                to="/publicar"
+                className="text-gray-200 text-xl py-2"
+                onClick={toggleMobileMenu}
+              >
+                PUBLICAR
+              </NavLink>
+            </div>
+          </div>
+        )}
+
+        {/* Desktop Navigation Links */}
+        <div className="py-5 flex items-center justify-center text-gray-900 font-bold gap-12 hidden sm:flex">
           <NavLink
             to="/proyectoss"
             className={({ isActive }) =>
@@ -43,7 +106,7 @@ export const Navbar = () => {
             />
           </Link>
           <NavLink
-            to="/proyectoss"
+            to="/productos"
             className={({ isActive }) =>
               isActive
                 ? "underline underline-offset-8"
@@ -53,7 +116,7 @@ export const Navbar = () => {
             PRODUCTOS
           </NavLink>
           <NavLink
-            to="/proyectoss"
+            to="/publicar"
             className={({ isActive }) =>
               isActive
                 ? "underline underline-offset-8"

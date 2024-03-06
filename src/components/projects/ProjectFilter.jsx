@@ -57,24 +57,24 @@ const filters = [
 
 const ProjectFilter = () => {
   return (
-    <div className="py-10">
+    <div className="py-5 lg:py-10">
       <span className="text-lg text-gray-400 font-bold">Buscar proyectos</span>
-      <div className="flex flex-col mt-5 p-2 font-bold gap-4">
-        <form className="hidden lg:block">
+      <div className="flex flex-col mt-3 lg:mt-5 p-2 font-bold gap-4">
+        <form>
           {filters.map((section) => (
             <Disclosure
               as="div"
               key={section.id}
-              className="border-b-2 border-gray-800 py-6"
+              className="border-b-2 border-gray-800 py-3 lg:py-6"
             >
               {({ open }) => (
                 <>
-                  <h3 className="-my-3 flow-root">
-                    <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+                  <h3 className="-my-2 lg:my-0 lg:flow-root">
+                    <Disclosure.Button className="flex w-full items-center justify-between bg-white py-2 lg:py-3 text-sm text-gray-400 hover:text-gray-500">
                       <span className="font-semibold text-gray-900">
                         {section.name}
                       </span>
-                      <span className="ml-6 flex items-center">
+                      <span className="ml-4 flex items-center">
                         {open ? (
                           <MinusIcon className="h-5 w-5" aria-hidden="true" />
                         ) : (
@@ -83,8 +83,8 @@ const ProjectFilter = () => {
                       </span>
                     </Disclosure.Button>
                   </h3>
-                  <Disclosure.Panel className="pt-6">
-                    <div className="space-y-4">
+                  <Disclosure.Panel className="pt-3 lg:pt-6">
+                    <div className="space-y-3">
                       {section?.options?.map((option, optionIdx) => (
                         <div key={option.value} className="flex items-center">
                           {section.name === "ORDEN" ? (
@@ -98,7 +98,7 @@ const ProjectFilter = () => {
                           ) : (
                             <label
                               htmlFor={`filter-${section.id}-${optionIdx}`}
-                              className="ml-3 text-md font-normal text-gray-600"
+                              className="ml-3 text-sm lg:text-md font-normal text-gray-600"
                             >
                               {option.label}
                             </label>

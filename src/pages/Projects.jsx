@@ -15,7 +15,9 @@ const Projects = () => {
       />
       <BannerCarousal />
       <ProjectsList />
-      <ExploreProjects />
+      <div className="bg-gray-200 py-5 lg:px-40">
+        <ExploreProjects />
+      </div>
       <div className="bg-gray-500">
         <section
           className="text-white body-font"

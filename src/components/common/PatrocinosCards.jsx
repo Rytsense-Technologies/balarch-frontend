@@ -3,26 +3,28 @@ import { cards } from "../../mock/Data";
 
 const PatrocinosCards = () => {
   return (
-    <div className="lg:px-40">
-      <section className="text-gray-600 body-font">
+    <div className="px-4 sm:px-6 lg:px-8">
+      <section className="text-gray-600 mb-10 body-font">
         <div className="flex flex-col text-center w-full mt-5">
-          <h1 className="sm:text-sm text-sm  title-font font-semibold  text-gray-500">
+          <h1 className="text-sm title-font font-semibold text-gray-500">
             PATROCINADOS
           </h1>
         </div>
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {cards.map((card, index) => (
-            <React.Fragment key={index}>
-              <div className="p-2 w-full flex text-center justify-center">
-                <div className="border-4 border-gray-300 px-8 py-6">
-                  <img src={card.img} className="w-40" />
-                  <h2 className="title-font font-semibold text-xl text-gray-900">
-                    {card.title}
-                  </h2>
-                  <p className="text-xs">{card.subtitle}</p>
-                </div>
+            <div key={index} className="p-2">
+              <div className="flex flex-col items-center justify-center border border-gray-300 p-4">
+                <img
+                  src={card.img}
+                  className="w-24 h-24 object-contain"
+                  alt={card.title}
+                />
+                <h2 className="mt-4 text-lg font-semibold text-center text-gray-900">
+                  {card.title}
+                </h2>
+                <p className="text-sm text-center">{card.subtitle}</p>
               </div>
-            </React.Fragment>
+            </div>
           ))}
         </div>
       </section>
