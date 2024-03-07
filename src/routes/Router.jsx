@@ -8,6 +8,7 @@ import ProjectDetailPage from "../pages/ProjectDetailPage";
 import Projects from "../pages/Projects";
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
+import ProductDetailPage from "./../pages/ProductDetailPage";
 
 const Router = () => {
   return (
@@ -59,6 +60,14 @@ const Router = () => {
         element={
           <Layout>
             <ProfessionalDetailPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/productos/name"
+        element={
+          <Layout>
+            <ProductDetailPage />
           </Layout>
         }
       />

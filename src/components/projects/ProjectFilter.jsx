@@ -59,13 +59,13 @@ const ProjectFilter = () => {
   return (
     <div className="py-5 lg:py-10">
       <span className="text-lg text-gray-400 font-bold">Buscar proyectos</span>
-      <div className="flex flex-col mt-3 lg:mt-5 p-2 font-bold gap-4">
+      <div className="flex flex-col mt-3 lg:mt-5 p-2 font-bold gap-2">
         <form>
           {filters.map((section) => (
             <Disclosure
               as="div"
               key={section.id}
-              className="border-b-2 border-gray-800 py-3 lg:py-6"
+              className="border-b-2 border-gray-800 py-2"
             >
               {({ open }) => (
                 <>

@@ -1,6 +1,7 @@
 import { Button } from "@material-tailwind/react";
 import { BsBuildings, BsStack } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ProductFilter } from "./ProductFilter";
@@ -35,7 +36,7 @@ const ProductList = () => {
             <div
               key={index}
               className="flex flex-col items-center bg-white border-2 border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-              onClick={() => navigate("/profesionaless/name")}
+              onClick={() => navigate("/productos/name")}
             >
               <img
                 className="rounded-full my-5 mx-5 shadow-lg w-36 h-36"
@@ -81,6 +82,9 @@ const ProductList = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-center text-xl py-5 gap-4 cursor-pointer">
+          <FaArrowLeft /> 1/5 <FaArrowRight />
         </div>
       </div>
     </div>

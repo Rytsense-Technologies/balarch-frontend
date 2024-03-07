@@ -1,6 +1,7 @@
 import { Button } from "@material-tailwind/react";
 import { BsBuildings, BsStack } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { ProfessionalsFilter } from "./ProfessionalsFilter";
@@ -18,10 +19,10 @@ const ProfessionalsList = () => {
       <div className="lg:col-span-6">
         <div className="mb-5">
           <div className="flex  items-center">
-            <div className="text-4xl border-r border-gray-400 pr-4">
+            <div className="text-2xl font-semibold border-r border-gray-400 pr-4">
               Especialidad
             </div>
-            <div className="text-gray-500 font-semibold pl-4">
+            <div className="text-gray-500 text-sm capitalize font-semibold pl-4">
               50 profesionales encontrados
             </div>
           </div>
@@ -81,6 +82,9 @@ const ProfessionalsList = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-center text-xl py-5 gap-4 cursor-pointer">
+          <FaArrowLeft /> 1/5 <FaArrowRight />
         </div>
       </div>
     </div>

@@ -1,9 +1,8 @@
-import React from "react";
 import { cards } from "../../mock/Data";
 
 const PatrocinosCards = () => {
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <div className="px-4 sm:px-6 lg:px-40">
       <section className="text-gray-600 mb-10 body-font">
         <div className="flex flex-col text-center w-full mt-5">
           <h1 className="text-sm title-font font-semibold text-gray-500">

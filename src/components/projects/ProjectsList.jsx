@@ -1,3 +1,4 @@
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 import { projects } from "../../mock/Data";
 import ProjectFilter from "./ProjectFilter";
@@ -12,11 +13,13 @@ const ProjectsList = () => {
 
       <div className="lg:col-span-6">
         <div className="mb-5">
-          <div className="text-3xl font-bold border-b border-gray-400 pb-2">
-            Lo más reciente
-          </div>
-          <div className="text-gray-500 font-semibold mt-2">
-            {projects.length} PROYECTOS REGISTRADOS
+          <div className="flex  items-center">
+            <div className="text-2xl border-r font-semibold border-gray-400 pr-4">
+              Lo más reciente
+            </div>
+            <div className="text-gray-500 text-sm font-semibold pl-4">
+              {projects.length} PROYECTOS REGISTRADOS
+            </div>
           </div>
         </div>
         <hr />
@@ -38,6 +41,9 @@ const ProjectsList = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex items-center justify-center text-xl py-5 gap-4 cursor-pointer">
+          <FaArrowLeft /> 1/5 <FaArrowRight />
         </div>
       </div>
     </div>
