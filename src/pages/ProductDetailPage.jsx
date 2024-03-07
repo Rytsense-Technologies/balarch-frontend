@@ -6,10 +6,9 @@ import { FaFacebook, FaLink, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
 import { FaInstagram, FaRegCircleUser } from "react-icons/fa6";
 import { FiSend } from "react-icons/fi";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+
 import { projects } from "../mock/Data";
 const ProductDetailPage = () => {
-  const navigate = useNavigate();
   return (
     <>
       <div className="transform duration-200 easy-in-out">
@@ -51,7 +50,7 @@ const ProductDetailPage = () => {
               Vivamus egestas lectus in pharetra tincidunt. Vestibulum accumsan
               arcu at lacinia molestie. Etiam at pellentesque justo.
             </span>
-            <div className="flex ">
+            <div className="flex">
               <div className="bg-gray-900 w-1/2 p-6 text-gray-300">
                 <h1 className="text-center mb-5">Datos Clave</h1>
                 <ul className="px-10 flex flex-col gap-4 border-blue-gray-50">
