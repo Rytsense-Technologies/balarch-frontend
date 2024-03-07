@@ -1,6 +1,6 @@
 import { FaArrowRight } from "react-icons/fa";
 
-export const ProfessionalsFilter = () => {
+export const ProductFilter = () => {
   const filterNames = [
     "Lo más reciente",
     "especialidad",

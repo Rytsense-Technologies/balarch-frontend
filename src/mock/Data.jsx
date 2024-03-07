@@ -3,6 +3,11 @@ import p2 from "../assets/images/p2.png";
 import p3 from "../assets/images/p3.png";
 import p4 from "../assets/images/p4.png";
 import p5 from "../assets/images/p5.png";
+import pro1 from "../assets/images/pro1.png";
+import pro2 from "../assets/images/pro2.png";
+import pro3 from "../assets/images/pro3.png";
+import pro4 from "../assets/images/pro4.png";
+import pro5 from "../assets/images/pro5.png";
 
 export const projects = [
   {
@@ -70,6 +75,34 @@ export const cards = [
   {
     img: p5,
     title: "Soft Arquitectos",
+    subtitle: "Monterrey, MX",
+  },
+];
+
+export const productcards = [
+  {
+    img: pro1,
+    title: "Mexalit",
+    subtitle: "Guadalajara, MX",
+  },
+  {
+    img: pro2,
+    title: "Tyasa Estructuras",
+    subtitle: "Monterrey, MX",
+  },
+  {
+    img: pro3,
+    title: "Anáhuac Cementera",
+    subtitle: "Quintana Roo, M",
+  },
+  {
+    img: pro4,
+    title: "Fester Gdl",
+    subtitle: "Guadalajara, MX",
+  },
+  {
+    img: pro5,
+    title: "Foncer Vitro",
     subtitle: "Monterrey, MX",
   },
 ];

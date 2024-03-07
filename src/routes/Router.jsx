@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "../components/_app/Layout";
 import Home from "../pages/Home";
+import Productos from "../pages/Productos";
 import ProfessionalDetailPage from "../pages/ProfessionalDetailPage";
 import Professionals from "../pages/Professionals";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
@@ -34,6 +35,14 @@ const Router = () => {
         element={
           <Layout>
             <Professionals />
+          </Layout>
+        }
+      />
+      <Route
+        path="/productos"
+        element={
+          <Layout>
+            <Productos />
           </Layout>
         }
       />

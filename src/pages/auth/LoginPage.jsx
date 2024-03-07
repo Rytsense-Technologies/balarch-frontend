@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const LoginPage = () => {
   return (
     <div className="relative p-5 min-h-screen">
@@ -75,12 +77,12 @@ const LoginPage = () => {
                 <div className="text-center">
                   <span className="text-xs font-semibold text-gray-900">
                     <span>Dont have an account?</span>
-                    <a
+                    <Link
                       className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
-                      href="#"
+                      to="/register"
                     >
                       Sign up
-                    </a>
+                    </Link>
                   </span>
                 </div>
               </form>
