@@ -6,6 +6,42 @@ import InputField from "../../components/common/form/InputField";
 const RegisterPage = () => {
   const [educationInput, setEducationInput] = useState([]);
   const [professionalInput, setProfessionalInput] = useState([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [professional, setProfessional] = useState("");
+  const [createdate, setcreateDate] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleRegistration = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8080/api/signup/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          professional,
+          createdate,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Registration successful");
+      } else {
+        const data = await response.json();
+        setErrorMessage(data.message);
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+      setErrorMessage("Error registering user. Please try again later.");
+    }
+  };
 
   const handleDeleteEducationInput = (index) => {
     const updatedEducationInput = [...educationInput];
@@ -36,7 +72,7 @@ const RegisterPage = () => {
                 Get your account now.
               </h1>
 
-              <form>
+              <form onSubmit={handleRegistration}>
                 <div className="space-y-12 ">
                   <div className="">
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -45,7 +81,46 @@ const RegisterPage = () => {
                       </div>
 
                       <div className="sm:col-span-2">
-                        <InputField label={"Email"} name={"name"} id={"name"} />
+                        <InputField
+                          label={"Email"}
+                          name={"name"}
+                          id={"name"}
+                          setName={setName}
+                        />
+                      </div>
+                      <div className="sm:col-span-2 sm:col-start-1">
+                        <InputField
+                          label={"Name"}
+                          name={"name"}
+                          id={"name"}
+                          setEmail={setEmail}
+                        />
+                      </div>
+
+                      <div className="sm:col-span-2">
+                        <InputField
+                          label={"Email"}
+                          name={"name"}
+                          id={"name"}
+                          setPassword={setPassword}
+                        />
+                      </div>
+                      <div className="sm:col-span-2 sm:col-start-1">
+                        <InputField
+                          label={"Name"}
+                          name={"name"}
+                          id={"name"}
+                          setProfessional={setProfessional}
+                        />
+                      </div>
+
+                      <div className="sm:col-span-2">
+                        <InputField
+                          label={"Email"}
+                          name={"name"}
+                          id={"name"}
+                          setcreateDate={setcreateDate}
+                        />
                       </div>
 
                       <div className="sm:col-span-2">

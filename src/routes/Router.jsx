@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "../components/_app/Layout";
 import Home from "../pages/Home";
+import PricingPage from "../pages/PricingPage";
 import Productos from "../pages/Productos";
 import ProfessionalDetailPage from "../pages/ProfessionalDetailPage";
 import Professionals from "../pages/Professionals";
@@ -71,6 +72,7 @@ const Router = () => {
           </Layout>
         }
       />
+      <Route path="/pricing" element={<PricingPage />} />
     </Routes>
   );
 };

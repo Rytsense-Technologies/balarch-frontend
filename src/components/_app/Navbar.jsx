@@ -30,7 +30,7 @@ export const Navbar = () => {
 
         {/* Mobile Navbar */}
         <div className="sm:hidden  px-4 py-2 flex justify-between items-center">
-          <Link to="">
+          <Link to="/">
             <img
               src="https://stage-dihomx.com/wp-content/uploads/2023/09/logo.png"
               className="w-20"
@@ -102,7 +102,7 @@ export const Navbar = () => {
             PROFESSIONALES
           </NavLink>
 
-          <Link to="">
+          <Link to="/">
             <img
               src="https://stage-dihomx.com/wp-content/uploads/2023/09/logo.png"
               className="w-40"

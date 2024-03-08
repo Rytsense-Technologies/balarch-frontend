@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillBoxPlot, AiOutlineMail } from "react-icons/ai";
 import { BsHeart, BsStack } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
@@ -14,9 +14,47 @@ import { FiSend } from "react-icons/fi";
 import PatrocinosCards from "../components/common/PatrocinosCards";
 import { projects } from "../mock/Data";
 const ProfessionalDetailPage = () => {
+  const [experiences, setExperiences] = useState([
+    {
+      title: "Arquitecto Senior",
+      company: "IDOM Construcciones",
+      duration: "6 meses",
+    },
+    {
+      title: "Arquitecto Senior",
+      company: "IDOM Construcciones",
+      duration: "6 meses",
+    },
+    {
+      title: "Arquitecto Senior",
+      company: "IDOM Construcciones",
+      duration: "6 meses",
+    },
+    {
+      title: "Arquitecto Senior",
+      company: "IDOM Construcciones",
+      duration: "6 meses",
+    },
+    {
+      title: "Arquitecto Senior",
+      company: "IDOM Construcciones",
+      duration: "6 meses",
+    },
+    {
+      title: "Arquitecto Senior",
+      company: "IDOM Construcciones",
+      duration: "6 meses",
+    },
+  ]);
+  const [visibleCount, setVisibleCount] = useState(3);
+
+  // Handler function for "Load More" button click
+  const handleLoadMore = () => {
+    setVisibleCount(experiences.length); // Show all experiences
+  };
   return (
     <>
-      <div className=" shadow-lg transform duration-200 easy-in-out">
+      <div className="transform duration-200 easy-in-out">
         <div className=" h-52 overflow-hidden">
           <img
             className="w-full"
@@ -123,63 +161,58 @@ const ProfessionalDetailPage = () => {
               </div>
             </div>
             <div className="bg-gray-200 flex ">
-              <div className="w-1/2 p-6">
-                <h1 className="font-bold mb-5">Experiencia</h1>
+              <div className="w-1/2 p-6 flex flex-col justify-center">
+                <div className="flex items-center justify-center gap-6">
+                  <h1 className="font-bold ">Experiencia</h1>
+                  {experiences.length > visibleCount && (
+                    <button
+                      onClick={handleLoadMore}
+                      className=" border border-gray-800 text-gray-900 font-medium py-1 px-2 rounded"
+                    >
+                      View all
+                    </button>
+                  )}
+                </div>
                 <section className="text-gray-600 body-font">
-                  <div className="container  mx-auto flex flex-wrap">
-                    <div className="flex relative pt-5 pb-5 sm:items-center \ mx-auto">
-                      <div className="h-full w-6 absolute inset-0 flex items-center justify-center">
-                        <div class="h-full w-1 bg-gray-400 pointer-events-none"></div>
-                      </div>
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-gray-500 text-white relative z-10 title-font font-medium text-sm"></div>
-                      <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
-                        <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                          <h2 className="font-bold  title-font text-gray-900 mb-1 text-md">
-                            Arquitecto Senior
-                          </h2>
-                          <p className="leading-relaxed">
-                            IDOM Construcciones 6 meses
-                          </p>
+                  <div className="container mx-auto flex flex-wrap">
+                    {experiences
+                      .slice(0, visibleCount)
+                      .map((experience, index) => (
+                        <div
+                          key={index}
+                          className="flex relative pt-5 pb-5 sm:items-center mx-auto"
+                        >
+                          <div className="h-full w-6 absolute inset-0 flex items-center justify-center">
+                            <div className="h-full w-1 bg-gray-400 pointer-events-none"></div>
+                          </div>
+                          <div className="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-gray-500 text-white relative z-10 title-font font-medium text-sm"></div>
+                          <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
+                            <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
+                              <h2 className="font-bold title-font text-gray-900 mb-1 text-md">
+                                {experience.title}
+                              </h2>
+                              <p className="leading-relaxed">
+                                {experience.company} {experience.duration}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="flex relative pt-5 pb-5 sm:items-center \ mx-auto">
-                      <div className="h-full w-6 absolute inset-0 flex items-center justify-center">
-                        <div class="h-full w-1 bg-gray-400 pointer-events-none"></div>
-                      </div>
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-gray-500 text-white relative z-10 title-font font-medium text-sm"></div>
-                      <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
-                        <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                          <h2 className="font-bold  title-font text-gray-900 mb-1 text-md">
-                            Arquitecto Senior
-                          </h2>
-                          <p className="leading-relaxed">
-                            IDOM Construcciones 6 meses
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex relative pt-5 pb-5 sm:items-center \ mx-auto">
-                      <div className="h-full w-6 absolute inset-0 flex items-center justify-center">
-                        <div class="h-full w-1 bg-gray-400 pointer-events-none"></div>
-                      </div>
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-gray-500 text-white relative z-10 title-font font-medium text-sm"></div>
-                      <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
-                        <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                          <h2 className="font-bold  title-font text-gray-900 mb-1 text-md">
-                            Arquitecto Senior
-                          </h2>
-                          <p className="leading-relaxed">
-                            IDOM Construcciones 6 meses
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                      ))}
                   </div>
                 </section>
               </div>
               <div className="w-1/2 p-6">
-                <h1 className="font-bold mb-5">Experiencia</h1>
+                <div className="flex items-center justify-center gap-6">
+                  <h1 className="font-bold ">Experiencia</h1>
+                  {experiences.length > visibleCount && (
+                    <button
+                      onClick={handleLoadMore}
+                      className=" border border-gray-800 text-gray-900 font-medium py-1 px-2 rounded"
+                    >
+                      View all
+                    </button>
+                  )}
+                </div>
                 <section className="text-gray-600 body-font">
                   <div className="container  mx-auto flex flex-wrap">
                     <div className="flex relative pt-5 pb-5 sm:items-center \ mx-auto">
@@ -218,6 +251,7 @@ const ProfessionalDetailPage = () => {
                 </section>
               </div>
             </div>
+
             <div>
               <div className="flex items-center">
                 <div className="text-4xl border-r border-gray-400 pr-4">
