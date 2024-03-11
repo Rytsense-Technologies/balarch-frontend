@@ -4,19 +4,19 @@ import { projects } from "../../../mock/Data";
 const RelatedProfessionals = () => {
   return (
     <>
-      <div className="mb-10">
-        <div className="flex items-center">
-          <div className="text-4xl border-r border-gray-400 pr-4">
+      <div className="mb-10 lg:px-60 mt-5">
+        <div className="flex flex-col md:flex-row items-center">
+          <div className="text-4xl border-b border-gray-400 md:border-r md:border-b-0 md:pr-4 mb-4 md:mb-0">
             Productos
           </div>
           <div className="text-gray-500 font-semibold pl-4">
             12 productos relacionados
           </div>
         </div>
-        <div className="grid grid-cols-4 gap-8 mt-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-5">
           {projects.map((project, index) => (
             <div
-              className="flex flex-col items-center gap-2 justify-center border border-gray-500  py-5"
+              className="flex flex-col items-center gap-2 justify-center border border-gray-500 py-5"
               key={index}
             >
               <img

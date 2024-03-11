@@ -17,7 +17,7 @@ const Professionals = () => {
       <ProfessionalsList />
       <div className="bg-gray-200 py-5 lg:px-40">
         <ExploreProjects />
-        <div className="flex items-center justify-center gap-4 py-20">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-4 py-20">
           <div className="bg-gray-900 h-[10rem] w-full max-w-[25rem] flex">
             <div>
               <img

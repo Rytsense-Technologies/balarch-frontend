@@ -35,7 +35,8 @@ const ProductDetailPage = () => {
             </div>
           </div>
         </div>
-        <div className="px-60 flex flex-col gap-6 justify-center">
+
+        <div className="lg:px-60 flex flex-col gap-6 px-5 text-center justify-center">
           <span>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
             volutpat suscipit elit ac euismod. Curabitur sed erat sit amet neque
@@ -47,12 +48,13 @@ const ProductDetailPage = () => {
             Vivamus egestas lectus in pharetra tincidunt. Vestibulum accumsan
             arcu at lacinia molestie. Etiam at pellentesque justo.
           </span>
-          <ProductInfoCards />
-          <RelatedProducts />
-          <RelatedProfessionals />
         </div>
-        <PatrocinosCards />
+
+        <ProductInfoCards />
+        <RelatedProducts />
+        <RelatedProfessionals />
       </div>
+      <PatrocinosCards />
     </>
   );
 };
