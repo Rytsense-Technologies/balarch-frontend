@@ -6,7 +6,10 @@ import { FaInstagram, FaRegCircleUser } from "react-icons/fa6";
 
 const ProductInfoCards = () => {
   return (
-    <div className="flex flex-col md:flex-row mt-5 lg:px-60">
+    <div
+      className="flex flex-col md:flex-row
+     lg:px-60"
+    >
       <div className="md:w-1/2 p-6 bg-gray-900 text-gray-300">
         <h1 className="text-center mb-5">Datos Clave</h1>
         <ul className="px-10 flex flex-col gap-4 border-blue-gray-50">

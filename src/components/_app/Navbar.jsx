@@ -69,7 +69,7 @@ export const Navbar = () => {
                 PRODUCTOS
               </NavLink>
               <NavLink
-                to="/publicar"
+                to="/all-users"
                 className="text-gray-200 text-xl py-2"
                 onClick={toggleMobileMenu}
               >
@@ -120,7 +120,7 @@ export const Navbar = () => {
             PRODUCTOS
           </NavLink>
           <NavLink
-            to="/publicar"
+            to="/all-users"
             className={({ isActive }) =>
               isActive
                 ? "underline underline-offset-8"

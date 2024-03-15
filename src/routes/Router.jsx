@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "../components/_app/Layout";
+import DashboardLayout from "../components/dashboard/_app/DashboardLayout";
 import Home from "../pages/Home";
 import PricingPage from "../pages/PricingPage";
 import Productos from "../pages/Productos";
@@ -9,6 +10,9 @@ import ProjectDetailPage from "../pages/ProjectDetailPage";
 import Projects from "../pages/Projects";
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
+import AllProjectList from "../pages/dashboard/projects/AllProjectList";
+import AllSubmissions from "../pages/dashboard/submission/AllSubmissions";
+import AllUserList from "../pages/dashboard/user/AllUserList";
 import ProductDetailPage from "./../pages/ProductDetailPage";
 
 const Router = () => {
@@ -73,6 +77,31 @@ const Router = () => {
         }
       />
       <Route path="/pricing" element={<PricingPage />} />
+
+      <Route
+        path="/all-users"
+        element={
+          <DashboardLayout>
+            <AllUserList />
+          </DashboardLayout>
+        }
+      />
+      <Route
+        path="/all-projects"
+        element={
+          <DashboardLayout>
+            <AllProjectList />
+          </DashboardLayout>
+        }
+      />
+      <Route
+        path="/all-submissions"
+        element={
+          <DashboardLayout>
+            <AllSubmissions />
+          </DashboardLayout>
+        }
+      />
     </Routes>
   );
 };

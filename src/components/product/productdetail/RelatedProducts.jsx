@@ -4,7 +4,7 @@ import { projects } from "../../../mock/Data";
 const RelatedProducts = () => {
   return (
     <>
-      <div className="lg:px-60 mt-5">
+      <div className="lg:px-60">
         <div className="flex flex-col items-center md:flex-row">
           <div className="text-4xl border-b border-gray-400 mb-4 md:mb-0 md:pr-4">
             Productos

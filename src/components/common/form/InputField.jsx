@@ -1,6 +1,6 @@
-import React from "react";
 
-const InputField = ({ label, name, id }) => {
+
+const InputField = ({ label, name, value, onChange }) => {
   return (
     <div>
       <label
@@ -11,12 +11,13 @@ const InputField = ({ label, name, id }) => {
       </label>
       <div className="mt-2">
         <input
-          type="text"
+          type="email"
           name={name}
-          id={id}
-          autoComplete="address-level2"
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          value={value}
+          onChange={onChange}
+          className="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:border-blue-500"
         />
+     
       </div>
     </div>
   );
