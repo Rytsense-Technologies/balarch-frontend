@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IoMdAdd } from "react-icons/io";
+import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import InputField from "./../../common/form/InputField";
 
@@ -10,14 +10,29 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
     setExperienceCount((prevCount) => prevCount + 1);
   };
 
+  const deleteExperience = (index) => {
+    const updatedCount = experienceCount - 1;
+    setExperienceCount(updatedCount);
+    // You can add logic here to remove the corresponding data from your state or form data
+  };
+
   const renderExperienceFields = () => {
     const fields = [];
     for (let i = 1; i <= experienceCount; i++) {
       fields.push(
         <div key={i}>
-          <span className="text-gray-900  mt-5 flex items-center gap-2 cursor-pointer">
-            Professional Experience {i}
-          </span>
+          <div className="flex items-center justify-between">
+            <span className="text-gray-900 mt-5 flex items-center gap-2 cursor-pointer">
+              Professional Experience {i}
+            </span>
+            <button
+              type="button"
+              onClick={() => deleteExperience(i)}
+              className="text-red-500 hover:text-red-700"
+            >
+              <IoMdClose />
+            </button>
+          </div>
           <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <InputField
