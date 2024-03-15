@@ -1,14 +1,4 @@
-import {
-  Tab,
-  TabPanel,
-  Tabs,
-  TabsBody,
-  TabsHeader,
-} from "@material-tailwind/react";
-import axios from "axios";
-import { Form, Formik } from "formik";
 import { useState } from "react";
-import * as Yup from "yup";
 import ContactInfo from "../../components/auth/register/ContactInfo";
 import EducationInfo from "../../components/auth/register/EducationInfo";
 import OtherInfo from "../../components/auth/register/OtherInfo";
@@ -138,198 +128,68 @@ const RegisterPage = () => {
   const [YoutubeIconLink, setYoutubeIconLink] = useState("");
   const [YearExperience, setYearExperience] = useState("");
 
-  const [activeTab, setActiveTab] = useState("html");
+  const [openTab, setOpenTab] = useState(1);
 
   const handleNext = () => {
-    const tabs = ["html", "react", "vue", "angular", "svelte"];
-    const currentIndex = tabs.indexOf(activeTab);
-    const nextTab = tabs[currentIndex + 1];
-    setActiveTab(nextTab);
+    setOpenTab(openTab + 1);
   };
 
   const handlePrevious = () => {
-    const tabs = ["html", "react", "vue", "angular", "svelte"];
-    const currentIndex = tabs.indexOf(activeTab);
-    const previousTab = tabs[currentIndex - 1];
-    setActiveTab(previousTab);
+    setOpenTab(openTab - 1);
   };
-  const data = [
-    {
-      label: "Personal",
-      value: "html",
-      desc: (
-        <PersonalInfo
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-          Email={Email}
-          setEmail={setEmail}
-          Password={Password}
-          setPassword={setPassword}
-          Name={Name}
-          setName={setName}
-          ShortBio={ShortBio}
-          setShortBio={setShortBio}
-          Profession={Profession}
-          setProfession={setProfession}
-        />
-      ),
-    },
-    {
-      label: "Education",
-      value: "react",
-      desc: (
-        <EducationInfo
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-          EducationalInstitute1={EducationalInstitute1}
-          EducationTitle1={EducationTitle1}
-          EducationDegree1={EducationDegree1}
-          EducationYear1={EducationYear1}
-          EducationalInstitute2={EducationalInstitute2}
-          EducationTitle2={EducationTitle2}
-          EducationDegree2={EducationDegree2}
-          EducationYear2={EducationYear2}
-          EducationalInstitute3={EducationalInstitute3}
-          EducationTitle3={EducationTitle3}
-          EducationDegree3={EducationDegree3}
-          EducationYear3={EducationYear3}
-          setEducationDegree1={setEducationDegree1}
-          setEducationDegree2={setEducationDegree2}
-          setEducationDegree3={setEducationDegree3}
-          setEducationTitle1={setEducationTitle1}
-          setEducationTitle2={setEducationTitle2}
-          setEducationTitle3={setEducationTitle3}
-          setEducationYear1={setEducationYear1}
-          setEducationYear2={setEducationYear2}
-          setEducationYear3={setEducationYear3}
-          setEducationalInstitute1={setEducationalInstitute1}
-          setEducationalInstitute2={setEducationalInstitute2}
-          setEducationalInstitute3={setEducationalInstitute3}
-        />
-      ),
-    },
-    {
-      label: "Professional",
-      value: "vue",
-      desc: (
-        <ProfessionalInfo
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-          CompanyProfessionalExperience1={CompanyProfessionalExperience1}
-          PositionProfessionalExperience1={PositionProfessionalExperience1}
-          YearProfessionalExperience1={YearProfessionalExperience1}
-          setCompanyProfessionalExperience1={setCompanyProfessionalExperience1}
-          setPositionProfessionalExperience1={
-            setPositionProfessionalExperience1
-          }
-          setYearProfessionalExperience1={setYearProfessionalExperience1}
-          CompanyProfessionalExperience2={CompanyProfessionalExperience2}
-          PositionProfessionalExperience2={PositionProfessionalExperience2}
-          YearProfessionalExperience2={YearProfessionalExperience2}
-          setCompanyProfessionalExperience2={setCompanyProfessionalExperience2}
-          setPositionProfessionalExperience2={
-            setPositionProfessionalExperience2
-          }
-          setYearProfessionalExperience2={setYearProfessionalExperience2}
-        />
-      ),
-    },
-    {
-      label: "Contact",
-      value: "angular",
-      desc: (
-        <ContactInfo
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-          StartYear={StartYear}
-          WebsiteLink={WebsiteLink}
-          ContactEmailAddress={ContactEmailAddress}
-          ContactPhoneNumber={ContactPhoneNumber}
-          ProfilePicture={ProfilePicture}
-          Country={Country}
-          MagazineShippingAddress={MagazineShippingAddress}
-          setStartYear={setStartYear}
-          setWebsiteLink={setWebsiteLink}
-          setContactEmailAddress={setContactEmailAddress}
-          setContactPhoneNumber={setContactPhoneNumber}
-          setProfilePicture={setProfilePicture}
-          setCountry={setCountry}
-          setMagazineShippingAddress={setMagazineShippingAddress}
-        />
-      ),
-    },
-    {
-      label: "Other",
-      value: "svelte",
-      desc: (
-        <OtherInfo
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-          OperationRange={OperationRange}
-          FacebookIconLink={FacebookIconLink}
-          InstagramIconLink={InstagramIconLink}
-          IssueIconLink={IssueIconLink}
-          XIconLink={XIconLink}
-          YoutubeIconLink={YoutubeIconLink}
-          YearExperience={YearExperience}
-          setOperationRange={setOperationRange}
-          setFacebookIconLink={setFacebookIconLink}
-          setInstagramIconLink={setInstagramIconLink}
-          setIssueIconLink={setIssueIconLink}
-          setXIconLink={setXIconLink}
-          setYoutubeIconLink={setYoutubeIconLink}
-          setYearExperience={setYearExperience}
-          signUp={signUp}
-        />
-      ),
-    },
-  ];
- 
+
   async function signUp() {
-    let item = { Email, Password, Name, ShortBio, Profession, ProfessionalPosition,    EducationalInstitute1,
-    EducationTitle1,
-    EducationDegree1,
-    EducationYear1,
-    EducationalInstitute2,
-    EducationTitle2,
-    EducationDegree2,
-    EducationYear2,
-    EducationalInstitute3,
-    EducationTitle3,
-    EducationDegree3,
-    EducationYear3,
-    CompanyProfessionalExperience1,
-    PositionProfessionalExperience1,
-    YearProfessionalExperience1,
-    CompanyProfessionalExperience2,
-    PositionProfessionalExperience2,
-    YearProfessionalExperience2,
-    StartYear,
-    WebsiteLink,
-    ContactEmailAddress,
-    ContactPhoneNumber,
-    ProfilePicture,
-    Country,
-    MagazineShippingAddress,
-    OperationRange,
-    FacebookIconLink,
-    InstagramIconLink,
-    IssueIconLink,
-    XIconLink,
-    YoutubeIconLink,
-    YearExperience, 
-  }
+    let item = {
+      Email,
+      Password,
+      Name,
+      ShortBio,
+      Profession,
+      ProfessionalPosition,
+      EducationalInstitute1,
+      EducationTitle1,
+      EducationDegree1,
+      EducationYear1,
+      EducationalInstitute2,
+      EducationTitle2,
+      EducationDegree2,
+      EducationYear2,
+      EducationalInstitute3,
+      EducationTitle3,
+      EducationDegree3,
+      EducationYear3,
+      CompanyProfessionalExperience1,
+      PositionProfessionalExperience1,
+      YearProfessionalExperience1,
+      CompanyProfessionalExperience2,
+      PositionProfessionalExperience2,
+      YearProfessionalExperience2,
+      StartYear,
+      WebsiteLink,
+      ContactEmailAddress,
+      ContactPhoneNumber,
+      ProfilePicture,
+      Country,
+      MagazineShippingAddress,
+      OperationRange,
+      FacebookIconLink,
+      InstagramIconLink,
+      IssueIconLink,
+      XIconLink,
+      YoutubeIconLink,
+      YearExperience,
+    };
 
-    let result = await fetch("http://54.167.20.39:8080/api/signup/create",{
-      method:'POST',
-      body:JSON.stringify(item),
-      headers:{
-        "Content-Type":'application/json',
-        "Accept": 'application/json'
-      }
-
-    })
-    result = await  result.json()
+    let result = await fetch("http://54.167.20.39:8080/api/signup/create", {
+      method: "POST",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    console.log(result);
   }
 
   return (
@@ -344,42 +204,200 @@ const RegisterPage = () => {
             }}
           ></div>
 
-          <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+          <div className="flex items-center w-full max-w-3xl p-4 mx-auto lg:px-12 lg:w-3/5">
             <div className="w-full">
               <h1 className="text-2xl font-semibold mb-10 tracking-wider text-gray-800 capitalize dark:text-gray-800">
                 Get your account now.
               </h1>
-              
-                  <form>
-                    <Tabs value="html">
-                      <TabsHeader className="stickey">
-                        {data.map(({ label, value }) => (
-                          <Tab key={value} value={value}>
-                            {label}
-                          </Tab>
-                        ))}
-                      </TabsHeader>
-                      <TabsBody>
-                        {data.map(({ value, desc }) => (
-                          <TabPanel key={value} value={value}>
-                            {desc}
-                          </TabPanel>
-                        ))}
-                      </TabsBody>
-                    </Tabs>
-                    <div className="text-center">
+
+              <div>
+                <div>
+                  <div className="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md">
+                    <button
+                      onClick={() => setOpenTab(1)}
+                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                        openTab === 1 ? "bg-gray-800 text-white" : ""
+                      }`}
+                    >
+                      Personal
+                    </button>
+                    <button
+                      onClick={() => setOpenTab(2)}
+                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                        openTab === 2 ? "bg-gray-800 text-white" : ""
+                      }`}
+                    >
+                      Education
+                    </button>
+                    <button
+                      onClick={() => setOpenTab(3)}
+                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                        openTab === 3 ? "bg-gray-800 text-white" : ""
+                      }`}
+                    >
+                      Profession
+                    </button>
+                    <button
+                      onClick={() => setOpenTab(4)}
+                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                        openTab === 4 ? "bg-gray-800 text-white" : ""
+                      }`}
+                    >
+                      Contact
+                    </button>
+                    <button
+                      onClick={() => setOpenTab(5)}
+                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                        openTab === 5 ? "bg-gray-800 text-white" : ""
+                      }`}
+                    >
+                      Other
+                    </button>
+                  </div>
+
+                  <div className="transition-all duration-300 bg-white">
+                    {openTab === 1 && (
+                      <PersonalInfo
+                        handleNext={handleNext}
+                        handlePrevious={handlePrevious}
+                        Email={Email}
+                        setEmail={setEmail}
+                        Password={Password}
+                        setPassword={setPassword}
+                        Name={Name}
+                        setName={setName}
+                        ShortBio={ShortBio}
+                        setShortBio={setShortBio}
+                        Profession={Profession}
+                        setProfession={setProfession}
+                        ProfessionalPosition={ProfessionalPosition}
+                        setProfessionalPosition={setProfessionalPosition}
+                      />
+                    )}
+                    {openTab === 2 && (
+                      <EducationInfo
+                        handleNext={handleNext}
+                        handlePrevious={handlePrevious}
+                        EducationalInstitute1={EducationalInstitute1}
+                        EducationTitle1={EducationTitle1}
+                        EducationDegree1={EducationDegree1}
+                        EducationYear1={EducationYear1}
+                        EducationalInstitute2={EducationalInstitute2}
+                        EducationTitle2={EducationTitle2}
+                        EducationDegree2={EducationDegree2}
+                        EducationYear2={EducationYear2}
+                        EducationalInstitute3={EducationalInstitute3}
+                        EducationTitle3={EducationTitle3}
+                        EducationDegree3={EducationDegree3}
+                        EducationYear3={EducationYear3}
+                        setEducationDegree1={setEducationDegree1}
+                        setEducationDegree2={setEducationDegree2}
+                        setEducationDegree3={setEducationDegree3}
+                        setEducationTitle1={setEducationTitle1}
+                        setEducationTitle2={setEducationTitle2}
+                        setEducationTitle3={setEducationTitle3}
+                        setEducationYear1={setEducationYear1}
+                        setEducationYear2={setEducationYear2}
+                        setEducationYear3={setEducationYear3}
+                        setEducationalInstitute1={setEducationalInstitute1}
+                        setEducationalInstitute2={setEducationalInstitute2}
+                        setEducationalInstitute3={setEducationalInstitute3}
+                      />
+                    )}
+                    {openTab === 3 && (
+                      <ProfessionalInfo
+                        handleNext={handleNext}
+                        handlePrevious={handlePrevious}
+                        CompanyProfessionalExperience1={
+                          CompanyProfessionalExperience1
+                        }
+                        PositionProfessionalExperience1={
+                          PositionProfessionalExperience1
+                        }
+                        YearProfessionalExperience1={
+                          YearProfessionalExperience1
+                        }
+                        setCompanyProfessionalExperience1={
+                          setCompanyProfessionalExperience1
+                        }
+                        setPositionProfessionalExperience1={
+                          setPositionProfessionalExperience1
+                        }
+                        setYearProfessionalExperience1={
+                          setYearProfessionalExperience1
+                        }
+                        CompanyProfessionalExperience2={
+                          CompanyProfessionalExperience2
+                        }
+                        PositionProfessionalExperience2={
+                          PositionProfessionalExperience2
+                        }
+                        YearProfessionalExperience2={
+                          YearProfessionalExperience2
+                        }
+                        setCompanyProfessionalExperience2={
+                          setCompanyProfessionalExperience2
+                        }
+                        setPositionProfessionalExperience2={
+                          setPositionProfessionalExperience2
+                        }
+                        setYearProfessionalExperience2={
+                          setYearProfessionalExperience2
+                        }
+                      />
+                    )}
+                    {openTab == 4 && (
+                      <ContactInfo
+                        handleNext={handleNext}
+                        handlePrevious={handlePrevious}
+                        StartYear={StartYear}
+                        WebsiteLink={WebsiteLink}
+                        ContactEmailAddress={ContactEmailAddress}
+                        ContactPhoneNumber={ContactPhoneNumber}
+                        ProfilePicture={ProfilePicture}
+                        Country={Country}
+                        MagazineShippingAddress={MagazineShippingAddress}
+                        setStartYear={setStartYear}
+                        setWebsiteLink={setWebsiteLink}
+                        setContactEmailAddress={setContactEmailAddress}
+                        setContactPhoneNumber={setContactPhoneNumber}
+                        setProfilePicture={setProfilePicture}
+                        setCountry={setCountry}
+                        setMagazineShippingAddress={setMagazineShippingAddress}
+                      />
+                    )}
+                    {openTab == 5 && (
+                      <OtherInfo
+                        handleNext={handleNext}
+                        handlePrevious={handlePrevious}
+                        OperationRange={OperationRange}
+                        FacebookIconLink={FacebookIconLink}
+                        InstagramIconLink={InstagramIconLink}
+                        IssueIconLink={IssueIconLink}
+                        XIconLink={XIconLink}
+                        YoutubeIconLink={YoutubeIconLink}
+                        YearExperience={YearExperience}
+                        setOperationRange={setOperationRange}
+                        setFacebookIconLink={setFacebookIconLink}
+                        setInstagramIconLink={setInstagramIconLink}
+                        setIssueIconLink={setIssueIconLink}
+                        setXIconLink={setXIconLink}
+                        setYoutubeIconLink={setYoutubeIconLink}
+                        setYearExperience={setYearExperience}
+                        signUp={signUp}
+                      />
+                    )}
+                    <div className="text-center mt-10">
                       <span className="text-xs font-semibold text-gray-900">
                         <span>Already have an account?</span>
-                        <a
-                          className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
-                        
-                        >
+                        <a className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700">
                           Sign In
                         </a>
                       </span>
                     </div>
-                  </form>
-              
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

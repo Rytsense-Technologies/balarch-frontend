@@ -1,5 +1,4 @@
 import InputField from "./../../common/form/InputField";
-import SelectField from "./../../common/form/SelectField";
 
 const ContactInfo = ({
   handleNext,
@@ -85,12 +84,14 @@ const ContactInfo = ({
         <button
           type="button"
           className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+          onClick={handlePrevious}
         >
           Previous
         </button>
         <button
           type="button"
           className="text-white float-right bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          onClick={handleNext}
         >
           Next
         </button>
