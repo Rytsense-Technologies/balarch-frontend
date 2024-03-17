@@ -1,13 +1,13 @@
-import React from "react";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { HiDotsVertical } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../../../components/dashboard/common/SearchBar";
 
 const AllProjectList = () => {
-  // Create an array to hold the number of rows you want to repeat
+  const navigate = useNavigate();
+
   const numberOfRows = 8;
 
-  // Function to generate table rows
   const renderTableRows = () => {
     let rows = [];
 
@@ -39,6 +39,15 @@ const AllProjectList = () => {
 
   return (
     <>
+      <div className="float-right">
+        <button
+          type="button"
+          className=" flex items-center gap-2 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          onClick={() => navigate("/add-project")}
+        >
+          Add Project
+        </button>
+      </div>
       <SearchBar />
 
       <div className="relative overflow-x-auto">

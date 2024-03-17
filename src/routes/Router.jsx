@@ -10,6 +10,7 @@ import ProjectDetailPage from "../pages/ProjectDetailPage";
 import Projects from "../pages/Projects";
 import LoginPage from "../pages/auth/LoginPage";
 import RegisterPage from "../pages/auth/RegisterPage";
+import AddProjectPage from "../pages/dashboard/projects/AddProjectPage";
 import AllProjectList from "../pages/dashboard/projects/AllProjectList";
 import AllSubmissions from "../pages/dashboard/submission/AllSubmissions";
 import AllUserList from "../pages/dashboard/user/AllUserList";
@@ -99,6 +100,14 @@ const Router = () => {
         element={
           <DashboardLayout>
             <AllSubmissions />
+          </DashboardLayout>
+        }
+      />
+      <Route
+        path="/add-project"
+        element={
+          <DashboardLayout>
+            <AddProjectPage />
           </DashboardLayout>
         }
       />

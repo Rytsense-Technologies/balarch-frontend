@@ -23,6 +23,7 @@ const ContactInfo = ({
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Industrial Start Year"}
             name={StartYear}
             value={StartYear}
@@ -32,6 +33,7 @@ const ContactInfo = ({
 
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Site URL"}
             name={WebsiteLink}
             value={WebsiteLink}
@@ -40,6 +42,7 @@ const ContactInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Contact Email"}
             name={ContactEmailAddress}
             value={ContactEmailAddress}
@@ -48,6 +51,7 @@ const ContactInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"number"}
             label={"Contact Phone"}
             name={ContactPhoneNumber}
             value={ContactPhoneNumber}
@@ -57,6 +61,7 @@ const ContactInfo = ({
 
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Profile picture"}
             name={ProfilePicture}
             value={ProfilePicture}
@@ -65,6 +70,7 @@ const ContactInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Country"}
             name={Country}
             value={Country}
@@ -73,6 +79,7 @@ const ContactInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Magazine Shipping Address"}
             name={MagazineShippingAddress}
             value={MagazineShippingAddress}

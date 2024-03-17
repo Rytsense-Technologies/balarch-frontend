@@ -6,79 +6,62 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "../../assets/css/slider.css";
 
 const BannerCarousal = () => {
+  const isMobile = window.innerWidth <= 768;
   return (
-    <Swiper
-      spaceBetween={30}
-      centeredSlides={true}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[Autoplay, Pagination]}
-      className="mySwiper"
-    >
-      <SwiperSlide>
-        <div className="relative">
-          <img
-            src="https://stage-dihomx.com/wp-content/uploads/2023/09/chez-nous-office-atelier-du-pont_1.jpg"
-            alt="image 1"
-            className="object-fill h-full w-full"
-          />
-          <div className="absolute inset-0 flex flex-col items-center text-white justify-end bg-black bg-opacity-40 p-6">
-            <div className="w-1/2 text-center md:w-2/3">
-              <h1 className="mb-4 text-2xl md:text-2xl font-bold lg:text-5xl">
-                Reemodelecion condominio chef
-              </h1>
-              <h1 className="mb-12 text-xl opacity-80 font-semibold underline">
-                Commercial | Barcelona Espafia | ingenio.hgs@gmail.com
-              </h1>
+    <>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Autoplay, Pagination]}
+        className="mySwiper"
+      >
+        <SwiperSlide style={{ height: isMobile ? "300px" : "600px" }}>
+          <div className="relative">
+            <img
+              src="https://stage-dihomx.com/wp-content/uploads/2023/09/chez-nous-office-atelier-du-pont_1.jpg"
+              alt="image 1"
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute inset-0 flex flex-col items-center text-white justify-center  bg-black bg-opacity-40 p-6">
+              <div className={`w-full text-center ${isMobile ? "" : "mt-80"}`}>
+                <h1 className="text-2xl md:text-2xl font-bold lg:text-5xl">
+                  Reemodelación condominio chef
+                </h1>
+                <h1 className="text-xl opacity-80 font-semibold underline">
+                  Commercial | Barcelona, España | ingenio.hgs@gmail.com
+                </h1>
+              </div>
             </div>
           </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="relative">
-          <img
-            src="https://stage-dihomx.com/wp-content/uploads/2023/09/chez-nous-office-atelier-du-pont_1.jpg"
-            alt="image 1"
-            className="object-fill h-full w-full"
-          />
-          <div className="absolute inset-0 flex flex-col items-center text-white justify-end bg-black bg-opacity-40 p-6">
-            <div className="w-1/2 text-center md:w-2/3">
-              <h1 className="mb-4 text-2xl md:text-2xl font-bold lg:text-5xl">
-                Reemodelecion condominio chef
-              </h1>
-              <h1 className="mb-12 text-xl opacity-80 font-semibold underline">
-                Commercial | Barcelona Espafia | ingenio.hgs@gmail.com
-              </h1>
+        </SwiperSlide>
+        <SwiperSlide style={{ height: isMobile ? "300px" : "600px" }}>
+          <div className="relative">
+            <img
+              src="https://stage-dihomx.com/wp-content/uploads/2023/09/chez-nous-office-atelier-du-pont_1.jpg"
+              alt="image 1"
+              className="object-cover w-full h-full"
+            />
+            <div className="absolute inset-0 flex flex-col items-center text-white justify-center bg-black bg-opacity-40 p-6">
+              <div className="w-full text-center">
+                <h1 className="text-2xl md:text-2xl font-bold lg:text-5xl">
+                  Reemodelación condominio chef
+                </h1>
+                <h1 className="text-xl opacity-80 font-semibold underline">
+                  Commercial | Barcelona, España | ingenio.hgs@gmail.com
+                </h1>
+              </div>
             </div>
           </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="relative">
-          <img
-            src="https://stage-dihomx.com/wp-content/uploads/2023/09/chez-nous-office-atelier-du-pont_1.jpg"
-            alt="image 1"
-            className="object-fill h-full w-1/2"
-          />
-          <div className="absolute inset-0 flex flex-col items-center text-white justify-end bg-black bg-opacity-40 p-6">
-            <div className="w-1/2 text-center md:w-2/3">
-              <h1 className="mb-4 text-2xl md:text-2xl font-bold lg:text-5xl">
-                Reemodelecion condominio chef
-              </h1>
-              <h1 className="mb-12 text-xl opacity-80 font-semibold underline">
-                Commercial | Barcelona Espafia | ingenio.hgs@gmail.com
-              </h1>
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
-      {/* Add more slides with images and text */}
-    </Swiper>
+        </SwiperSlide>
+      </Swiper>
+    </>
   );
 };
 

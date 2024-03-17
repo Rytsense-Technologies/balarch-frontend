@@ -1,121 +1,58 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import ContactInfo from "../../components/auth/register/ContactInfo";
 import EducationInfo from "../../components/auth/register/EducationInfo";
 import OtherInfo from "../../components/auth/register/OtherInfo";
 import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
-
-// const registrationSchema = Yup.object().shape({
-//   Email: Yup.string().email("Invalid email").required("Email is required"),
-//   Password: Yup.string()
-//     .min(2, "Password must be at least 8 characters")
-//     .required("Password is required"),
-//   Name: Yup.string().required("Name is required"),
-//   ShortBio: Yup.string().required("ShortBio is required"),
-//   Profession: Yup.string().required("Profession is required"),
-
-//   EducationalInstitute1: Yup.string().required(
-//     "EducationalInstitute1 is required"
-//   ),
-//   EducationDegree1: Yup.string().required("EducationDegree1 is required"),
-//   EducationTitle1: Yup.string().required("EducationTitle1 is required"),
-//   EducationYear1: Yup.string().required("EducationYear1 is required"),
-
-//   EducationalInstitute2: Yup.string().required(
-//     "EducationalInstitute2 is required"
-//   ),
-//   EducationDegree2: Yup.string().required("EducationDegree2 is required"),
-//   EducationTitle2: Yup.string().required("EducationTitle2 is required"),
-//   EducationYear2: Yup.string().required("EducationYear2 is required"),
-
-//   EducationalInstitute3: Yup.string().required(
-//     "EducationalInstitute3 is required"
-//   ),
-//   EducationDegree3: Yup.string().required("EducationDegree3 is required"),
-//   EducationTitle3: Yup.string().required("EducationTitle3 is required"),
-//   EducationYear3: Yup.string().required("EducationYear3 is required"),
-
-//   CompanyProfessionalExperience1: Yup.string().required(
-//     "CompanyProfessionalExperience1 is required"
-//   ),
-//   PositionProfessionalExperience1: Yup.string().required(
-//     "PositionProfessionalExperience1 is required"
-//   ),
-//   YearProfessionalExperience1: Yup.string().required(
-//     "YearProfessionalExperience1 is required"
-//   ),
-
-//   CompanyProfessionalExperience2: Yup.string().required(
-//     "CompanyProfessionalExperience2 is required"
-//   ),
-//   PositionProfessionalExperience2: Yup.string().required(
-//     "PositionProfessionalExperience2 is required"
-//   ),
-//   YearProfessionalExperience2: Yup.string().required(
-//     "YearProfessionalExperience2 is required"
-//   ),
-
-//   StartYear: Yup.string().required("StartYear is required"),
-//   WebsiteLink: Yup.string().required("WebsiteLink is required"),
-//   ContactEmailAddress: Yup.string().required("ContactEmailAddress is required"),
-//   ContactPhoneNumber: Yup.string().required("ContactPhoneNumber is required"),
-//   ProfilePicture: Yup.string().required("ProfilePicture is required"),
-//   Country: Yup.string().required("Country is required"),
-//   MagazineShippingAddress: Yup.string().required(
-//     "MagazineShippingAddress is required"
-//   ),
-
-//   OperationRange: Yup.string().required("OperationRange is required"),
-//   FacebookIconLink: Yup.string().required("FacebookIconLink is required"),
-//   InstagramIconLink: Yup.string().required("InstagramIconLink is required"),
-//   IssueIconLink: Yup.string().required("IssueIconLink is required"),
-//   XIconLink: Yup.string().required("XIconLink is required"),
-//   YoutubeIconLink: Yup.string().required("YoutubeIconLink is required"),
-//   YearExperience: Yup.string().required("YearExperience is required"),
-
-//   IconsOfProfessionalSoftwares: Yup.string().required("Email is required"),
-// });
-
+import { registerUser } from "../../redux/slice/authSlice";
 const RegisterPage = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Name, setName] = useState("");
   const [ShortBio, setShortBio] = useState("");
   const [Profession, setProfession] = useState("");
-  const [ProfessionalPosition, setProfessionalPosition] = useState("");
+  const [ProfessionPositionName, setProfessionPositionName] = useState("");
   const [EducationalInstitute1, setEducationalInstitute1] = useState("");
   const [EducationDegree1, setEducationDegree1] = useState("");
   const [EducationTitle1, setEducationTitle1] = useState("");
-  const [EducationYear1, setEducationYear1] = useState("");
+  const [EducationYear1, setEducationYear1] = useState(null);
 
   const [EducationalInstitute2, setEducationalInstitute2] = useState("");
   const [EducationDegree2, setEducationDegree2] = useState("");
   const [EducationTitle2, setEducationTitle2] = useState("");
-  const [EducationYear2, setEducationYear2] = useState("");
+  const [EducationYear2, setEducationYear2] = useState(null);
 
   const [EducationalInstitute3, setEducationalInstitute3] = useState("");
   const [EducationDegree3, setEducationDegree3] = useState("");
   const [EducationTitle3, setEducationTitle3] = useState("");
-  const [EducationYear3, setEducationYear3] = useState("");
+  const [EducationYear3, setEducationYear3] = useState(null);
 
   const [CompanyProfessionalExperience1, setCompanyProfessionalExperience1] =
     useState("");
   const [PositionProfessionalExperience1, setPositionProfessionalExperience1] =
     useState("");
   const [YearProfessionalExperience1, setYearProfessionalExperience1] =
-    useState("");
+    useState(null);
 
   const [CompanyProfessionalExperience2, setCompanyProfessionalExperience2] =
     useState("");
   const [PositionProfessionalExperience2, setPositionProfessionalExperience2] =
     useState("");
   const [YearProfessionalExperience2, setYearProfessionalExperience2] =
+    useState(null);
+
+  const [CompanyProfessionalExperience3, setCompanyProfessionalExperience3] =
     useState("");
+  const [PositionProfessionalExperience3, setPositionProfessionalExperience3] =
+    useState("");
+  const [YearProfessionalExperience3, setYearProfessionalExperience3] =
+    useState(null);
 
   const [StartYear, setStartYear] = useState("");
   const [WebsiteLink, setWebsiteLink] = useState("");
   const [ContactEmailAddress, setContactEmailAddress] = useState("");
-  const [ContactPhoneNumber, setContactPhoneNumber] = useState("");
+  const [ContactPhoneNumber, setContactPhoneNumber] = useState(null);
   const [ProfilePicture, setProfilePicture] = useState("");
   const [Country, setCountry] = useState("");
   const [MagazineShippingAddress, setMagazineShippingAddress] = useState("");
@@ -126,9 +63,12 @@ const RegisterPage = () => {
   const [IssueIconLink, setIssueIconLink] = useState("");
   const [XIconLink, setXIconLink] = useState("");
   const [YoutubeIconLink, setYoutubeIconLink] = useState("");
-  const [YearExperience, setYearExperience] = useState("");
+  const [YearExperience, setYearExperience] = useState(null);
+  const [IconsOfProfessionalSoftwares, setIconsOfProfessionalSoftwares] =
+    useState("");
 
   const [openTab, setOpenTab] = useState(1);
+  const dispatch = useDispatch();
 
   const handleNext = () => {
     setOpenTab(openTab + 1);
@@ -138,59 +78,54 @@ const RegisterPage = () => {
     setOpenTab(openTab - 1);
   };
 
-  async function signUp() {
-    let item = {
-      Email,
-      Password,
-      Name,
-      ShortBio,
-      Profession,
-      ProfessionalPosition,
-      EducationalInstitute1,
-      EducationTitle1,
-      EducationDegree1,
-      EducationYear1,
-      EducationalInstitute2,
-      EducationTitle2,
-      EducationDegree2,
-      EducationYear2,
-      EducationalInstitute3,
-      EducationTitle3,
-      EducationDegree3,
-      EducationYear3,
-      CompanyProfessionalExperience1,
-      PositionProfessionalExperience1,
-      YearProfessionalExperience1,
-      CompanyProfessionalExperience2,
-      PositionProfessionalExperience2,
-      YearProfessionalExperience2,
-      StartYear,
-      WebsiteLink,
-      ContactEmailAddress,
-      ContactPhoneNumber,
-      ProfilePicture,
-      Country,
-      MagazineShippingAddress,
-      OperationRange,
-      FacebookIconLink,
-      InstagramIconLink,
-      IssueIconLink,
-      XIconLink,
-      YoutubeIconLink,
-      YearExperience,
-    };
-
-    let result = await fetch("http://54.167.20.39:8080/api/signup/create", {
-      method: "POST",
-      body: JSON.stringify(item),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    result = await result.json();
-    console.log(result);
-  }
+  const registerHandler = () => {
+    dispatch(
+      registerUser({
+        Email,
+        Password,
+        Name,
+        ShortBio,
+        Profession,
+        ProfessionPositionName,
+        EducationalInstitute1,
+        EducationTitle1,
+        EducationDegree1,
+        EducationYear1: parseInt(EducationYear1),
+        EducationalInstitute2,
+        EducationTitle2,
+        EducationDegree2,
+        EducationYear2: parseInt(EducationYear2),
+        EducationalInstitute3,
+        EducationTitle3,
+        EducationDegree3,
+        EducationYear3: parseInt(EducationYear3),
+        CompanyProfessionalExperience1,
+        PositionProfessionalExperience1,
+        YearProfessionalExperience1: parseInt(YearProfessionalExperience1),
+        CompanyProfessionalExperience2,
+        PositionProfessionalExperience2,
+        YearProfessionalExperience2: parseInt(YearProfessionalExperience2),
+        CompanyProfessionalExperience3,
+        PositionProfessionalExperience3,
+        YearProfessionalExperience3: parseInt(YearProfessionalExperience3),
+        StartYear: parseInt(StartYear),
+        WebsiteLink,
+        ContactEmailAddress,
+        ContactPhoneNumber: parseInt(ContactPhoneNumber),
+        ProfilePicture,
+        Country,
+        MagazineShippingAddress,
+        OperationRange,
+        FacebookIconLink,
+        InstagramIconLink,
+        IssueIconLink,
+        XIconLink,
+        YoutubeIconLink,
+        YearExperience: parseInt(YearExperience),
+        IconsOfProfessionalSoftwares,
+      })
+    );
+  };
 
   return (
     <div>
@@ -270,8 +205,8 @@ const RegisterPage = () => {
                         setShortBio={setShortBio}
                         Profession={Profession}
                         setProfession={setProfession}
-                        ProfessionalPosition={ProfessionalPosition}
-                        setProfessionalPosition={setProfessionalPosition}
+                        ProfessionPositionName={ProfessionPositionName}
+                        setProfessionPositionName={setProfessionPositionName}
                       />
                     )}
                     {openTab === 2 && (
@@ -344,6 +279,24 @@ const RegisterPage = () => {
                         setYearProfessionalExperience2={
                           setYearProfessionalExperience2
                         }
+                        CompanyProfessionalExperience3={
+                          CompanyProfessionalExperience3
+                        }
+                        PositionProfessionalExperience3={
+                          PositionProfessionalExperience3
+                        }
+                        YearProfessionalExperience3={
+                          YearProfessionalExperience3
+                        }
+                        setCompanyProfessionalExperience3={
+                          setCompanyProfessionalExperience3
+                        }
+                        setPositionProfessionalExperience3={
+                          setPositionProfessionalExperience3
+                        }
+                        setYearProfessionalExperience3={
+                          setYearProfessionalExperience3
+                        }
                       />
                     )}
                     {openTab == 4 && (
@@ -384,7 +337,13 @@ const RegisterPage = () => {
                         setXIconLink={setXIconLink}
                         setYoutubeIconLink={setYoutubeIconLink}
                         setYearExperience={setYearExperience}
-                        signUp={signUp}
+                        IconsOfProfessionalSoftwares={
+                          IconsOfProfessionalSoftwares
+                        }
+                        setIconsOfProfessionalSoftwares={
+                          setIconsOfProfessionalSoftwares
+                        }
+                        registerHandler={registerHandler}
                       />
                     )}
                     <div className="text-center mt-10">

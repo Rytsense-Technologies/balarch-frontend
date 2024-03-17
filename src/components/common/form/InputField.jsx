@@ -1,4 +1,4 @@
-const InputField = ({ label, name, value, onChange }) => {
+const InputField = ({ label, name, value, onChange, type }) => {
   return (
     <div>
       <label
@@ -9,7 +9,7 @@ const InputField = ({ label, name, value, onChange }) => {
       </label>
       <div className="mt-2">
         <input
-          type="email"
+          type={type}
           name={name}
           value={value}
           onChange={onChange}

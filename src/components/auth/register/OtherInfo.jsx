@@ -17,13 +17,16 @@ const OtherInfo = ({
   setXIconLink,
   setYoutubeIconLink,
   setYearExperience,
-  signUp,
+  IconsOfProfessionalSoftwares,
+  setIconsOfProfessionalSoftwares,
+  registerHandler,
 }) => {
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Operations"}
             name={OperationRange}
             value={OperationRange}
@@ -33,6 +36,7 @@ const OtherInfo = ({
 
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Facebook URL"}
             name={FacebookIconLink}
             value={FacebookIconLink}
@@ -41,6 +45,7 @@ const OtherInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Instagram URL"}
             name={InstagramIconLink}
             value={InstagramIconLink}
@@ -49,6 +54,7 @@ const OtherInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Issue URL"}
             name={IssueIconLink}
             value={IssueIconLink}
@@ -58,6 +64,7 @@ const OtherInfo = ({
 
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"X URL"}
             name={XIconLink}
             value={XIconLink}
@@ -66,6 +73,7 @@ const OtherInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
             label={"Youtube URL"}
             name={YoutubeIconLink}
             value={YoutubeIconLink}
@@ -74,10 +82,20 @@ const OtherInfo = ({
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"number"}
             label={"Software Experience"}
             name={YearExperience}
             value={YearExperience}
             onChange={(e) => setYearExperience(e.target.value)}
+          />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
+            type={"text"}
+            label={"Icons of Profession"}
+            name={IconsOfProfessionalSoftwares}
+            value={IconsOfProfessionalSoftwares}
+            onChange={(e) => setIconsOfProfessionalSoftwares(e.target.value)}
           />
         </div>
       </div>
@@ -90,8 +108,9 @@ const OtherInfo = ({
           Previous
         </button>
         <button
-          type="button"
+          type="submit"
           className="text-white float-right bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          onClick={registerHandler}
         >
           Submit
         </button>

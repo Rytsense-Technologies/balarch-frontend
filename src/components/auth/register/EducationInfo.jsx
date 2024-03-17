@@ -1,3 +1,4 @@
+import SelectField from "../../common/form/SelectField";
 import InputField from "./../../common/form/InputField";
 
 const EducationInfo = ({
@@ -28,6 +29,21 @@ const EducationInfo = ({
   setEducationalInstitute2,
   setEducationalInstitute3,
 }) => {
+  const selectedoptions = [
+    { id: "Bachelor", value: "Bachelor" },
+    { id: "Master", value: "Master" },
+    { id: "Associate", value: "Associate" },
+  ];
+
+  const handleSelectchange1 = (event) => {
+    setEducationDegree1(event.target.value);
+  };
+  const handleSelectchange2 = (event) => {
+    setEducationDegree2(event.target.value);
+  };
+  const handleSelectchange3 = (event) => {
+    setEducationDegree3(event.target.value);
+  };
   return (
     <>
       <div>
@@ -36,15 +52,16 @@ const EducationInfo = ({
         </span>
         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-3">
-            <InputField
-              label={"Education Degree"}
-              name={EducationDegree1}
+            <SelectField
+              selectoptions={selectedoptions}
+              title={"Education Degree"}
               value={EducationDegree1}
-              onChange={(e) => setEducationDegree1(e.target.value)}
+              onChange={handleSelectchange1}
             />
           </div>
           <div className="sm:col-span-3">
             <InputField
+              type={"text"}
               label={"Institute or School"}
               name={EducationalInstitute1}
               value={EducationalInstitute1}
@@ -53,6 +70,7 @@ const EducationInfo = ({
           </div>
           <div className="sm:col-span-3">
             <InputField
+              type={"text"}
               label={"Title or Career"}
               name={EducationTitle1}
               value={EducationTitle1}
@@ -62,6 +80,7 @@ const EducationInfo = ({
 
           <div className="sm:col-span-3">
             <InputField
+              type={"number"}
               label={"Finish Year"}
               name={EducationYear1}
               value={EducationYear1}
@@ -76,15 +95,16 @@ const EducationInfo = ({
         </span>
         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-3">
-            <InputField
-              label={"Education Degree"}
-              name={EducationDegree2}
+            <SelectField
+              selectoptions={selectedoptions}
+              title={"Education Degree"}
               value={EducationDegree2}
-              onChange={(e) => setEducationDegree2(e.target.value)}
+              onChange={handleSelectchange2}
             />
           </div>
           <div className="sm:col-span-3">
             <InputField
+              type={"text"}
               label={"Institute or School"}
               name={EducationalInstitute2}
               value={EducationalInstitute2}
@@ -93,6 +113,7 @@ const EducationInfo = ({
           </div>
           <div className="sm:col-span-3">
             <InputField
+              type={"text"}
               label={"Title or Career"}
               name={EducationTitle2}
               value={EducationTitle2}
@@ -102,6 +123,7 @@ const EducationInfo = ({
 
           <div className="sm:col-span-3">
             <InputField
+              type={"number"}
               label={"Finish Year"}
               name={EducationYear2}
               value={EducationYear2}
@@ -117,15 +139,16 @@ const EducationInfo = ({
         </span>
         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-3">
-            <InputField
-              label={"Education Degree"}
-              name={EducationDegree3}
+            <SelectField
+              selectoptions={selectedoptions}
+              title={"Education Degree"}
               value={EducationDegree3}
-              onChange={(e) => setEducationDegree3(e.target.value)}
+              onChange={handleSelectchange3}
             />
           </div>
           <div className="sm:col-span-3">
             <InputField
+              type={"text"}
               label={"Institute or School"}
               name={EducationalInstitute3}
               value={EducationalInstitute3}
@@ -134,6 +157,7 @@ const EducationInfo = ({
           </div>
           <div className="sm:col-span-3">
             <InputField
+              type={"text"}
               label={"Title or Career"}
               name={EducationTitle3}
               value={EducationTitle3}
@@ -143,6 +167,7 @@ const EducationInfo = ({
 
           <div className="sm:col-span-3">
             <InputField
+              type={"number"}
               label={"Finish Year"}
               name={EducationYear3}
               value={EducationYear3}

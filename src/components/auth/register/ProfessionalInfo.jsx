@@ -3,7 +3,28 @@ import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import InputField from "./../../common/form/InputField";
 
-const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
+const ProfessionalInfo = ({
+  handleNext,
+  handlePrevious,
+  CompanyProfessionalExperience1,
+  PositionProfessionalExperience1,
+  YearProfessionalExperience1,
+  setCompanyProfessionalExperience1,
+  setPositionProfessionalExperience1,
+  setYearProfessionalExperience1,
+  CompanyProfessionalExperience2,
+  PositionProfessionalExperience2,
+  YearProfessionalExperience2,
+  setCompanyProfessionalExperience2,
+  setPositionProfessionalExperience2,
+  setYearProfessionalExperience2,
+  CompanyProfessionalExperience3,
+  PositionProfessionalExperience3,
+  YearProfessionalExperience3,
+  setCompanyProfessionalExperience3,
+  setPositionProfessionalExperience3,
+  setYearProfessionalExperience3,
+}) => {
   const [experienceCount, setExperienceCount] = useState(1);
 
   const addExperience = () => {
@@ -13,12 +34,15 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
   const deleteExperience = (index) => {
     const updatedCount = experienceCount - 1;
     setExperienceCount(updatedCount);
-    // You can add logic here to remove the corresponding data from your state or form data
   };
 
   const renderExperienceFields = () => {
     const fields = [];
     for (let i = 1; i <= experienceCount; i++) {
+      const companySetter = `setCompanyProfessionalExperience${i}`;
+      const positionSetter = `setPositionProfessionalExperience${i}`;
+      const yearSetter = `setYearProfessionalExperience${i}`;
+
       fields.push(
         <div key={i}>
           <div className="flex items-center justify-between">
@@ -36,26 +60,38 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
           <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <InputField
+                type={"text"}
                 label={"Company Name"}
-                name={`company_${i}`}
-                id={`company_${i}`}
-                onChange={(e) => console.log(e.target.value)}
+                name={`CompanyProfessionalExperience${i}`}
+                id={`CompanyProfessionalExperience${i}`}
+                onChange={(e) => {
+                  const setter = eval(companySetter);
+                  setter(e.target.value);
+                }}
               />
             </div>
             <div className="sm:col-span-3">
               <InputField
+                type={"text"}
                 label={"Position"}
-                name={`position_${i}`}
-                id={`position_${i}`}
-                onChange={(e) => console.log(e.target.value)}
+                name={`PositionProfessionalExperience${i}`}
+                id={`PositionProfessionalExperience${i}`}
+                onChange={(e) => {
+                  const setter = eval(positionSetter);
+                  setter(e.target.value);
+                }}
               />
             </div>
             <div className="sm:col-span-3">
               <InputField
+                type={"number"}
                 label={"Year"}
-                name={`year_${i}`}
-                id={`year_${i}`}
-                onChange={(e) => console.log(e.target.value)}
+                name={`YearProfessionalExperience${i}`}
+                id={`YearProfessionalExperience${i}`}
+                onChange={(e) => {
+                  const setter = eval(yearSetter);
+                  setter(e.target.value);
+                }}
               />
             </div>
           </div>
