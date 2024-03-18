@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import InputField from "./../../common/form/InputField";
 
 const ProfessionalInfo = ({
@@ -28,7 +29,11 @@ const ProfessionalInfo = ({
   const [experienceCount, setExperienceCount] = useState(1);
 
   const addExperience = () => {
-    setExperienceCount((prevCount) => prevCount + 1);
+    if (experienceCount < 10) {
+      setExperienceCount((prevCount) => prevCount + 1);
+    } else {
+      toast.error("You can add only up to 10 experiences.");
+    }
   };
 
   const deleteExperience = (index) => {
