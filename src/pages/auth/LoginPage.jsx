@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
+import { loginUser } from "../../redux/slice/authSlice";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
+  const dispatch = useDispatch();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -25,8 +27,10 @@ const LoginPage = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    console.log(email, password);
+    dispatch(loginUser({ email, password }));
   };
 
   return (
@@ -55,74 +59,74 @@ const LoginPage = () => {
                   details.
                 </p>
               </div>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                  <label
-                    className="block mb-1.5 text-sm text-gray-900 font-semibold"
-                    htmlFor=""
-                  >
-                    Email
-                  </label>
+
+              <div className="mb-6">
+                <label
+                  className="block mb-1.5 text-sm text-gray-900 font-semibold"
+                  htmlFor=""
+                >
+                  Email
+                </label>
+                <input
+                  className="w-full py-3 px-4 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-purple-500 focus:outline-purple rounded-lg"
+                  type="email"
+                  placeholder="john@gmail.com"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+              </div>
+              <div className="mb-6">
+                <label
+                  className="block mb-1.5 text-sm text-gray-900 font-semibold"
+                  htmlFor=""
+                >
+                  Password
+                </label>
+                <div className="relative">
                   <input
                     className="w-full py-3 px-4 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-purple-500 focus:outline-purple rounded-lg"
-                    type="email"
-                    placeholder="john@gmail.com"
-                    value={email}
-                    onChange={handleEmailChange}
+                    type="password"
+                    placeholder="********"
+                    value={password}
+                    onChange={handlePasswordChange}
                   />
-                </div>
-                <div className="mb-6">
-                  <label
-                    className="block mb-1.5 text-sm text-gray-900 font-semibold"
-                    htmlFor=""
-                  >
-                    Password
-                  </label>
-                  <div className="relative">
-                    <input
-                      className="w-full py-3 px-4 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-purple-500 focus:outline-purple rounded-lg"
-                      type="password"
-                      placeholder="********"
-                      value={password}
-                      onChange={handlePasswordChange}
+                  <button className="absolute top-1/2 right-0 mr-3 transform -translate-y-1/2 inline-block hover:scale-110 transition duration-100">
+                    <img
+                      src="saturn-assets/images/sign-up/icon-eye.svg"
+                      alt=""
                     />
-                    <button className="absolute top-1/2 right-0 mr-3 transform -translate-y-1/2 inline-block hover:scale-110 transition duration-100">
-                      <img
-                        src="saturn-assets/images/sign-up/icon-eye.svg"
-                        alt=""
-                      />
-                    </button>
-                  </div>
+                  </button>
                 </div>
-                <div className="flex mb-6 items-center">
-                  <input type="checkbox" value="" id="" />
-                  <label className="ml-2 text-xs text-gray-800" htmlFor="">
-                    Remember me
-                  </label>
-                </div>
-                <button
-                  className={`relative group block w-full mb-6 py-3 px-5 text-center text-sm font-semibold text-orange-50 bg-gray-800 ${
-                    isFormValid
-                      ? "hover:bg-blue-gray-900"
-                      : "cursor-not-allowed opacity-50"
-                  } rounded-full overflow-hidden`}
-                  type="submit"
-                  disabled={!isFormValid}
-                >
-                  <span className="relative">Log In</span>
-                </button>
-                <div className="text-center">
-                  <span className="text-xs font-semibold text-gray-900">
-                    <span>Dont have an account?</span>
-                    <Link
-                      className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
-                      to="/register"
-                    >
-                      Sign up
-                    </Link>
-                  </span>
-                </div>
-              </form>
+              </div>
+              <div className="flex mb-6 items-center">
+                <input type="checkbox" value="" id="" />
+                <label className="ml-2 text-xs text-gray-800" htmlFor="">
+                  Remember me
+                </label>
+              </div>
+              <button
+                className={`relative group block w-full mb-6 py-3 px-5 text-center text-sm font-semibold text-orange-50 bg-gray-800 ${
+                  isFormValid
+                    ? "hover:bg-blue-gray-900"
+                    : "cursor-not-allowed opacity-50"
+                } rounded-full overflow-hidden`}
+                type="submit"
+                disabled={!isFormValid}
+                onClick={handleLogin}
+              >
+                <span className="relative">Log In</span>
+              </button>
+              <div className="text-center">
+                <span className="text-xs font-semibold text-gray-900">
+                  <span>Dont have an account?</span>
+                  <Link
+                    className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
+                    to="/register"
+                  >
+                    Sign up
+                  </Link>
+                </span>
+              </div>
             </div>
           </div>
         </div>

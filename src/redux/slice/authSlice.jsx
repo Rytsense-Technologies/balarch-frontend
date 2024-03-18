@@ -19,10 +19,32 @@ export const registerUser = createAsyncThunk("registerUser", async (body) => {
   return await res.json();
 });
 
+export const loginUser = createAsyncThunk("loginUser", async (body) => {
+  const res = await fetch("http://54.167.20.39:8080/api/signup/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  return await res.json();
+});
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    addToken: (state, action) => {
+      state.token = localStorage.getItem("token");
+    },
+    addUser: (state, action) => {
+      state.user = localStorage.getItem("user");
+    },
+    logOut: (state, action) => {
+      state.token = null;
+      localStorage.clear();
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state, action) => {
@@ -39,8 +61,32 @@ const authSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = "An error occurred while registering.";
+      })
+      .addCase(loginUser.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(
+        loginUser.fulfilled,
+        (state, { payload: { error, msg, token, user } }) => {
+          state.loading = false;
+          if (error) {
+            state.error = error;
+          } else {
+            state.msg = msg;
+            state.token = token;
+            state.user = user;
+
+            localStorage.setItem("token", token);
+            localStorage.setItem("user", JSON.stringify(user));
+          }
+        }
+      )
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = "An error occurred while login.";
       });
   },
 });
 
+export const { logout, addToken, addUser } = authSlice.actions;
 export default authSlice.reducer;
