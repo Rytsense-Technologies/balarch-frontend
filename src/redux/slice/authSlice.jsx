@@ -9,25 +9,33 @@ const initialState = {
 };
 
 export const registerUser = createAsyncThunk("registerUser", async (body) => {
-  const res = await fetch("http://54.167.20.39:8080/api/signup/create", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  return await res.json();
+  try {
+    const res = await fetch("http://54.167.20.39:8080/api/signup/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  } catch (error) {
+    return { error: error.message };
+  }
 });
 
 export const loginUser = createAsyncThunk("loginUser", async (body) => {
-  const res = await fetch("http://54.167.20.39:8080/api/signup/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-  return await res.json();
+  try {
+    const res = await fetch("http://54.167.20.39:8080/api/signup/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  } catch (error) {
+    return { error: error.message };
+  }
 });
 
 const authSlice = createSlice({
@@ -72,12 +80,10 @@ const authSlice = createSlice({
           if (error) {
             state.error = error;
           } else {
-            state.msg = msg;
-            state.token = token;
-            state.user = user;
-
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(user));
+            state.token = token;
+            state.user = user;
           }
         }
       )

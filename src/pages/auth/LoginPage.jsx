@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.png";
 import { loginUser } from "../../redux/slice/authSlice";
 
@@ -9,6 +10,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -32,6 +34,8 @@ const LoginPage = () => {
     e.preventDefault();
     console.log(email, password);
     dispatch(loginUser({ email, password }));
+    toast.success("Successfully LoggedIn");
+    navigate("/");
   };
 
   return (
