@@ -1,28 +1,54 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.png";
-import { otpVerification } from "../../redux/slice/authSlice";
 
 const OtpVerify = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
-  const email = localStorage.getItem("email");
+  const userDataString = localStorage.getItem("userData");
 
-  const handleOtpVerify = (e) => {
-    e.preventDefault();
+  const userData = JSON.parse(userDataString);
+
+  const email = userData.email;
+
+  const handleOtpVerify = async () => {
     const otpNumber = parseInt(otp.join(""), 10);
     if (!otpNumber) {
       toast.error("Please enter your OTP");
       return;
     }
-    console.log(email, otpNumber);
-    dispatch(otpVerification({ email, otp: otpNumber }));
-    toast.success("Otp Verified Successfully");
-    navigate("/reset-password");
+    try {
+      const response = await fetch(
+        "http://54.167.20.39:8080/api/signup/check-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, otp: otpNumber }),
+        }
+      );
+
+      if (response.ok) {
+        navigate("/reset-password");
+        toast.success("Otp Verified Successfully");
+      } else {
+        const errorData = await response.json();
+        if (response.status === 500) {
+          throw new Error("Internal server error");
+        } else if (response.status === 400) {
+          throw new Error("Bad Request");
+        } else {
+          throw new Error(errorData.message || "An error occurred");
+        }
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.message || "Something went wrong");
+    }
   };
 
   return (

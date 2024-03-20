@@ -1,16 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.png";
-import { loginUser } from "../../redux/slice/authSlice";
-
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isFormValid, setIsFormValid] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -30,13 +25,65 @@ const LoginPage = () => {
     }
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log(email, password);
-    dispatch(loginUser({ email, password }));
-    localStorage.setItem("email", email);
-    toast.success("Successfully LoggedIn");
-    navigate("/");
+  const navigate = useNavigate();
+
+  const parseJwt = (token) => {
+    try {
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+          .join("")
+      );
+
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const handleLogin = async () => {
+    if (!isFormValid) return;
+
+    try {
+      const response = await fetch(
+        "http://54.167.20.39:8080/api/signup/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        const accessToken = data.body.value.accessToken;
+        localStorage.setItem("accessToken", accessToken);
+
+        const decodedToken = parseJwt(accessToken);
+
+        localStorage.setItem("userData", JSON.stringify(decodedToken));
+
+        navigate("/");
+        toast.success("Login successful");
+      } else {
+        const errorData = await response.json();
+        if (response.status === 500) {
+          throw new Error("Internal server error");
+        } else if (response.status === 400) {
+          throw new Error("Bad Request");
+        } else {
+          throw new Error(errorData.message || "An error occurred");
+        }
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.message || "Something went wrong");
+    }
   };
 
   return (

@@ -19,7 +19,7 @@ const OtherInfo = ({
   setYearExperience,
   IconsOfProfessionalSoftwares,
   setIconsOfProfessionalSoftwares,
-  registerHandler,
+  handleRegister,
 }) => {
   return (
     <>
@@ -110,7 +110,7 @@ const OtherInfo = ({
         <button
           type="submit"
           className="text-white float-right bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-          onClick={registerHandler}
+          onClick={handleRegister}
         >
           Submit
         </button>

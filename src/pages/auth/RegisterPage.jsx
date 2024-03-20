@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ContactInfo from "../../components/auth/register/ContactInfo";
@@ -7,7 +7,6 @@ import EducationInfo from "../../components/auth/register/EducationInfo";
 import OtherInfo from "../../components/auth/register/OtherInfo";
 import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
-import { registerUser } from "../../redux/slice/authSlice";
 
 const RegisterPage = () => {
   const [Email, setEmail] = useState("");
@@ -75,7 +74,7 @@ const RegisterPage = () => {
     useState("");
 
   const [openTab, setOpenTab] = useState(1);
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleNext = () => {
@@ -86,58 +85,82 @@ const RegisterPage = () => {
     setOpenTab(openTab - 1);
   };
 
-  const registerHandler = () => {
-    dispatch(
-      registerUser({
-        Email,
-        Password,
-        Name,
-        ShortBio,
-        Profession,
-        ProfessionPositionName,
-        EducationalInstitute1,
-        EducationTitle1,
-        EducationDegree1,
-        EducationYear1: parseInt(EducationYear1),
-        EducationalInstitute2,
-        EducationTitle2,
-        EducationDegree2,
-        EducationYear2: parseInt(EducationYear2),
-        EducationalInstitute3,
-        EducationTitle3,
-        EducationDegree3,
-        EducationYear3: parseInt(EducationYear3),
-        CompanyProfessionalExperience1,
-        PositionProfessionalExperience1,
-        YearProfessionalExperience1: parseInt(YearProfessionalExperience1),
-        CompanyProfessionalExperience2,
-        PositionProfessionalExperience2,
-        YearProfessionalExperience2: parseInt(YearProfessionalExperience2),
-        CompanyProfessionalExperience3,
-        PositionProfessionalExperience3,
-        YearProfessionalExperience3: parseInt(YearProfessionalExperience3),
-        StartYear: parseInt(StartYear),
-        WebsiteLink,
-        ContactEmailAddress,
-        ContactPhoneNumber: parseInt(ContactPhoneNumber),
-        ProfilePicture,
-        Country,
-        MagazineShippingAddress,
-        OperationRange,
-        FacebookIconLink,
-        InstagramIconLink,
-        IssueIconLink,
-        XIconLink,
-        YoutubeIconLink,
-        YearExperience: parseInt(YearExperience),
-        IconsOfProfessionalSoftwares,
-        Occupation,
-        Concentration,
-        Industry,
-      })
-    );
-    toast.success("Account created successfully");
-    navigate("/login");
+  const handleRegister = async () => {
+    try {
+      const response = await fetch(
+        "http://54.167.20.39:8080/api/signup/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Email,
+            Password,
+            Name,
+            ShortBio,
+            Profession,
+            ProfessionPositionName,
+            EducationalInstitute1,
+            EducationTitle1,
+            EducationDegree1,
+            EducationYear1: parseInt(EducationYear1),
+            EducationalInstitute2,
+            EducationTitle2,
+            EducationDegree2,
+            EducationYear2: parseInt(EducationYear2),
+            EducationalInstitute3,
+            EducationTitle3,
+            EducationDegree3,
+            EducationYear3: parseInt(EducationYear3),
+            CompanyProfessionalExperience1,
+            PositionProfessionalExperience1,
+            YearProfessionalExperience1: parseInt(YearProfessionalExperience1),
+            CompanyProfessionalExperience2,
+            PositionProfessionalExperience2,
+            YearProfessionalExperience2: parseInt(YearProfessionalExperience2),
+            CompanyProfessionalExperience3,
+            PositionProfessionalExperience3,
+            YearProfessionalExperience3: parseInt(YearProfessionalExperience3),
+            StartYear: parseInt(StartYear),
+            WebsiteLink,
+            ContactEmailAddress,
+            ContactPhoneNumber: parseInt(ContactPhoneNumber),
+            ProfilePicture,
+            Country,
+            MagazineShippingAddress,
+            OperationRange,
+            FacebookIconLink,
+            InstagramIconLink,
+            IssueIconLink,
+            XIconLink,
+            YoutubeIconLink,
+            YearExperience: parseInt(YearExperience),
+            IconsOfProfessionalSoftwares,
+            Occupation,
+            Concentration,
+            Industry,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        navigate("/login");
+        toast.success("Account created successfully");
+      } else {
+        const errorData = await response.json();
+        if (response.status === 500) {
+          throw new Error("Internal server error");
+        } else if (response.status === 400) {
+          throw new Error("Bad Request");
+        } else {
+          throw new Error(errorData.message || "An error occurred");
+        }
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.message || "Something went wrong");
+    }
   };
 
   return (
@@ -362,7 +385,7 @@ const RegisterPage = () => {
                         setIconsOfProfessionalSoftwares={
                           setIconsOfProfessionalSoftwares
                         }
-                        registerHandler={registerHandler}
+                        handleRegister={handleRegister}
                       />
                     )}
                     <div className="text-center mt-10">

@@ -1,26 +1,57 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.png";
-import { ResetNewPassword } from "../../redux/slice/authSlice";
 
 const NewPassword = () => {
   const [newpassword, setNewPassword] = useState("");
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleNewPasswordChange = (e) => {
     setNewPassword(e.target.value);
   };
 
-  const email = localStorage.getItem("email");
+  const userDataString = localStorage.getItem("userData");
 
-  const handleNewPassword = (e) => {
-    e.preventDefault();
-    dispatch(ResetNewPassword({ email, newpassword }));
-    toast.success("Password Reset Successfully");
-    navigate("/login");
+  const userData = JSON.parse(userDataString);
+
+  const email = userData.email;
+
+  const handleNewPassword = async () => {
+    if (!newpassword) {
+      toast.error("Please enter new password");
+      return;
+    }
+    try {
+      const response = await fetch(
+        "http://54.167.20.39:8080/api/signup/check-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, newpassword }),
+        }
+      );
+
+      if (response.ok) {
+        navigate("/login");
+        toast.success("Password Reset Successfully");
+      } else {
+        const errorData = await response.json();
+        if (response.status === 500) {
+          throw new Error("Internal server error");
+        } else if (response.status === 400) {
+          throw new Error("Bad Request");
+        } else {
+          throw new Error(errorData.message || "An error occurred");
+        }
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.message || "Something went wrong");
+    }
   };
 
   return (

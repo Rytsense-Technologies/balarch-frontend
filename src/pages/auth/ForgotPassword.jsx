@@ -1,30 +1,51 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.png";
-import { forgotPassword } from "../../redux/slice/authSlice";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
-  const handleForgotPassword = (e) => {
-    e.preventDefault();
-    if (!email.trim()) {
-      toast.error("Please enter your email address");
+  const handleForgotPassword = async () => {
+    if (!email) {
+      toast.error("Please enter your email");
       return;
     }
+    try {
+      const response = await fetch(
+        "http://54.167.20.39:8080/api/signup/forgot-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
-    console.log(email);
-    dispatch(forgotPassword({ email }));
-    toast.success("Please check your email for verification code");
-    navigate("/otp-verify");
+      if (response.ok) {
+        navigate("/otp-verify");
+        toast.success("Please check your email for verification code");
+      } else {
+        const errorData = await response.json();
+        if (response.status === 500) {
+          throw new Error("Internal server error");
+        } else if (response.status === 400) {
+          throw new Error("Bad Request");
+        } else {
+          throw new Error(errorData.message || "An error occurred");
+        }
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error(error.message || "Something went wrong");
+    }
   };
 
   return (
