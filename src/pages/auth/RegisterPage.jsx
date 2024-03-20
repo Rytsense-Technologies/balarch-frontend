@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ContactInfo from "../../components/auth/register/ContactInfo";
 import EducationInfo from "../../components/auth/register/EducationInfo";
@@ -391,9 +390,12 @@ const RegisterPage = () => {
                     <div className="text-center mt-10">
                       <span className="text-xs font-semibold text-gray-900">
                         <span>Already have an account?</span>
-                        <a className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700">
-                          Sign In
-                        </a>
+                        <Link
+                          to="/login"
+                          className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
+                        >
+                          Login
+                        </Link>
                       </span>
                     </div>
                   </div>

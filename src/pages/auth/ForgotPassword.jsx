@@ -70,7 +70,7 @@ const ForgotPassword = () => {
                     <img src={logo} className="w-40 mb-5" alt="Logo" />
                   </NavLink>
 
-                  <p className="text-lg text-gray-500 mb-10">
+                  <p className="text-lg text-center text-gray-500 mb-10">
                     Please enter your email address to get a verification code.
                   </p>
                 </div>
@@ -96,7 +96,7 @@ const ForgotPassword = () => {
                   type="submit"
                   onClick={handleForgotPassword}
                 >
-                  <span className="relative">Get Otp</span>
+                  <span className="relative">Get Verification code</span>
                 </button>
               </div>
             </div>
