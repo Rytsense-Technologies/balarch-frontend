@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import ContactInfo from "../../components/auth/register/ContactInfo";
 import EducationInfo from "../../components/auth/register/EducationInfo";
 import OtherInfo from "../../components/auth/register/OtherInfo";
 import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
 import { registerUser } from "../../redux/slice/authSlice";
+
 const RegisterPage = () => {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -13,6 +16,9 @@ const RegisterPage = () => {
   const [ShortBio, setShortBio] = useState("");
   const [Profession, setProfession] = useState("");
   const [ProfessionPositionName, setProfessionPositionName] = useState("");
+  const [Occupation, setOccupation] = useState("");
+  const [Concentration, setConcentration] = useState("");
+
   const [EducationalInstitute1, setEducationalInstitute1] = useState("");
   const [EducationDegree1, setEducationDegree1] = useState("");
   const [EducationTitle1, setEducationTitle1] = useState("");
@@ -49,6 +55,7 @@ const RegisterPage = () => {
   const [YearProfessionalExperience3, setYearProfessionalExperience3] =
     useState(null);
 
+  const [Industry, setIndustry] = useState("");
   const [StartYear, setStartYear] = useState("");
   const [WebsiteLink, setWebsiteLink] = useState("");
   const [ContactEmailAddress, setContactEmailAddress] = useState("");
@@ -69,6 +76,7 @@ const RegisterPage = () => {
 
   const [openTab, setOpenTab] = useState(1);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleNext = () => {
     setOpenTab(openTab + 1);
@@ -123,8 +131,13 @@ const RegisterPage = () => {
         YoutubeIconLink,
         YearExperience: parseInt(YearExperience),
         IconsOfProfessionalSoftwares,
+        Occupation,
+        Concentration,
+        Industry,
       })
     );
+    toast.success("Account created successfully");
+    navigate("/login");
   };
 
   return (
@@ -207,6 +220,10 @@ const RegisterPage = () => {
                         setProfession={setProfession}
                         ProfessionPositionName={ProfessionPositionName}
                         setProfessionPositionName={setProfessionPositionName}
+                        Occupation={Occupation}
+                        setOccupation={setOccupation}
+                        Concentration={Concentration}
+                        setConcentration={setConcentration}
                       />
                     )}
                     {openTab === 2 && (
@@ -303,6 +320,7 @@ const RegisterPage = () => {
                       <ContactInfo
                         handleNext={handleNext}
                         handlePrevious={handlePrevious}
+                        Industry={Industry}
                         StartYear={StartYear}
                         WebsiteLink={WebsiteLink}
                         ContactEmailAddress={ContactEmailAddress}
@@ -310,6 +328,7 @@ const RegisterPage = () => {
                         ProfilePicture={ProfilePicture}
                         Country={Country}
                         MagazineShippingAddress={MagazineShippingAddress}
+                        setIndustry={setIndustry}
                         setStartYear={setStartYear}
                         setWebsiteLink={setWebsiteLink}
                         setContactEmailAddress={setContactEmailAddress}

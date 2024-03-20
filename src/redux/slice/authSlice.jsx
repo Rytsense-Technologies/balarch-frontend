@@ -17,6 +17,11 @@ export const registerUser = createAsyncThunk("registerUser", async (body) => {
       },
       body: JSON.stringify(body),
     });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+
     return await res.json();
   } catch (error) {
     return { error: error.message };
@@ -38,6 +43,68 @@ export const loginUser = createAsyncThunk("loginUser", async (body) => {
   }
 });
 
+export const forgotPassword = createAsyncThunk(
+  "forgotPassword",
+  async (body) => {
+    try {
+      const res = await fetch(
+        "http://54.167.20.39:8080/api/signup/forgot-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      return await res.json();
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+);
+export const otpVerification = createAsyncThunk(
+  "otpVerification",
+  async (body) => {
+    try {
+      const res = await fetch(
+        "http://54.167.20.39:8080/api/signup/check-otp ",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      return await res.json();
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+);
+
+export const ResetNewPassword = createAsyncThunk(
+  "newPassword",
+  async (body) => {
+    try {
+      const res = await fetch(
+        "http://54.167.20.39:8080/api/signup/new-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+      return await res.json();
+    } catch (error) {
+      return { error: error.message };
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -57,6 +124,7 @@ const authSlice = createSlice({
     builder
       .addCase(registerUser.pending, (state, action) => {
         state.loading = true;
+        state.error = action.error.message;
       })
       .addCase(registerUser.fulfilled, (state, { payload: { error, msg } }) => {
         state.loading = false;
@@ -90,6 +158,60 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = "An error occurred while login.";
+      })
+      .addCase(forgotPassword.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(
+        forgotPassword.fulfilled,
+        (state, { payload: { error, msg } }) => {
+          state.loading = false;
+          if (error) {
+            state.error = error;
+          } else {
+            state.msg = msg;
+          }
+        }
+      )
+      .addCase(forgotPassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = "An error occurred while get otp.";
+      })
+      .addCase(otpVerification.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(
+        otpVerification.fulfilled,
+        (state, { payload: { error, msg } }) => {
+          state.loading = false;
+          if (error) {
+            state.error = error;
+          } else {
+            state.msg = msg;
+          }
+        }
+      )
+      .addCase(otpVerification.rejected, (state, action) => {
+        state.loading = false;
+        state.error = "An error occurred while otp verification.";
+      })
+      .addCase(ResetNewPassword.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(
+        ResetNewPassword.fulfilled,
+        (state, { payload: { error, msg } }) => {
+          state.loading = false;
+          if (error) {
+            state.error = error;
+          } else {
+            state.msg = msg;
+          }
+        }
+      )
+      .addCase(ResetNewPassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = "An error occurred while reset password";
       });
   },
 });

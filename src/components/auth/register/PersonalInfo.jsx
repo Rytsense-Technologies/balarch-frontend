@@ -15,6 +15,10 @@ const PersonalInfo = ({
   setProfession,
   ProfessionPositionName,
   setProfessionPositionName,
+  Occupation,
+  setOccupation,
+  Concentration,
+  setConcentration,
 }) => {
   const selectedoptions = [
     { id: "Education", value: "Education" },
@@ -84,6 +88,24 @@ const PersonalInfo = ({
             name={ProfessionPositionName}
             value={ProfessionPositionName}
             onChange={(e) => setProfessionPositionName(e.target.value)}
+          />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
+            type={"text"}
+            label={"Occupation"}
+            name={Occupation}
+            value={Occupation}
+            onChange={(e) => setOccupation(e.target.value)}
+          />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
+            type={"text"}
+            label={"Concentration"}
+            name={Concentration}
+            value={Concentration}
+            onChange={(e) => setConcentration(e.target.value)}
           />
         </div>
       </div>

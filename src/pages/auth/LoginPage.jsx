@@ -34,6 +34,7 @@ const LoginPage = () => {
     e.preventDefault();
     console.log(email, password);
     dispatch(loginUser({ email, password }));
+    localStorage.setItem("email", email);
     toast.success("Successfully LoggedIn");
     navigate("/");
   };
@@ -103,11 +104,8 @@ const LoginPage = () => {
                   </button>
                 </div>
               </div>
-              <div className="flex mb-6 items-center">
-                <input type="checkbox" value="" id="" />
-                <label className="ml-2 text-xs text-gray-800" htmlFor="">
-                  Remember me
-                </label>
+              <div className="float-right text-sm mb-2 underline text-blue-800">
+                <Link to="/forgot-password">Forgot password?</Link>
               </div>
               <button
                 className={`relative group block w-full mb-6 py-3 px-5 text-center text-sm font-semibold text-orange-50 bg-gray-800 ${

@@ -4,6 +4,8 @@ const ContactInfo = ({
   handleNext,
   handlePrevious,
   StartYear,
+  Industry,
+  setIndustry,
   WebsiteLink,
   ContactEmailAddress,
   ContactPhoneNumber,
@@ -21,6 +23,15 @@ const ContactInfo = ({
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div className="sm:col-span-3">
+          <InputField
+            type={"text"}
+            label={"Industry"}
+            name={Industry}
+            value={Industry}
+            onChange={(e) => setIndustry(e.target.value)}
+          />
+        </div>
         <div className="sm:col-span-3">
           <InputField
             type={"text"}

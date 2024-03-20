@@ -8,7 +8,10 @@ import ProfessionalDetailPage from "../pages/ProfessionalDetailPage";
 import Professionals from "../pages/Professionals";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
 import Projects from "../pages/Projects";
+import ForgotPassword from "../pages/auth/ForgotPassword";
 import LoginPage from "../pages/auth/LoginPage";
+import NewPassword from "../pages/auth/NewPassword";
+import OtpVerify from "../pages/auth/OtpVerify";
 import RegisterPage from "../pages/auth/RegisterPage";
 import AddProjectPage from "../pages/dashboard/projects/AddProjectPage";
 import AllProjectList from "../pages/dashboard/projects/AllProjectList";
@@ -21,6 +24,9 @@ const Router = () => {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/otp-verify" element={<OtpVerify />} />
+      <Route path="/reset-password" element={<NewPassword />} />
       <Route
         path="/"
         element={
