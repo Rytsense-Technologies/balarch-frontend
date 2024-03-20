@@ -17,11 +17,6 @@ export const registerUser = createAsyncThunk("registerUser", async (body) => {
       },
       body: JSON.stringify(body),
     });
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-
     return await res.json();
   } catch (error) {
     return { error: error.message };
@@ -124,7 +119,6 @@ const authSlice = createSlice({
     builder
       .addCase(registerUser.pending, (state, action) => {
         state.loading = true;
-        state.error = action.error.message;
       })
       .addCase(registerUser.fulfilled, (state, { payload: { error, msg } }) => {
         state.loading = false;

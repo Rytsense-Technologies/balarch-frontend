@@ -71,7 +71,7 @@ const NewPassword = () => {
                   type="submit"
                   onClick={handleNewPassword}
                 >
-                  <span className="relative">Get Otp</span>
+                  <span className="relative">Reset Password</span>
                 </button>
               </div>
             </div>
