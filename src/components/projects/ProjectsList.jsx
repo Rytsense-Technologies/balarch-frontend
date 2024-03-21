@@ -54,22 +54,25 @@ const ProjectsList = () => {
               className="relative cursor-pointer"
               onClick={() => navigate("/proyectoss/name")}
             >
-              <img
-                src={project.Image1Main}
-                alt="Project"
-                className="w-full h-60 shadow-md"
-              />
-              <div className="absolute inset-0 flex flex-col gap-4 items-center justify-end opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50 text-white">
-                <div className="hover:border-transparent  hover:rounded-lg hover:p-6 hover:mx-4 hover:my-4">
-                  <p className="text-xl text-center font-bold">
-                    {project.ProjectName}
-                  </p>
-                  <p className="text-sm text-center">{project.Country}</p>
+              <div className="group">
+                <img
+                  src={project.Image1Main}
+                  alt="Project"
+                  className="w-full h-60 shadow-lg transition-opacity duration-300 ease-in-out  hover:bg-black group-hover:opacity-80"
+                />
+                <div className="absolute inset-0 flex flex-col gap-4 items-center border-2 border-gray-200 rounded-lg p-4 mx-4 my-4 justify-end opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+                  <div className="text-white">
+                    <p className="text-xl text-center font-bold">
+                      {project.ProjectName}
+                    </p>
+                    <p className="text-sm text-center">{project.Country}</p>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
         <div className="flex items-center justify-center text-xl py-5 gap-4 cursor-pointer">
           <FaArrowLeft /> 1/5 <FaArrowRight />
         </div>
