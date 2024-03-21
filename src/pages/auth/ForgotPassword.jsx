@@ -19,7 +19,9 @@ const ForgotPassword = () => {
     }
     try {
       const response = await fetch(
-        "http://54.167.20.39:8080/api/signup/forgot-password",
+        `${
+          import.meta.env.VITE_APP_BASE_BACKEND_API_URL
+        }api/signup/forgot-password`,
         {
           method: "POST",
           headers: {

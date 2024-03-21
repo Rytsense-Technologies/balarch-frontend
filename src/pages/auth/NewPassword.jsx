@@ -25,7 +25,7 @@ const NewPassword = () => {
     }
     try {
       const response = await fetch(
-        "http://54.167.20.39:8080/api/signup/check-otp",
+        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/check-otp`,
         {
           method: "POST",
           headers: {

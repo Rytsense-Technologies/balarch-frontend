@@ -49,7 +49,7 @@ const LoginPage = () => {
 
     try {
       const response = await fetch(
-        "http://54.167.20.39:8080/api/signup/login",
+        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/login`,
         {
           method: "POST",
           headers: {

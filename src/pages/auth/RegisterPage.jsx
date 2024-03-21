@@ -87,7 +87,7 @@ const RegisterPage = () => {
   const handleRegister = async () => {
     try {
       const response = await fetch(
-        "http://54.167.20.39:8080/api/signup/create",
+        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/create`,
         {
           method: "POST",
           headers: {
