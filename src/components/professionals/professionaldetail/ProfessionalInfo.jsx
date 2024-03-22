@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { FaInstagram, FaRegCircleUser } from "react-icons/fa6";
 
-const ProfessionalInfo = () => {
+const ProfessionalInfo = ({ userDetails }) => {
   return (
     <>
       <div className="flex flex-col lg:flex-row lg:px-60 mt-10">
@@ -58,19 +58,20 @@ const ProfessionalInfo = () => {
               <span>
                 <AiOutlineMail />
               </span>
-              <p className="font-normal">jorge@vidalstudio.com</p>
+              <p className="font-normal">{userDetails.Email}</p>
             </li>
             <li className="flex items-center gap-4">
               <span>
                 <FaPhoneAlt />
               </span>
-              <p className="font-normal">+52 325 231 6789</p>
+
+              <p className="font-normal">{userDetails.ContactPhoneNumber}</p>
             </li>
             <li className="flex items-center gap-4">
               <span>
                 <CiLocationOn />
               </span>
-              <p className="font-normal">CDMX</p>
+              <p className="font-normal">{userDetails.Country}</p>
             </li>
           </ul>
           <div className="px-10 mt-10 text-lg text-gray-500 flex items-center gap-4">

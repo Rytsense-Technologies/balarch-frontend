@@ -1,9 +1,12 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { useLocation } from "react-router";
 import ss2 from "../assets/images/ss2.png";
 import ProjectDetailInfo from "../components/projects/projectdetail/ProjectDetailInfo";
 import ProjectInfo from "../components/projects/projectdetail/ProjectInfo";
 import { SocialMediaBar } from "../components/projects/projectdetail/SocialMediaBar";
 const ProjectDetailPage = () => {
+  const location = useLocation();
+  const { projectDetails } = location.state;
   const images = [
     "https://stage-dihomx.com/wp-content/uploads/2023/09/paw-pets-spa-office-aio_5.jpg",
     "https://stage-dihomx.com/wp-content/uploads/2023/09/paw-pets-spa-office-aio_5.jpg",
@@ -20,7 +23,7 @@ const ProjectDetailPage = () => {
   return (
     <>
       <div className="py-10 lg:px-40">
-        <ProjectInfo />
+        <ProjectInfo projectDetails={projectDetails} />
 
         <div className="py-5 grid grid-cols-5 gap-8">
           {images.map((img, index) => (
@@ -39,7 +42,7 @@ const ProjectDetailPage = () => {
           ))}
         </div>
         <SocialMediaBar />
-        <ProjectDetailInfo />
+        <ProjectDetailInfo projectDetails={projectDetails} />
       </div>
       <div>
         <img src={ss2} alt="" />

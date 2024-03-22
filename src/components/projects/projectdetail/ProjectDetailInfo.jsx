@@ -2,51 +2,17 @@ import { Button } from "@material-tailwind/react";
 import ss1 from "../../../assets/images/ss1.png";
 import { SocialMediaBar } from "./SocialMediaBar";
 
-const ProjectDetailInfo = () => {
+const ProjectDetailInfo = ({ projectDetails }) => {
   return (
     <>
       <div className="px-20 py-20 grid grid-cols-12 gap-20">
         <div className="col-span-8 flex flex-col gap-6">
           <h1 className="text-2xl font-semibold">Descripción</h1>
-          <span className="text-md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            volutpat suscipit elit ac euismod. Curabitur sed erat sit amet neque
-            viverra tempus sed ac arcu. Suspendisse dignissim nunc sed nibh
-            facilisis fringilla. Proin at massa sit amet nisl eleifend
-            elementum. In vel lectus consequat, molestie nibh molestie,
-            ultricies tortor. Praesent quis consectetur nisi, non scelerisque
-            augue. Praesent nec dui nec ipsum finibus facilisis vel non velit.
-            Vivamus egestas lectus in pharetra tincidunt. Vestibulum accumsan
-            arcu at lacinia molestie. Etiam at pellentesque justo. Curabitur at
-            interdum enim. In odio lectus, scelerisque non tempus non, pretium
-            pharetra augue. Nulla rutrum sapien non augue tincidunt, vitae
-            scelerisque mi rhoncus. Mauris ultricies tempor magna vitae accumsan
-          </span>
+          <span className="text-md">{projectDetails.ProjectDescription}</span>
           <h1 className="text-2xl font-semibold">Concepto</h1>
-          <span className="text-md">
-            Vivamus gravida massa porttitor nunc vulputate, vitae convallis arcu
-            lacinia. Praesent ac ante lacinia lectus molestie tempor sed in
-            nunc. Vestibulum non lobortis metus. Sed porttitor eros vitae erat
-            pulvinar, a finibus ligula fermentum. Proin varius massa eget dui
-            ullamcorper viverra. Sed scelerisque finibus tortor non imperdiet.
-            Proin blandit lorem eget ultrices posuere. Morbi suscipit eros a
-            ligula dignissim sollicitudin. Cras interdum, justo sit amet
-            vehicula semper, orci eros faucibus nunc, sed accumsan odio ex nec
-            mi. Suspendisse potenti. Vivamus et ligula in felis ultricies
-            placerat. Suspendisse in ipsum vel dolor semper egestas a vitae
-            purus.
-          </span>
+          <span className="text-md">{projectDetails.Concept}</span>
           <h1 className="text-2xl font-semibold">Innovaciones</h1>
-          <span className="text-md">
-            Suspendisse sit amet tristique arcu. Donec eu ornare metus. Mauris a
-            vulputate nisi. Nulla venenatis purus enim, at venenatis lacus
-            hendrerit a. Morbi a orci accumsan, suscipit tellus in, suscipit
-            lectus. Quisque volutpat elementum ex, auctor ornare lorem blandit
-            sed. Morbi mollis, purus id accumsan accumsan, sapien quam molestie
-            metus, non elementum lectus est ac ipsum. Pellentesque vel semper
-            risus. Pellentesque habitant morbi tristique senectus et netus et
-            malesuada fames ac turpis egestas.
-          </span>
+          <span className="text-md">{projectDetails.Innovation}</span>
           <div>
             <img src={ss1} />
             <img src="https://s3-alpha-sig.figma.com/img/e825/8ed5/f69fb4e54f5e0e9286918cb0576cd5b4?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gU~VOjrhlPH7sJUpCZz2t1Q4SlLmTaZWSaaIjIbRDuSuFoxSDb-uIrBZyjbsJ9JpwperoW-sgs-RYiS28ln~Lc8OkEH3K-Jvk3VYc2Ssay-VjquuzzukBsc8N6ewrBUb0ObigpLiv7AABgnzRJd1LDtLNdb-x8~UmL4HnhRLvKVPbV7Ng3h9G~ojXCLe6vh4Bx5SqSQTPmaLJHY2eM7dogQhs2nJmO7-6TVewcjiz89kDYZhLK74ZlfQLPpytXKhFpgBWZcLMOOjWUWJcVcC94MAuZfcuzmQTPYDuvQNbVZheh1IT-AN6eeztTyPnCQtTtRa-MxvOnvRxoKic~5w9g__" />

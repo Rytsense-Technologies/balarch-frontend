@@ -1,5 +1,7 @@
 import InputField from "./../../common/form/InputField";
 
+import SelectField from "./../../common/form/SelectField";
+
 const ContactInfo = ({
   handleNext,
   handlePrevious,
@@ -20,16 +22,35 @@ const ContactInfo = ({
   setCountry,
   setMagazineShippingAddress,
 }) => {
+  const industry = [
+    { id: "Industry1", value: "Industry1" },
+    { id: "Industry2", value: "Industry2" },
+    { id: "Industry3", value: "Industry3" },
+  ];
+
+  const country = [
+    { id: "USA", value: "USA" },
+    { id: "Canada", value: "Canada" },
+    { id: "Mexico", value: "Mexico" },
+  ];
+
+  const handleIndustrychange = (event) => {
+    setIndustry(event.target.value);
+  };
+
+  const handleCountrychange = (event) => {
+    setCountry(event.target.value);
+  };
+
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Industry"}
-            name={Industry}
+          <SelectField
+            selectoptions={industry}
+            title={"Industry"}
             value={Industry}
-            onChange={(e) => setIndustry(e.target.value)}
+            onChange={handleIndustrychange}
           />
         </div>
         <div className="sm:col-span-3">
@@ -80,12 +101,11 @@ const ContactInfo = ({
           />
         </div>
         <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Country"}
-            name={Country}
+          <SelectField
+            selectoptions={country}
+            title={"Country"}
             value={Country}
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={handleCountrychange}
           />
         </div>
         <div className="sm:col-span-3">

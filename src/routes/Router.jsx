@@ -60,7 +60,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/proyectoss/name"
+        path="/project/:projectId"
         element={
           <Layout>
             <ProjectDetailPage />
@@ -68,7 +68,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/profesionaless/name"
+        path="/professionals/:UserId"
         element={
           <Layout>
             <ProfessionalDetailPage />

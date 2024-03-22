@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 import ProjectFilter from "./ProjectFilter";
@@ -9,10 +9,15 @@ const ProjectsList = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const noImg =
+    "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://54.167.20.39:8080/api/getAll");
+        const response = await fetch(
+          `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/getAll`
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -28,7 +33,34 @@ const ProjectsList = () => {
     fetchData();
   }, []);
 
-  console.log(projects);
+  const navigateToProjectDetail = async (projectId) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+      const response = await fetch(
+        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/getByProjectId`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ ProjectId: projectId }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch project details");
+      }
+
+      const data = await response.json();
+      navigate(`/project/${projectId}`, {
+        state: { projectDetails: data.Result },
+      });
+    } catch (error) {
+      console.error("Error fetching project details:", error);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 gap-4 px-4 py-10 lg:grid-cols-8 lg:px-40">
       <div className="lg:col-span-2">
@@ -47,25 +79,33 @@ const ProjectsList = () => {
           </div>
         </div>
         <hr />
-        <div className="grid grid-cols-1 gap-4 mt-5 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.length === 0 && (
+          <div className="flex justify-center items-center h-screen">
+            <img
+              src="https://cdn.dribbble.com/users/774806/screenshots/3823110/something-went-wrong.gif"
+              alt="Centered Image"
+            />
+          </div>
+        )}
+        <div className="grid grid-cols-1 gap-10 mt-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <div
               key={index}
               className="relative cursor-pointer"
-              onClick={() => navigate("/proyectoss/name")}
+              onClick={() => navigateToProjectDetail(project.ProjectId)}
             >
-              <div className="group">
-                <img
-                  src={project.Image1Main}
-                  alt="Project"
-                  className="w-full h-60 shadow-lg transition-opacity duration-300 ease-in-out  hover:bg-black group-hover:opacity-80"
-                />
-                <div className="absolute inset-0 flex flex-col gap-4 items-center border-2 border-gray-200 rounded-lg p-4 mx-4 my-4 justify-end opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
-                  <div className="text-white">
-                    <p className="text-xl text-center font-bold">
+              <img
+                src={project.Image1Main || noImg}
+                alt="Project"
+                className="w-full h-40 sm:h-60 shadow-md object-cover cursor-pointer"
+              />
+              <div className="absolute inset-0  opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-40 text-white p-2">
+                <div className="border-2 border-gray-200  rounded-sm px-10 py-20">
+                  <div className="flex flex-col gap-2 items-center">
+                    <p className="text-sm sm:text-lg font-bold">
                       {project.ProjectName}
                     </p>
-                    <p className="text-sm text-center">{project.Country}</p>
+                    <p className="text-xs sm:text-sm">{project.Country}</p>
                   </div>
                 </div>
               </div>
@@ -73,9 +113,11 @@ const ProjectsList = () => {
           ))}
         </div>
 
-        <div className="flex items-center justify-center text-xl py-5 gap-4 cursor-pointer">
-          <FaArrowLeft /> 1/5 <FaArrowRight />
-        </div>
+        {projects.length > 0 && (
+          <div className="flex items-end justify-center text-xl py-5 gap-4 cursor-pointer">
+            <FaArrowLeft /> 1/5 <FaArrowRight />
+          </div>
+        )}
       </div>
     </div>
   );

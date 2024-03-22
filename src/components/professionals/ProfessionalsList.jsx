@@ -1,4 +1,5 @@
 import { Button } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
 import { BsBuildings, BsStack } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
@@ -9,6 +10,73 @@ import { ProfessionalsFilter } from "./ProfessionalsFilter";
 const ProfessionalsList = () => {
   const navigate = useNavigate();
   const items = Array.from({ length: 10 });
+  const [professionals, setprofessionals] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const noimg =
+    "https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+        const response = await fetch(
+          `${
+            import.meta.env.VITE_APP_BASE_BACKEND_API_URL
+          }api/signup/getAllUsers`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setprofessionals(data.Result);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const navigateToProfessionalDetail = async (UserId) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_APP_BASE_BACKEND_API_URL
+        }api/signup/getByUserId`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ UserId: UserId }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch project details");
+      }
+
+      const data = await response.json();
+      navigate(`/professionals/${UserId}`, {
+        state: { userDetails: data.Result },
+      });
+    } catch (error) {
+      console.error("Error fetching project details:", error);
+    }
+  };
 
   return (
     <div className="grid grid-cols-1 gap-4 px-4 py-10 lg:grid-cols-8 lg:px-40">
@@ -32,35 +100,33 @@ const ProfessionalsList = () => {
           Arquitectura
         </div>
         <div className="grid grid-cols-1 gap-4 mt-5 sm:grid-cols-2 lg:grid-cols-1">
-          {items.map((_, index) => (
+          {professionals.map((user, index) => (
             <div
               key={index}
-              className="flex flex-col items-center bg-white border-2 border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-              onClick={() => navigate("/profesionaless/name")}
+              className="flex flex-col items-center bg-white border-2 border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer"
+              onClick={() => navigateToProfessionalDetail(user.UserId)}
             >
               <img
                 className="rounded-full my-5 mx-5 shadow-lg w-20 object-cover"
-                src="https://s3-alpha-sig.figma.com/img/4d01/f859/b7af55c841792480bf2786a796756d09?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mr-iPHchiEc8CwFM~4icl65~q~6cfbVuzun2OlGBDrt3uhyUb6VGvAu2A8vRseumRkF~Ub6OQ-bxQXlAKnTiWzLVgsezeWz1W7qi14yws1pe4s4YRe~~szF6v8GqaZFvrlonfltGqWGPuDF1YeCEjAjXfVEhGWxGAWCihcMuUeenrbUqQcTL95WtS0cArP6XEN5oRYi5FgiExuzhAxFHeXCnSweCeYGcgihdHFJQgb54I-H0nndRTKc0OFrOpkvsXIePR-2ODbledm3m~TU6yy05QD2JqcckDpyU4t363CjiZ8NmpEhS6RkoG5YKrKxocRvCRHBsqPSXH5EEYb8d2g__"
+                src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg"
                 alt="Extra large avatar"
               />
               <div className="flex flex-col justify-between p-4 leading-normal">
                 <div className="flex items-center">
                   <div className="text-xl border-r font-semibold border-gray-400 pr-4">
-                    Jorge Vidal Studio
+                    {user.Name}
                   </div>
                   <div className="text-gray-500 font-semibold pl-4">
-                    Arquitectura
+                    {user.ProfessionPositionName}
                   </div>
                 </div>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris volutpat suscipit elit ac euismod. Curabitur sed erat
-                  sit amet neque viverra tempus
+                  {user.ShortBio}
                 </p>
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div className="flex items-center gap-2 text-sm font-medium">
                     <CiLocationOn />
-                    <span>CDMX</span>
+                    <span>{user.Country}</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
                     <BsStack />

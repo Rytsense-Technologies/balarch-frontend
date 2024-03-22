@@ -11,13 +11,13 @@ import {
   TbChartAreaLineFilled,
   TbMessageCircleMinus,
 } from "react-icons/tb";
-const ProjectInfo = () => {
+const ProjectInfo = ({ projectDetails }) => {
   const projectStat = [
     {
       id: 1,
       icon: <FaRegCircleUser />,
-      title: "Arquitectura por",
-      desc: "Jorge Vidal Studio",
+      title: "Architecture",
+      desc: projectDetails.Architecture,
     },
     {
       id: 2,
@@ -41,7 +41,7 @@ const ProjectInfo = () => {
       id: 5,
       icon: <TbChartAreaLineFilled />,
       title: "Área Total",
-      desc: "1,680 m2",
+      desc: projectDetails.Area,
     },
     {
       id: 6,
@@ -85,13 +85,13 @@ const ProjectInfo = () => {
 
     return acc;
   }, []);
+
+  const noimg =
+    "https://stage-dihomx.com/wp-content/uploads/2023/09/casa-quinchuyaku-emilio-lopez-herrera-arquitecto_3.jpg";
   return (
     <>
       <div>
-        <img
-          src="https://stage-dihomx.com/wp-content/uploads/2023/09/casa-quinchuyaku-emilio-lopez-herrera-arquitecto_3.jpg"
-          alt=""
-        />
+        <img src={projectDetails.ImageMain1 || noimg} alt="" />
       </div>
       <div className="flex flex-col items-center justify-center gap-6 py-10 border-b-2 border-gray-300">
         <nav className="flex" aria-label="Breadcrumb">
@@ -123,7 +123,7 @@ const ProjectInfo = () => {
         </nav>
         <div className="flex items-center ">
           <div className="text-4xl border-r border-gray-400 pr-4">
-            Casa Quinchuyaku
+            {projectDetails.ProjectName}
           </div>
           <div className="flex items-center gap-4 text-gray-500 text-lg cursor-pointer font-semibold pl-4">
             <BsHeart />

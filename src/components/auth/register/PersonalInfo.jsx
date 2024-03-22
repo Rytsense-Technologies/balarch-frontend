@@ -27,8 +27,29 @@ const PersonalInfo = ({
     { id: "Architech", value: "Architech" },
   ];
 
+  const occupations = [
+    { id: "Student", value: "Student" },
+    { id: "company", value: "company" },
+    { id: "product", value: "product" },
+    { id: "professional", value: "professional" },
+  ];
+
+  const concentration = [
+    { id: "v1", value: "v1" },
+    { id: "v2", value: "v2" },
+    { id: "v3", value: "v3" },
+  ];
+
   const handleSelectchange = (event) => {
     setProfession(event.target.value);
+  };
+
+  const handleOccupationchange = (event) => {
+    setOccupation(event.target.value);
+  };
+
+  const handleConcentrationchange = (event) => {
+    setConcentration(event.target.value);
   };
   return (
     <>
@@ -91,21 +112,19 @@ const PersonalInfo = ({
           />
         </div>
         <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Occupation"}
-            name={Occupation}
+          <SelectField
+            selectoptions={occupations}
+            title={"Occupation"}
             value={Occupation}
-            onChange={(e) => setOccupation(e.target.value)}
+            onChange={handleOccupationchange}
           />
         </div>
         <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Concentration"}
-            name={Concentration}
+          <SelectField
+            selectoptions={concentration}
+            title={"Concentration"}
             value={Concentration}
-            onChange={(e) => setConcentration(e.target.value)}
+            onChange={handleConcentrationchange}
           />
         </div>
       </div>

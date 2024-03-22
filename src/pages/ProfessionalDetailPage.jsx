@@ -1,10 +1,15 @@
 import { BsHeart } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
+import { useLocation } from "react-router";
 import PatrocinosCards from "../components/common/PatrocinosCards";
 import ProfessionalInfo from "../components/professionals/professionaldetail/ProfessionalInfo";
 import RelatedProjectsProf from "../components/professionals/professionaldetail/RelatedProjectsProf";
 import ProfessionalExperience from "./../components/professionals/professionaldetail/ProfessionalExperience";
+
 const ProfessionalDetailPage = () => {
+  const location = useLocation();
+  const { userDetails } = location.state;
+  const noimg = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
   return (
     <>
       <div className="transform duration-200 easy-in-out">
@@ -18,7 +23,7 @@ const ProfessionalDetailPage = () => {
         <div className="flex justify-center px-5 -mt-12">
           <img
             className="h-32 w-32 bg-white p-2 rounded-full"
-            src="https://s3-alpha-sig.figma.com/img/4848/0ec7/07945ef13cae2295443e720ca5d9250a?Expires=1711324800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=GQID7XxN-7MM42aSH6smkjrqgvzoSjCuScjEOa8KPZPpJo0vCiO1xxsqQWFPwCr9ttidw3eQlJob~jpk8HDP1q0kAwSaqvHXSHhh0VPEvjxv6jfHLmCVlcE4LrUbkiuCfUml8rnHQIDpxHzflBoNcwpSgKgSdGLq0C50U-Dr2eypGpWanj7KN-1mbS-ik44w3YqaLnMH6dKk4Yu399Z9b-uoJYLWXuhoHCBWK95A2~tbVd6izxAbW65~QIwReRtT~8XRwsWfE0z7QqtFIK7XrX5v2KrZXfi0t0Xar6j8joboctpJttXjo5-Rh6UxmLKTRyGOjjNmyYiT2dEzHpZS0w__"
+            src="https://t3.ftcdn.net/jpg/05/53/79/60/360_F_553796090_XHrE6R9jwmBJUMo9HKl41hyHJ5gqt9oz.jpg"
             alt=""
           />
         </div>
@@ -26,7 +31,7 @@ const ProfessionalDetailPage = () => {
         <div className="px-14 py-10">
           <div className="flex items-center justify-center">
             <div className="text-2xl border-r border-gray-400 pr-4">
-              Jorge Vidal Studio
+              {userDetails.Name}
             </div>
             <div className="flex items-center gap-4 text-gray-500 text-lg cursor-pointer font-semibold pl-4">
               <BsHeart />
@@ -49,7 +54,7 @@ const ProfessionalDetailPage = () => {
           </span>
         </div>
 
-        <ProfessionalInfo />
+        <ProfessionalInfo userDetails={userDetails} />
         <ProfessionalExperience />
         <RelatedProjectsProf />
         <PatrocinosCards />
