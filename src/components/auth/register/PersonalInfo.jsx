@@ -16,11 +16,7 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
     { label: "professional", value: "professional" },
   ];
 
-  const concentration = [
-    { label: "Residential", value: "Residential" },
-    { label: "Residential", value: "Residential" },
-    { label: "Residential", value: "Residential" },
-  ];
+  const concentration = [{ label: "Residential", value: "Residential" }];
 
   return (
     <>
