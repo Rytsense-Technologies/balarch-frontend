@@ -1,95 +1,52 @@
 import SelectField from "../../common/form/SelectField";
 import InputField from "./../../common/form/InputField";
 
-const PersonalInfo = ({
-  handleNext,
-  Email,
-  setEmail,
-  Password,
-  setPassword,
-  Name,
-  setName,
-  ShortBio,
-  setShortBio,
-  Profession,
-  setProfession,
-  ProfessionPositionName,
-  setProfessionPositionName,
-  Occupation,
-  setOccupation,
-  Concentration,
-  setConcentration,
-}) => {
+const PersonalInfo = ({ handleNext, isSubmitting }) => {
   const selectedoptions = [
-    { id: "Education", value: "Education" },
-    { id: "IT", value: "IT" },
-    { id: "Business", value: "Business" },
-    { id: "Architech", value: "Architech" },
+    { label: "Education", value: "Education" },
+    { label: "IT", value: "IT" },
+    { label: "Business", value: "Business" },
+    { label: "Architech", value: "Architech" },
   ];
 
   const occupations = [
-    { id: "Student", value: "Student" },
-    { id: "company", value: "company" },
-    { id: "product", value: "product" },
-    { id: "professional", value: "professional" },
+    { label: "Student", value: "Student" },
+    { label: "company", value: "company" },
+    { label: "product", value: "product" },
+    { label: "professional", value: "professional" },
   ];
 
   const concentration = [
-    { id: "v1", value: "v1" },
-    { id: "v2", value: "v2" },
-    { id: "v3", value: "v3" },
+    { label: "Residential", value: "Residential" },
+    { label: "Residential", value: "Residential" },
+    { label: "Residential", value: "Residential" },
   ];
 
-  const handleSelectchange = (event) => {
-    setProfession(event.target.value);
-  };
-
-  const handleOccupationchange = (event) => {
-    setOccupation(event.target.value);
-  };
-
-  const handleConcentrationchange = (event) => {
-    setConcentration(event.target.value);
-  };
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
-          <InputField
-            type={"email"}
-            label={"Email"}
-            name={Email}
-            value={Email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <InputField type={"email"} label={"Email"} name={"Email"} required />
         </div>
 
         <div className="sm:col-span-3">
           <InputField
-            type={"Password"}
+            type={"password"}
             label={"Password"}
-            name={Password}
-            value={Password}
-            onChange={(e) => setPassword(e.target.value)}
+            name={"Password"}
+            required
           />
         </div>
         <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Name"}
-            name={Name}
-            value={Name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <InputField type={"text"} label={"Name"} name={"Name"} required />
         </div>
 
         <div className="sm:col-span-3">
           <InputField
             type={"text"}
             label={"Biography"}
-            name={ShortBio}
-            value={ShortBio}
-            onChange={(e) => setShortBio(e.target.value)}
+            name={"ShortBio"}
+            required
           />
         </div>
 
@@ -97,8 +54,8 @@ const PersonalInfo = ({
           <SelectField
             selectoptions={selectedoptions}
             title={"Professional Position Category"}
-            value={Profession}
-            onChange={handleSelectchange}
+            name={"Profession"}
+            required
           />
         </div>
 
@@ -106,25 +63,24 @@ const PersonalInfo = ({
           <InputField
             type={"text"}
             label={"Professional Position"}
-            name={ProfessionPositionName}
-            value={ProfessionPositionName}
-            onChange={(e) => setProfessionPositionName(e.target.value)}
+            name={"ProfessionPositionName"}
+            required
           />
         </div>
         <div className="sm:col-span-3">
           <SelectField
             selectoptions={occupations}
             title={"Occupation"}
-            value={Occupation}
-            onChange={handleOccupationchange}
+            name={"Occupation"}
+            required
           />
         </div>
         <div className="sm:col-span-3">
           <SelectField
             selectoptions={concentration}
             title={"Concentration"}
-            value={Concentration}
-            onChange={handleConcentrationchange}
+            name={"Concentration"}
+            required
           />
         </div>
       </div>

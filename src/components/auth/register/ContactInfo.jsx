@@ -1,46 +1,19 @@
+import React from "react";
 import InputField from "./../../common/form/InputField";
-
 import SelectField from "./../../common/form/SelectField";
 
-const ContactInfo = ({
-  handleNext,
-  handlePrevious,
-  StartYear,
-  Industry,
-  setIndustry,
-  WebsiteLink,
-  ContactEmailAddress,
-  ContactPhoneNumber,
-  ProfilePicture,
-  Country,
-  MagazineShippingAddress,
-  setStartYear,
-  setWebsiteLink,
-  setContactEmailAddress,
-  setContactPhoneNumber,
-  setProfilePicture,
-  setCountry,
-  setMagazineShippingAddress,
-}) => {
+const ContactInfo = ({ handleNext, handlePrevious }) => {
   const industry = [
-    { id: "Industry1", value: "Industry1" },
-    { id: "Industry2", value: "Industry2" },
-    { id: "Industry3", value: "Industry3" },
+    { label: "Industry1", value: "Industry1" },
+    { label: "Industry2", value: "Industry2" },
+    { label: "Industry3", value: "Industry3" },
   ];
 
   const country = [
-    { id: "USA", value: "USA" },
-    { id: "Canada", value: "Canada" },
-    { id: "Mexico", value: "Mexico" },
+    { label: "USA", value: "USA" },
+    { label: "Canada", value: "Canada" },
+    { label: "Mexico", value: "Mexico" },
   ];
-
-  const handleIndustrychange = (event) => {
-    setIndustry(event.target.value);
-  };
-
-  const handleCountrychange = (event) => {
-    setCountry(event.target.value);
-  };
 
   return (
     <>
@@ -48,73 +21,57 @@ const ContactInfo = ({
         <div className="sm:col-span-3">
           <SelectField
             selectoptions={industry}
-            title={"Industry"}
-            value={Industry}
-            onChange={handleIndustrychange}
+            title="Industry"
+            name="Industry"
+            required
           />
         </div>
         <div className="sm:col-span-3">
           <InputField
-            type={"text"}
-            label={"Industrial Start Year"}
-            name={StartYear}
-            value={StartYear}
-            onChange={(e) => setStartYear(e.target.value)}
+            type="number"
+            label="Start Year"
+            name="StartYear"
+            required
+          />
+        </div>
+
+        <div className="sm:col-span-3">
+          <InputField type="text" label="Website Link" name="WebsiteLink" />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
+            type="text"
+            label="Contact Email Address"
+            name="ContactEmailAddress"
+            required
+          />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
+            type="number"
+            label="Contact Phone Number"
+            name="ContactPhoneNumber"
+            required
           />
         </div>
 
         <div className="sm:col-span-3">
           <InputField
-            type={"text"}
-            label={"Site URL"}
-            name={WebsiteLink}
-            value={WebsiteLink}
-            onChange={(e) => setWebsiteLink(e.target.value)}
+            type="text"
+            label="Profile Picture"
+            name="ProfilePicture"
+            required
           />
+        </div>
+        <div className="sm:col-span-3">
+          <SelectField selectoptions={country} title="Country" name="Country" />
         </div>
         <div className="sm:col-span-3">
           <InputField
-            type={"text"}
-            label={"Contact Email"}
-            name={ContactEmailAddress}
-            value={ContactEmailAddress}
-            onChange={(e) => setContactEmailAddress(e.target.value)}
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type={"number"}
-            label={"Contact Phone"}
-            name={ContactPhoneNumber}
-            value={ContactPhoneNumber}
-            onChange={(e) => setContactPhoneNumber(e.target.value)}
-          />
-        </div>
-
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Profile picture"}
-            name={ProfilePicture}
-            value={ProfilePicture}
-            onChange={(e) => setProfilePicture(e.target.value)}
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <SelectField
-            selectoptions={country}
-            title={"Country"}
-            value={Country}
-            onChange={handleCountrychange}
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Magazine Shipping Address"}
-            name={MagazineShippingAddress}
-            value={MagazineShippingAddress}
-            onChange={(e) => setMagazineShippingAddress(e.target.value)}
+            type="text"
+            label="MagazineShippingAddress"
+            name="MagazineShippingAddress"
+            required
           />
         </div>
       </div>

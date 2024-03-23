@@ -1,101 +1,49 @@
+import React from "react";
 import InputField from "./../../common/form/InputField";
 
-const OtherInfo = ({
-  handleNext,
-  handlePrevious,
-  OperationRange,
-  FacebookIconLink,
-  InstagramIconLink,
-  IssueIconLink,
-  XIconLink,
-  YoutubeIconLink,
-  YearExperience,
-  setOperationRange,
-  setFacebookIconLink,
-  setInstagramIconLink,
-  setIssueIconLink,
-  setXIconLink,
-  setYoutubeIconLink,
-  setYearExperience,
-  IconsOfProfessionalSoftwares,
-  setIconsOfProfessionalSoftwares,
-  handleRegister,
-}) => {
+const OtherInfo = ({ handlePrevious, isSubmitting }) => {
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Operations"}
-            name={OperationRange}
-            value={OperationRange}
-            onChange={(e) => setOperationRange(e.target.value)}
-          />
+          <InputField type="text" label="Operations" name="OperationRange" />
         </div>
-
         <div className="sm:col-span-3">
           <InputField
-            type={"text"}
-            label={"Facebook URL"}
-            name={FacebookIconLink}
-            value={FacebookIconLink}
-            onChange={(e) => setFacebookIconLink(e.target.value)}
+            type="text"
+            label="Facebook URL"
+            name="FacebookIconLink"
           />
         </div>
         <div className="sm:col-span-3">
           <InputField
-            type={"text"}
-            label={"Instagram URL"}
-            name={InstagramIconLink}
-            value={InstagramIconLink}
-            onChange={(e) => setInstagramIconLink(e.target.value)}
+            type="text"
+            label="Instagram URL"
+            name="InstagramIconLink"
+          />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField type="text" label="Issue URL" name="IssueIconLink" />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField type="text" label="X URL" name="XIconLink" />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField type="text" label="Youtube URL" name="YoutubeIconLink" />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
+            type="number"
+            label="Software Experience"
+            name="YearExperience"
+            required
           />
         </div>
         <div className="sm:col-span-3">
           <InputField
-            type={"text"}
-            label={"Issue URL"}
-            name={IssueIconLink}
-            value={IssueIconLink}
-            onChange={(e) => setIssueIconLink(e.target.value)}
-          />
-        </div>
-
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"X URL"}
-            name={XIconLink}
-            value={XIconLink}
-            onChange={(e) => setXIconLink(e.target.value)}
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Youtube URL"}
-            name={YoutubeIconLink}
-            value={YoutubeIconLink}
-            onChange={(e) => setYoutubeIconLink(e.target.value)}
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type={"number"}
-            label={"Software Experience"}
-            name={YearExperience}
-            value={YearExperience}
-            onChange={(e) => setYearExperience(e.target.value)}
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Icons of Profession"}
-            name={IconsOfProfessionalSoftwares}
-            value={IconsOfProfessionalSoftwares}
-            onChange={(e) => setIconsOfProfessionalSoftwares(e.target.value)}
+            type="text"
+            label="Icons of Profession"
+            name="IconsOfProfessionalSoftwares"
           />
         </div>
       </div>
@@ -109,10 +57,10 @@ const OtherInfo = ({
         </button>
         <button
           type="submit"
+          disabled={isSubmitting}
           className="text-white float-right bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-          onClick={handleRegister}
         >
-          Submit
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </div>
     </>

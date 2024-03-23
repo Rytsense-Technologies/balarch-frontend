@@ -1,6 +1,8 @@
+import { Form, Formik } from "formik";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 import ContactInfo from "../../components/auth/register/ContactInfo";
 import EducationInfo from "../../components/auth/register/EducationInfo";
 import OtherInfo from "../../components/auth/register/OtherInfo";
@@ -8,83 +10,92 @@ import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
 
 const RegisterPage = () => {
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const [Name, setName] = useState("");
-  const [ShortBio, setShortBio] = useState("");
-  const [Profession, setProfession] = useState("");
-  const [ProfessionPositionName, setProfessionPositionName] = useState("");
-  const [Occupation, setOccupation] = useState("");
-  const [Concentration, setConcentration] = useState("");
+  const initialValues = {
+    Email: "",
+    Password: "",
+    Name: "",
+    ShortBio: "",
+    Profession: "",
+    ProfessionPositionName: "",
+    EducationalInstitute1: "",
+    EducationTitle1: "",
+    EducationDegree1: "",
+    EducationYear1: 0,
+    EducationalInstitute2: "",
+    EducationTitle2: "",
+    EducationDegree2: "",
+    EducationYear2: 0,
+    EducationalInstitute3: "",
+    EducationTitle3: "",
+    EducationDegree3: "",
+    EducationYear3: 0,
+    CompanyProfessionalExperience1: "",
+    PositionProfessionalExperience1: "",
+    YearProfessionalExperience1: 0,
+    CompanyProfessionalExperience2: "",
+    PositionProfessionalExperience2: "",
+    YearProfessionalExperience2: 0,
+    CompanyProfessionalExperience3: "",
+    PositionProfessionalExperience3: "",
+    YearProfessionalExperience3: 0,
+    StartYear: 0,
+    WebsiteLink: "",
+    ContactEmailAddress: "",
+    ContactPhoneNumber: 0,
+    ProfilePicture: "",
+    Country: "",
+    MagazineShippingAddress: "",
+    OperationRange: "",
+    FacebookIconLink: "",
+    InstagramIconLink: "",
+    IssueIconLink: "",
+    XIconLink: "",
+    YoutubeIconLink: "",
+    YearExperience: 0,
+    IconsOfProfessionalSoftwares: "",
+    Occupation: "",
+    Concentration: "",
+    Industry: "",
+  };
 
-  const [EducationalInstitute1, setEducationalInstitute1] = useState("");
-  const [EducationDegree1, setEducationDegree1] = useState("");
-  const [EducationTitle1, setEducationTitle1] = useState("");
-  const [EducationYear1, setEducationYear1] = useState(null);
-
-  const [EducationalInstitute2, setEducationalInstitute2] = useState("");
-  const [EducationDegree2, setEducationDegree2] = useState("");
-  const [EducationTitle2, setEducationTitle2] = useState("");
-  const [EducationYear2, setEducationYear2] = useState(null);
-
-  const [EducationalInstitute3, setEducationalInstitute3] = useState("");
-  const [EducationDegree3, setEducationDegree3] = useState("");
-  const [EducationTitle3, setEducationTitle3] = useState("");
-  const [EducationYear3, setEducationYear3] = useState(null);
-
-  const [CompanyProfessionalExperience1, setCompanyProfessionalExperience1] =
-    useState("");
-  const [PositionProfessionalExperience1, setPositionProfessionalExperience1] =
-    useState("");
-  const [YearProfessionalExperience1, setYearProfessionalExperience1] =
-    useState(null);
-
-  const [CompanyProfessionalExperience2, setCompanyProfessionalExperience2] =
-    useState("");
-  const [PositionProfessionalExperience2, setPositionProfessionalExperience2] =
-    useState("");
-  const [YearProfessionalExperience2, setYearProfessionalExperience2] =
-    useState(null);
-
-  const [CompanyProfessionalExperience3, setCompanyProfessionalExperience3] =
-    useState("");
-  const [PositionProfessionalExperience3, setPositionProfessionalExperience3] =
-    useState("");
-  const [YearProfessionalExperience3, setYearProfessionalExperience3] =
-    useState(null);
-
-  const [Industry, setIndustry] = useState("");
-  const [StartYear, setStartYear] = useState("");
-  const [WebsiteLink, setWebsiteLink] = useState("");
-  const [ContactEmailAddress, setContactEmailAddress] = useState("");
-  const [ContactPhoneNumber, setContactPhoneNumber] = useState(null);
-  const [ProfilePicture, setProfilePicture] = useState("");
-  const [Country, setCountry] = useState("");
-  const [MagazineShippingAddress, setMagazineShippingAddress] = useState("");
-
-  const [OperationRange, setOperationRange] = useState("");
-  const [FacebookIconLink, setFacebookIconLink] = useState("");
-  const [InstagramIconLink, setInstagramIconLink] = useState("");
-  const [IssueIconLink, setIssueIconLink] = useState("");
-  const [XIconLink, setXIconLink] = useState("");
-  const [YoutubeIconLink, setYoutubeIconLink] = useState("");
-  const [YearExperience, setYearExperience] = useState(null);
-  const [IconsOfProfessionalSoftwares, setIconsOfProfessionalSoftwares] =
-    useState("");
+  const validationSchema = Yup.object({
+    Email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    Password: Yup.string().required("Password is required"),
+    Name: Yup.string().required("Name is required"),
+    ShortBio: Yup.string().required("Bio is required"),
+    Profession: Yup.string().required("Profession is required"),
+    ProfessionPositionName: Yup.string().required("Position name required"),
+    Occupation: Yup.string().required("Occupation is required"),
+    Concentration: Yup.string().required("Concentration is required"),
+    EducationalInstitute1: Yup.string().required("Institute is required"),
+    EducationTitle1: Yup.string().required("Career title is required"),
+    EducationDegree1: Yup.string().required("Degree is required"),
+    EducationYear1: Yup.number().required("Year is required"),
+    CompanyProfessionalExperience1: Yup.string().required(
+      "Company is required"
+    ),
+    PositionProfessionalExperience1: Yup.string().required(
+      "Position is required"
+    ),
+    YearProfessionalExperience1: Yup.number().required("Year is required"),
+    Industry: Yup.string().required("Industry is required"),
+    StartYear: Yup.number().required("Industry start year is required"),
+    ContactEmailAddress: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    ContactPhoneNumber: Yup.number().required("Contact phone is required"),
+    ProfilePicture: Yup.string().required("Profile picture is required"),
+    Country: Yup.string().required("Country is required"),
+    MagazineShippingAddress: Yup.string().required("Magazine address required"),
+    YearExperience: Yup.number().required("Year of experience is required"),
+  });
 
   const [openTab, setOpenTab] = useState(1);
-
   const navigate = useNavigate();
 
-  const handleNext = () => {
-    setOpenTab(openTab + 1);
-  };
-
-  const handlePrevious = () => {
-    setOpenTab(openTab - 1);
-  };
-
-  const handleRegister = async () => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const response = await fetch(
         `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/create`,
@@ -93,53 +104,7 @@ const RegisterPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            Email,
-            Password,
-            Name,
-            ShortBio,
-            Profession,
-            ProfessionPositionName,
-            EducationalInstitute1,
-            EducationTitle1,
-            EducationDegree1,
-            EducationYear1: parseInt(EducationYear1),
-            EducationalInstitute2,
-            EducationTitle2,
-            EducationDegree2,
-            EducationYear2: parseInt(EducationYear2),
-            EducationalInstitute3,
-            EducationTitle3,
-            EducationDegree3,
-            EducationYear3: parseInt(EducationYear3),
-            CompanyProfessionalExperience1,
-            PositionProfessionalExperience1,
-            YearProfessionalExperience1: parseInt(YearProfessionalExperience1),
-            CompanyProfessionalExperience2,
-            PositionProfessionalExperience2,
-            YearProfessionalExperience2: parseInt(YearProfessionalExperience2),
-            CompanyProfessionalExperience3,
-            PositionProfessionalExperience3,
-            YearProfessionalExperience3: parseInt(YearProfessionalExperience3),
-            StartYear: parseInt(StartYear),
-            WebsiteLink,
-            ContactEmailAddress,
-            ContactPhoneNumber: parseInt(ContactPhoneNumber),
-            ProfilePicture,
-            Country,
-            MagazineShippingAddress,
-            OperationRange,
-            FacebookIconLink,
-            InstagramIconLink,
-            IssueIconLink,
-            XIconLink,
-            YoutubeIconLink,
-            YearExperience: parseInt(YearExperience),
-            IconsOfProfessionalSoftwares,
-            Occupation,
-            Concentration,
-            Industry,
-          }),
+          body: JSON.stringify(values),
         }
       );
 
@@ -157,14 +122,24 @@ const RegisterPage = () => {
         }
       }
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Submission error:", error);
       toast.error(error.message || "Something went wrong");
+    } finally {
+      setSubmitting(false);
     }
+  };
+
+  const handleNext = () => {
+    setOpenTab(openTab + 1);
+  };
+
+  const handlePrevious = () => {
+    setOpenTab(openTab - 1);
   };
 
   return (
     <div>
-      <section className="bg-white ">
+      <section className="bg-white">
         <div className="flex justify-center min-h-screen">
           <div
             className="hidden bg-cover lg:block lg:w-2/5"
@@ -183,221 +158,77 @@ const RegisterPage = () => {
               <div>
                 <div>
                   <div className="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md">
-                    <button
-                      onClick={() => setOpenTab(1)}
-                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-                        openTab === 1 ? "bg-gray-800 text-white" : ""
-                      }`}
-                    >
-                      Personal
-                    </button>
-                    <button
-                      onClick={() => setOpenTab(2)}
-                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-                        openTab === 2 ? "bg-gray-800 text-white" : ""
-                      }`}
-                    >
-                      Education
-                    </button>
-                    <button
-                      onClick={() => setOpenTab(3)}
-                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-                        openTab === 3 ? "bg-gray-800 text-white" : ""
-                      }`}
-                    >
-                      Profession
-                    </button>
-                    <button
-                      onClick={() => setOpenTab(4)}
-                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-                        openTab === 4 ? "bg-gray-800 text-white" : ""
-                      }`}
-                    >
-                      Contact
-                    </button>
-                    <button
-                      onClick={() => setOpenTab(5)}
-                      className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-                        openTab === 5 ? "bg-gray-800 text-white" : ""
-                      }`}
-                    >
-                      Other
-                    </button>
+                    {[1, 2, 3, 4, 5].map((tabIndex) => (
+                      <button
+                        key={tabIndex}
+                        onClick={() => setOpenTab(tabIndex)}
+                        className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                          openTab === tabIndex ? "bg-gray-800 text-white" : ""
+                        }`}
+                      >
+                        {tabIndex === 1 && "Personal"}
+                        {tabIndex === 2 && "Education"}
+                        {tabIndex === 3 && "Profession"}
+                        {tabIndex === 4 && "Contact"}
+                        {tabIndex === 5 && "Other"}
+                      </button>
+                    ))}
                   </div>
 
                   <div className="transition-all duration-300 bg-white">
-                    {openTab === 1 && (
-                      <PersonalInfo
-                        handleNext={handleNext}
-                        handlePrevious={handlePrevious}
-                        Email={Email}
-                        setEmail={setEmail}
-                        Password={Password}
-                        setPassword={setPassword}
-                        Name={Name}
-                        setName={setName}
-                        ShortBio={ShortBio}
-                        setShortBio={setShortBio}
-                        Profession={Profession}
-                        setProfession={setProfession}
-                        ProfessionPositionName={ProfessionPositionName}
-                        setProfessionPositionName={setProfessionPositionName}
-                        Occupation={Occupation}
-                        setOccupation={setOccupation}
-                        Concentration={Concentration}
-                        setConcentration={setConcentration}
-                      />
-                    )}
-                    {openTab === 2 && (
-                      <EducationInfo
-                        handleNext={handleNext}
-                        handlePrevious={handlePrevious}
-                        EducationalInstitute1={EducationalInstitute1}
-                        EducationTitle1={EducationTitle1}
-                        EducationDegree1={EducationDegree1}
-                        EducationYear1={EducationYear1}
-                        EducationalInstitute2={EducationalInstitute2}
-                        EducationTitle2={EducationTitle2}
-                        EducationDegree2={EducationDegree2}
-                        EducationYear2={EducationYear2}
-                        EducationalInstitute3={EducationalInstitute3}
-                        EducationTitle3={EducationTitle3}
-                        EducationDegree3={EducationDegree3}
-                        EducationYear3={EducationYear3}
-                        setEducationDegree1={setEducationDegree1}
-                        setEducationDegree2={setEducationDegree2}
-                        setEducationDegree3={setEducationDegree3}
-                        setEducationTitle1={setEducationTitle1}
-                        setEducationTitle2={setEducationTitle2}
-                        setEducationTitle3={setEducationTitle3}
-                        setEducationYear1={setEducationYear1}
-                        setEducationYear2={setEducationYear2}
-                        setEducationYear3={setEducationYear3}
-                        setEducationalInstitute1={setEducationalInstitute1}
-                        setEducationalInstitute2={setEducationalInstitute2}
-                        setEducationalInstitute3={setEducationalInstitute3}
-                      />
-                    )}
-                    {openTab === 3 && (
-                      <ProfessionalInfo
-                        handleNext={handleNext}
-                        handlePrevious={handlePrevious}
-                        CompanyProfessionalExperience1={
-                          CompanyProfessionalExperience1
-                        }
-                        PositionProfessionalExperience1={
-                          PositionProfessionalExperience1
-                        }
-                        YearProfessionalExperience1={
-                          YearProfessionalExperience1
-                        }
-                        setCompanyProfessionalExperience1={
-                          setCompanyProfessionalExperience1
-                        }
-                        setPositionProfessionalExperience1={
-                          setPositionProfessionalExperience1
-                        }
-                        setYearProfessionalExperience1={
-                          setYearProfessionalExperience1
-                        }
-                        CompanyProfessionalExperience2={
-                          CompanyProfessionalExperience2
-                        }
-                        PositionProfessionalExperience2={
-                          PositionProfessionalExperience2
-                        }
-                        YearProfessionalExperience2={
-                          YearProfessionalExperience2
-                        }
-                        setCompanyProfessionalExperience2={
-                          setCompanyProfessionalExperience2
-                        }
-                        setPositionProfessionalExperience2={
-                          setPositionProfessionalExperience2
-                        }
-                        setYearProfessionalExperience2={
-                          setYearProfessionalExperience2
-                        }
-                        CompanyProfessionalExperience3={
-                          CompanyProfessionalExperience3
-                        }
-                        PositionProfessionalExperience3={
-                          PositionProfessionalExperience3
-                        }
-                        YearProfessionalExperience3={
-                          YearProfessionalExperience3
-                        }
-                        setCompanyProfessionalExperience3={
-                          setCompanyProfessionalExperience3
-                        }
-                        setPositionProfessionalExperience3={
-                          setPositionProfessionalExperience3
-                        }
-                        setYearProfessionalExperience3={
-                          setYearProfessionalExperience3
-                        }
-                      />
-                    )}
-                    {openTab == 4 && (
-                      <ContactInfo
-                        handleNext={handleNext}
-                        handlePrevious={handlePrevious}
-                        Industry={Industry}
-                        StartYear={StartYear}
-                        WebsiteLink={WebsiteLink}
-                        ContactEmailAddress={ContactEmailAddress}
-                        ContactPhoneNumber={ContactPhoneNumber}
-                        ProfilePicture={ProfilePicture}
-                        Country={Country}
-                        MagazineShippingAddress={MagazineShippingAddress}
-                        setIndustry={setIndustry}
-                        setStartYear={setStartYear}
-                        setWebsiteLink={setWebsiteLink}
-                        setContactEmailAddress={setContactEmailAddress}
-                        setContactPhoneNumber={setContactPhoneNumber}
-                        setProfilePicture={setProfilePicture}
-                        setCountry={setCountry}
-                        setMagazineShippingAddress={setMagazineShippingAddress}
-                      />
-                    )}
-                    {openTab == 5 && (
-                      <OtherInfo
-                        handleNext={handleNext}
-                        handlePrevious={handlePrevious}
-                        OperationRange={OperationRange}
-                        FacebookIconLink={FacebookIconLink}
-                        InstagramIconLink={InstagramIconLink}
-                        IssueIconLink={IssueIconLink}
-                        XIconLink={XIconLink}
-                        YoutubeIconLink={YoutubeIconLink}
-                        YearExperience={YearExperience}
-                        setOperationRange={setOperationRange}
-                        setFacebookIconLink={setFacebookIconLink}
-                        setInstagramIconLink={setInstagramIconLink}
-                        setIssueIconLink={setIssueIconLink}
-                        setXIconLink={setXIconLink}
-                        setYoutubeIconLink={setYoutubeIconLink}
-                        setYearExperience={setYearExperience}
-                        IconsOfProfessionalSoftwares={
-                          IconsOfProfessionalSoftwares
-                        }
-                        setIconsOfProfessionalSoftwares={
-                          setIconsOfProfessionalSoftwares
-                        }
-                        handleRegister={handleRegister}
-                      />
-                    )}
-                    <div className="text-center mt-10">
-                      <span className="text-xs font-semibold text-gray-900">
-                        <span>Already have an account?</span>
-                        <Link
-                          to="/login"
-                          className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
-                        >
-                          Login
-                        </Link>
-                      </span>
-                    </div>
+                    <Formik
+                      initialValues={initialValues}
+                      validationSchema={validationSchema}
+                      onSubmit={handleSubmit}
+                    >
+                      {({ isSubmitting }) => (
+                        <Form>
+                          {/* Form fields for each tab */}
+                          {openTab === 1 && (
+                            <PersonalInfo
+                              handleNext={handleNext}
+                              isSubmitting={isSubmitting}
+                            />
+                          )}
+                          {openTab === 2 && (
+                            <EducationInfo
+                              handleNext={handleNext}
+                              handlePrevious={handlePrevious}
+                            />
+                          )}
+                          {openTab === 3 && (
+                            <ProfessionalInfo
+                              handleNext={handleNext}
+                              handlePrevious={handlePrevious}
+                            />
+                          )}
+                          {openTab === 4 && (
+                            <ContactInfo
+                              handleNext={handleNext}
+                              handlePrevious={handlePrevious}
+                            />
+                          )}
+                          {openTab === 5 && (
+                            <OtherInfo
+                              handlePrevious={handlePrevious}
+                              isSubmitting={isSubmitting}
+                            />
+                          )}
+
+                          <div className="text-center mt-10">
+                            <span className="text-xs font-semibold text-gray-900">
+                              <span>Already have an account?</span>
+                              <Link
+                                to="/login"
+                                className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
+                              >
+                                Login
+                              </Link>
+                            </span>
+                          </div>
+                        </Form>
+                      )}
+                    </Formik>
                   </div>
                 </div>
               </div>

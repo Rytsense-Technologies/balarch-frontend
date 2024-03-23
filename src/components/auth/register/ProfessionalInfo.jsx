@@ -4,28 +4,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import InputField from "./../../common/form/InputField";
 
-const ProfessionalInfo = ({
-  handleNext,
-  handlePrevious,
-  CompanyProfessionalExperience1,
-  PositionProfessionalExperience1,
-  YearProfessionalExperience1,
-  setCompanyProfessionalExperience1,
-  setPositionProfessionalExperience1,
-  setYearProfessionalExperience1,
-  CompanyProfessionalExperience2,
-  PositionProfessionalExperience2,
-  YearProfessionalExperience2,
-  setCompanyProfessionalExperience2,
-  setPositionProfessionalExperience2,
-  setYearProfessionalExperience2,
-  CompanyProfessionalExperience3,
-  PositionProfessionalExperience3,
-  YearProfessionalExperience3,
-  setCompanyProfessionalExperience3,
-  setPositionProfessionalExperience3,
-  setYearProfessionalExperience3,
-}) => {
+const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
   const [experienceCount, setExperienceCount] = useState(1);
 
   const addExperience = () => {
@@ -44,10 +23,6 @@ const ProfessionalInfo = ({
   const renderExperienceFields = () => {
     const fields = [];
     for (let i = 1; i <= experienceCount; i++) {
-      const companySetter = `setCompanyProfessionalExperience${i}`;
-      const positionSetter = `setPositionProfessionalExperience${i}`;
-      const yearSetter = `setYearProfessionalExperience${i}`;
-
       fields.push(
         <div key={i}>
           <div className="flex items-center justify-between">
@@ -68,11 +43,7 @@ const ProfessionalInfo = ({
                 type={"text"}
                 label={"Company Name"}
                 name={`CompanyProfessionalExperience${i}`}
-                id={`CompanyProfessionalExperience${i}`}
-                onChange={(e) => {
-                  const setter = eval(companySetter);
-                  setter(e.target.value);
-                }}
+                required={i === 1}
               />
             </div>
             <div className="sm:col-span-3">
@@ -80,11 +51,7 @@ const ProfessionalInfo = ({
                 type={"text"}
                 label={"Position"}
                 name={`PositionProfessionalExperience${i}`}
-                id={`PositionProfessionalExperience${i}`}
-                onChange={(e) => {
-                  const setter = eval(positionSetter);
-                  setter(e.target.value);
-                }}
+                required={i === 1}
               />
             </div>
             <div className="sm:col-span-3">
@@ -92,11 +59,7 @@ const ProfessionalInfo = ({
                 type={"number"}
                 label={"Year"}
                 name={`YearProfessionalExperience${i}`}
-                id={`YearProfessionalExperience${i}`}
-                onChange={(e) => {
-                  const setter = eval(yearSetter);
-                  setter(e.target.value);
-                }}
+                required={i === 1}
               />
             </div>
           </div>
@@ -109,6 +72,7 @@ const ProfessionalInfo = ({
   return (
     <>
       {renderExperienceFields()}
+
       <Link
         type="button"
         onClick={addExperience}
@@ -125,7 +89,7 @@ const ProfessionalInfo = ({
           Previous
         </button>
         <button
-          type="button"
+          type="submit"
           className="text-white float-right bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           onClick={handleNext}
         >

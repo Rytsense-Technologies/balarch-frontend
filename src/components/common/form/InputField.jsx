@@ -1,21 +1,25 @@
-const InputField = ({ label, name, value, onChange, type }) => {
+import { ErrorMessage, Field } from "formik";
+
+const InputField = ({ label, name, type, required }) => {
   return (
-    <div>
+    <div className="mb-4">
       <label
-        htmlFor="city"
+        htmlFor="password"
         className="block text-sm font-medium leading-6 text-gray-500"
       >
-        {label}
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
-      <div className="mt-2">
-        <input
-          type={type}
-          name={name}
-          value={value}
-          onChange={onChange}
-          className="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:border-blue-500"
-        />
-      </div>
+      <Field
+        type={type}
+        name={name}
+        required={required}
+        className="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:border-blue-500"
+      />
+      <ErrorMessage
+        name={name}
+        component="div"
+        className="text-red-500 text-xs"
+      />
     </div>
   );
 };
