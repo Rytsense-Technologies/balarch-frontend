@@ -183,7 +183,6 @@ const RegisterPage = () => {
                     >
                       {({ isSubmitting }) => (
                         <Form>
-                          {/* Form fields for each tab */}
                           {openTab === 1 && (
                             <PersonalInfo
                               handleNext={handleNext}
