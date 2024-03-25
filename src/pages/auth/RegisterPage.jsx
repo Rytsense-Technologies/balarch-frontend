@@ -1,5 +1,6 @@
+import AWS from "aws-sdk";
 import { Form, Formik } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
@@ -10,6 +11,11 @@ import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
 
 const RegisterPage = () => {
+  const [openTab, setOpenTab] = useState(1);
+  const [profilePic, setProfilePic] = useState(
+    localStorage.getItem("profilePic") || null
+  );
+  const navigate = useNavigate();
   const initialValues = {
     Email: "",
     Password: "",
@@ -86,17 +92,66 @@ const RegisterPage = () => {
       .email("Invalid email address")
       .required("Email is required"),
     ContactPhoneNumber: Yup.number().required("Contact phone is required"),
-    ProfilePicture: Yup.string().required("Profile picture is required"),
+
     Country: Yup.string().required("Country is required"),
     MagazineShippingAddress: Yup.string().required("Magazine address required"),
     YearExperience: Yup.number().required("Year of experience is required"),
   });
 
-  const [openTab, setOpenTab] = useState(1);
-  const navigate = useNavigate();
+  const accessKeyId = import.meta.env.VITE_AWS_ACCESS_KEY_ID;
+  const secretAccessKey = import.meta.env.VITE_AWS_SECRET_ACCESS_KEY;
+  const bucketName = import.meta.env.VITE_AWS_BUCKET_NAME;
+
+  async function uploadAdapter(loader) {
+    const s3 = new AWS.S3({
+      accessKeyId,
+      secretAccessKey,
+      region: "ap-south-1",
+    });
+
+    const uploadParams = {
+      Bucket: bucketName,
+      Key: loader.name,
+      Body: loader,
+    };
+
+    try {
+      const uploadData = await s3.upload(uploadParams).promise();
+
+      const urlParams = {
+        Bucket: bucketName,
+        Key: loader.name,
+        Expires: 60 * 60,
+      };
+
+      s3.getSignedUrl("getObject", urlParams, async (err, url) => {
+        if (err) {
+          console.error("Error generating pre-signed URL:", err);
+          return;
+        }
+
+        setProfilePic(url);
+        localStorage.setItem("profilePic", url);
+        console.log("Pre-signed URL generated successfully:", url);
+      });
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  }
+
+  const handleImageUpload = (event) => {
+    if (event.target.files[0]) {
+      uploadAdapter(event.target.files[0]);
+    }
+  };
+
+  useEffect(() => {
+    console.log("Current profilePic state:", profilePic);
+  }, [profilePic]);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      values.ProfilePicture = profilePic;
       const response = await fetch(
         `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/create`,
         {
@@ -205,6 +260,7 @@ const RegisterPage = () => {
                             <ContactInfo
                               handleNext={handleNext}
                               handlePrevious={handlePrevious}
+                              handleImageUpload={handleImageUpload}
                             />
                           )}
                           {openTab === 5 && (

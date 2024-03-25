@@ -1,6 +1,6 @@
 import { ErrorMessage, Field } from "formik";
 
-const InputField = ({ label, name, type, required }) => {
+const InputField = ({ label, name, type, required, onChange }) => {
   return (
     <div className="mb-4">
       <label
