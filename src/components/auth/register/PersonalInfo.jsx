@@ -1,7 +1,9 @@
+import { useAppContext } from "../../../context/AppContext";
 import SelectField from "../../common/form/SelectField";
 import InputField from "./../../common/form/InputField";
 
 const PersonalInfo = ({ handleNext, isSubmitting }) => {
+  const { profileType } = useAppContext();
   const selectedoptions = [
     { label: "Education", value: "Education" },
     { label: "IT", value: "IT" },
@@ -68,6 +70,15 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
         <div className="sm:col-span-3">
           <SelectField selectoptions={country} title="Country" name="Country" />
         </div>
+        {(profileType === "Company" || profileType === "Product") && (
+          <div className="sm:col-span-3">
+            <InputField
+              type={"text"}
+              label={"Operations"}
+              name={"Operations"}
+            />
+          </div>
+        )}
       </div>
       <div className="mt-10">
         <button

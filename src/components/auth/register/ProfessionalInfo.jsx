@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAppContext } from "../../../context/AppContext";
 import SelectField from "../../common/form/SelectField";
 import InputField from "./../../common/form/InputField";
 
 const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
   const [experienceCount, setExperienceCount] = useState(1);
+  const { profileType } = useAppContext();
 
   const addExperience = () => {
     if (experienceCount < 10) {
@@ -106,15 +108,22 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
           />
         </div>
       </div>
-      {renderExperienceFields()}
 
-      <Link
-        type="button"
-        onClick={addExperience}
-        className="mt-4 text-blue-900 flex items-center gap-2 underline font-bold py-2 px-4 rounded"
-      >
-        <IoMdAdd /> Add Experience
-      </Link>
+      {(profileType === "Professional" ||
+        profileType === "Student" ||
+        profileType === "Professor") && (
+        <>
+          {renderExperienceFields()}
+          <Link
+            type="button"
+            onClick={addExperience}
+            className="mt-4 text-blue-900 flex items-center gap-2 underline font-bold py-2 px-4 rounded"
+          >
+            <IoMdAdd /> Add Experience
+          </Link>
+        </>
+      )}
+
       <div className="mt-10">
         <button
           type="button"

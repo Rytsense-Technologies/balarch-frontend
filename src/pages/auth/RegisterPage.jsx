@@ -10,6 +10,7 @@ import OtherInfo from "../../components/auth/register/OtherInfo";
 import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
 import SoftwareExperience from "../../components/auth/register/SoftwareExperience";
+import { useAppContext } from "../../context/AppContext";
 
 const RegisterPage = () => {
   const [openTab, setOpenTab] = useState(1);
@@ -17,6 +18,7 @@ const RegisterPage = () => {
     localStorage.getItem("profilePic") || null
   );
   const navigate = useNavigate();
+  const { profileType } = useAppContext();
   const initialValues = {
     Email: "",
     Password: "",
@@ -214,22 +216,30 @@ const RegisterPage = () => {
               <div>
                 <div>
                   <div className="mb-4 flex space-x-2 p-2 bg-white rounded-lg shadow-md">
-                    {[1, 2, 3, 4, 5, 6].map((tabIndex) => (
-                      <button
-                        key={tabIndex}
-                        onClick={() => setOpenTab(tabIndex)}
-                        className={`flex-1 py-2 px-2 rounded-md  focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
-                          openTab === tabIndex ? "bg-gray-800 text-white" : ""
-                        }`}
-                      >
-                        {tabIndex === 1 && "Personal"}
-                        {tabIndex === 2 && "Profession"}
-                        {tabIndex === 3 && "Education"}
-                        {tabIndex === 4 && "Contact"}
-                        {tabIndex === 5 && "Other"}
-                        {tabIndex === 6 && "Software Experience"}
-                      </button>
-                    ))}
+                    {[1, 2, 3, 4, 5]
+                      .filter((tabIndex) => {
+                        return !(
+                          tabIndex === 3 &&
+                          (profileType === "Company" ||
+                            profileType === "Product")
+                        );
+                      })
+                      .map((tabIndex, index) => (
+                        <button
+                          key={tabIndex}
+                          onClick={() => setOpenTab(tabIndex)}
+                          className={`flex-1 py-2 px-2 rounded-md  focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                            openTab === tabIndex ? "bg-gray-800 text-white" : ""
+                          }`}
+                        >
+                          {tabIndex === 1 && "Personal"}
+                          {tabIndex === 2 && "Profession"}
+                          {tabIndex === 3 && "Education"}
+                          {tabIndex === 4 && "Contact"}
+                          {tabIndex === 5 && "Other"}
+                          {tabIndex === 6 && "Software Experience"}
+                        </button>
+                      ))}
                   </div>
 
                   <div className="transition-all duration-300 bg-white">
@@ -252,12 +262,14 @@ const RegisterPage = () => {
                               handlePrevious={handlePrevious}
                             />
                           )}
-                          {openTab === 3 && (
-                            <EducationInfo
-                              handleNext={handleNext}
-                              handlePrevious={handlePrevious}
-                            />
-                          )}
+                          {openTab === 3 &&
+                            profileType !== "Company" &&
+                            profileType !== "Product" && (
+                              <EducationInfo
+                                handleNext={handleNext}
+                                handlePrevious={handlePrevious}
+                              />
+                            )}
                           {openTab === 4 && (
                             <ContactInfo
                               handleNext={handleNext}

@@ -1,198 +1,217 @@
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel/slick/slick.css";
+import {
+  Button,
+  ButtonGroup,
+  Option,
+  Radio,
+  Select,
+} from "@material-tailwind/react";
+import React, { useState } from "react";
+import { GrFormNextLink } from "react-icons/gr";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import logo from "../assets/images/logo.png";
 import Footer from "../components/_app/Footer";
-const PricingPage = () => {
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-  };
-  const pricing = [
-    {
-      plan: "Bronze",
-      monthprice: "$0",
-      annualprice: "$0",
-      facilities: [
-        { project: 1 },
-        { collaboration: 1 },
-        { build: "yes" },
-        { unbuild: "yes" },
-      ],
-    },
-    {
-      plan: "Copper",
-      monthprice: "$10",
-      annualprice: "$0",
-      facilities: [
-        { project: 1 },
-        { collaboration: 1 },
-        { build: "yes" },
-        { unbuild: "yes" },
-      ],
-    },
+import { useAppContext } from "../context/AppContext";
+import { YearlyPlan } from "../mock/PricingData";
 
-    {
-      plan: "Silver",
-      monthprice: "$50",
-      annualprice: "$0",
-      facilities: [
-        { project: 1 },
-        { collaboration: 1 },
-        { build: "yes" },
-        { unbuild: "yes" },
-      ],
-    },
-    {
-      plan: "Gold",
-      monthprice: "$100",
-      annualprice: "$0",
-      facilities: [
-        { project: 1 },
-        { collaboration: 1 },
-        { build: "yes" },
-        { unbuild: "yes" },
-      ],
-    },
-    {
-      plan: "Platinium",
-      monthprice: "$150",
-      annualprice: "$0",
-      facilities: [
-        { project: 1 },
-        { collaboration: 1 },
-        { build: "yes" },
-        { unbuild: "yes" },
-      ],
-    },
-    {
-      plan: "Titanium",
-      monthprice: "$200",
-      annualprice: "$0",
-      facilities: [
-        { project: 1 },
-        { collaboration: 1 },
-        { build: "yes" },
-        { unbuild: "yes" },
-      ],
-    },
-  ];
+const PricingPage = () => {
+  const [membershipType, setMembershipType] = useState("Yearly");
+  const [selectedProfileType, setSelectedProfileType] = useState(null);
+  const navigate = useNavigate();
+  const { profileType, setProfileType } = useAppContext();
+
+  const handleProfileType = () => {
+    if (!profileType) {
+      toast.warn("Please select Profile type");
+    } else {
+      navigate("/register");
+    }
+  };
+
   return (
     <>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-10 lg:px-6">
-          <div className="mx-auto max-w-screen-md text-center mb-4 lg:mb-12">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
-              Our Pricing Plans
-            </h2>
+      <div className="px-10 py-10">
+        <div className="bg-gray-100 px-10 min-h-screen rounded-lg">
+          <div className="py-10 flex flex-col items-center gap-4 justify-center">
+            <img src={logo} className="w-40" />
+            <h1 className="text-xl font-semibold">Select Your Profile Type</h1>
+            <ButtonGroup className="gap-4 p-2">
+              <Button
+                className={`rounded-none ${
+                  selectedProfileType === "Professional"
+                    ? "bg-blue-500 text-white"
+                    : ""
+                }`}
+                variant="outlined"
+                onClick={() => {
+                  setProfileType("Professional");
+                  setSelectedProfileType("Professional");
+                }}
+              >
+                Professional
+              </Button>
+              <Button
+                className={`rounded-none ${
+                  selectedProfileType === "Student"
+                    ? "bg-blue-500 text-white"
+                    : ""
+                }`}
+                onClick={() => {
+                  setProfileType("Student");
+                  setSelectedProfileType("Student");
+                }}
+              >
+                Student
+              </Button>
+              <Button
+                className={`rounded-none ${
+                  selectedProfileType === "Professor"
+                    ? "bg-blue-500 text-white"
+                    : ""
+                }`}
+                onClick={() => {
+                  setProfileType("Professor");
+                  setSelectedProfileType("Professor");
+                }}
+              >
+                Professor
+              </Button>
+              <Button
+                className={`rounded-none ${
+                  selectedProfileType === "Company"
+                    ? "bg-blue-500 text-white"
+                    : ""
+                }`}
+                onClick={() => {
+                  setProfileType("Company");
+                  setSelectedProfileType("Company");
+                }}
+              >
+                Company
+              </Button>
+              <Button
+                className={`rounded-none ${
+                  selectedProfileType === "Product"
+                    ? "bg-blue-500 text-white"
+                    : ""
+                }`}
+                onClick={() => {
+                  setProfileType("Product");
+                  setSelectedProfileType("Product");
+                }}
+              >
+                Product
+              </Button>
+            </ButtonGroup>
+          </div>
+          <div>
+            <h1 className="text-xl font-semibold text-center">
+              Select Your Membership
+            </h1>
+            <div className="flex gap-10 mt-5">
+              <Radio
+                name="type"
+                label="Yearly"
+                checked={membershipType === "Yearly"}
+                onChange={() => setMembershipType("Yearly")}
+              />
+              <Radio
+                name="type"
+                label="Monthly"
+                checked={membershipType === "Monthly"}
+                onChange={() => setMembershipType("Monthly")}
+              />
+              <div className="w-24">
+                <Select label="$ USD" className="bg-white">
+                  <Option>Rs</Option>
+                </Select>
+              </div>
+            </div>
+            <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 py-5 lg:space-y-0">
+              {YearlyPlan.map((plan, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
+                >
+                  <h3 className="mb-4 text-2xl font-semibold flex items-center gap-2 justify-center">
+                    <img src={plan.icon} alt={plan.plan} /> {plan.plan}
+                  </h3>
+                  <p className="font-semibold text-gray-800 sm:text-lg dark:text-gray-400">
+                    $
+                    {membershipType === "Yearly"
+                      ? plan.yearprice
+                      : plan.monthprice}{" "}
+                    per {membershipType}
+                  </p>
+                  <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                    Billed {membershipType}
+                  </p>
+                  <Button color="blue" className="mt-5">
+                    Try Now
+                  </Button>
+                  <ul role="list" className="mb-8 space-y-4 text-left mt-5">
+                    {membershipType === "Yearly"
+                      ? plan.yearfacilities.map((facility, index) => (
+                          <li
+                            key={index}
+                            className="flex items-center space-x-3"
+                          >
+                            <svg
+                              className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              ></path>
+                            </svg>
+                            <span>{facility}</span>
+                          </li>
+                        ))
+                      : plan.monthfacilities.map((facility, index) => (
+                          <li
+                            key={index}
+                            className="flex items-center space-x-3"
+                          >
+                            <svg
+                              className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
+                              fill="currentColor"
+                              viewBox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                clipRule="evenodd"
+                              ></path>
+                            </svg>
+                            <span>{facility}</span>
+                          </li>
+                        ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <Slider {...settings}>
-            {pricing.map((plan, i) => (
-              <div
-                key={i}
-                className="flex flex-col p-6 gap-4 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border-2 border-gray-200 shadow-lg dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white"
-              >
-                <h3 className="mb-4 text-2xl font-semibold">{plan.plan}</h3>
-
-                <div className="flex justify-center items-baseline my-8">
-                  <span className="mr-2 text-5xl font-extrabold">
-                    {plan.monthprice}
-                  </span>
-                  <span className="text-gray-500 dark:text-gray-400">
-                    /month
-                  </span>
-                </div>
-
-                <ul role="list" className="mb-8 space-y-4 text-left">
-                  <li className="flex items-center space-x-3">
-                    <svg
-                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    <span>
-                      Project Creation: <span className="font-semibold">1</span>
-                    </span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <svg
-                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    <span>
-                      Project collaboration Request:{" "}
-                      <span className="font-semibold">Yes</span>
-                    </span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <svg
-                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    <span>
-                      Unbuild Competition Participation:{" "}
-                      <span className="font-semibold">Yes</span>
-                    </span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <svg
-                      className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      ></path>
-                    </svg>
-                    <span>
-                      Build Competition Participation:{" "}
-                      <span className="font-semibold">Yes</span>
-                    </span>
-                  </li>
-                </ul>
-                <a
-                  href="#"
-                  className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900"
-                >
-                  Get started
-                </a>
-              </div>
-            ))}
-          </Slider>
+          <div className="flex justify-between px-4">
+            <div></div>
+            <Button
+              variant="gradient"
+              className="mt-10 mb-10 flex items-center gap-2"
+              onClick={handleProfileType}
+            >
+              Next <GrFormNextLink />
+            </Button>
+          </div>
         </div>
-      </section>
+      </div>
       <Footer />
     </>
   );
 };
+
 export default PricingPage;
