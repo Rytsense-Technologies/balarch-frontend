@@ -18,6 +18,12 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
 
   const concentration = [{ label: "Residential", value: "Residential" }];
 
+  const country = [
+    { label: "USA", value: "USA" },
+    { label: "Canada", value: "Canada" },
+    { label: "Mexico", value: "Mexico" },
+  ];
+
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -45,39 +51,22 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
             required
           />
         </div>
-
         <div className="sm:col-span-3">
-          <SelectField
-            selectoptions={selectedoptions}
-            title={"Professional Position Category"}
-            name={"Profession"}
-            required
-          />
-        </div>
-
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Professional Position"}
-            name={"ProfessionPositionName"}
-            required
+          <label
+            className="block text-sm font-medium leading-6 text-gray-500"
+            for="small_size"
+          >
+            Profile Picture
+          </label>
+          <input
+            className="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            id="small_size"
+            type="file"
+            name="ProfilePicture"
           />
         </div>
         <div className="sm:col-span-3">
-          <SelectField
-            selectoptions={occupations}
-            title={"Occupation"}
-            name={"Occupation"}
-            required
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <SelectField
-            selectoptions={concentration}
-            title={"Concentration"}
-            name={"Concentration"}
-            required
-          />
+          <SelectField selectoptions={country} title="Country" name="Country" />
         </div>
       </div>
       <div className="mt-10">

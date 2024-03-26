@@ -38,6 +38,12 @@ export default function DashboardLayout({ children }) {
       title: "Magazines",
       icon: mag,
     },
+
+    {
+      title: "Profile",
+      icon: mag,
+      href: "/user-profile",
+    },
   ];
   return (
     <>

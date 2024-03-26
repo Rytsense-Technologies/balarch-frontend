@@ -41,17 +41,7 @@ const ProfessionalDetailPage = () => {
         </div>
 
         <div className="lg:px-60 flex flex-col gap-6 px-5 text-center justify-center">
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-            volutpat suscipit elit ac euismod. Curabitur sed erat sit amet neque
-            viverra tempus sed ac arcu. Suspendisse dignissim nunc sed nibh
-            facilisis fringilla. Proin at massa sit amet nisl eleifend
-            elementum. In vel lectus consequat, molestie nibh molestie,
-            ultricies tortor. Praesent quis consectetur nisi, non scelerisque
-            augue. Praesent nec dui nec ipsum finibus facilisis vel non velit.
-            Vivamus egestas lectus in pharetra tincidunt. Vestibulum accumsan
-            arcu at lacinia molestie. Etiam at pellentesque justo.
-          </span>
+          <span>{userDetails.ShortBio}</span>
         </div>
 
         <ProfessionalInfo userDetails={userDetails} />

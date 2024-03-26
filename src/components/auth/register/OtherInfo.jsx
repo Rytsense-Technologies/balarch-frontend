@@ -1,49 +1,16 @@
 import React from "react";
 import InputField from "./../../common/form/InputField";
 
-const OtherInfo = ({ handlePrevious, isSubmitting }) => {
+const OtherInfo = ({ handlePrevious, handleNext }) => {
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div className="sm:col-span-3">
-          <InputField type="text" label="Operations" name="OperationRange" />
-        </div>
-        <div className="sm:col-span-3">
           <InputField
             type="text"
-            label="Facebook URL"
-            name="FacebookIconLink"
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type="text"
-            label="Instagram URL"
-            name="InstagramIconLink"
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField type="text" label="Issue URL" name="IssueIconLink" />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField type="text" label="X URL" name="XIconLink" />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField type="text" label="Youtube URL" name="YoutubeIconLink" />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type="number"
-            label="Software Experience"
-            name="YearExperience"
+            label="Magazine Shipping Address"
+            name="MagazineShippingAddress"
             required
-          />
-        </div>
-        <div className="sm:col-span-3">
-          <InputField
-            type="text"
-            label="Icons of Profession"
-            name="IconsOfProfessionalSoftwares"
           />
         </div>
       </div>
@@ -57,10 +24,10 @@ const OtherInfo = ({ handlePrevious, isSubmitting }) => {
         </button>
         <button
           type="submit"
-          disabled={isSubmitting}
           className="text-white float-right bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+          onClick={handleNext}
         >
-          {isSubmitting ? "Submitting..." : "Submit"}
+          Next
         </button>
       </div>
     </>

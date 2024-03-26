@@ -9,6 +9,7 @@ import EducationInfo from "../../components/auth/register/EducationInfo";
 import OtherInfo from "../../components/auth/register/OtherInfo";
 import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
+import SoftwareExperience from "../../components/auth/register/SoftwareExperience";
 
 const RegisterPage = () => {
   const [openTab, setOpenTab] = useState(1);
@@ -197,14 +198,14 @@ const RegisterPage = () => {
       <section className="bg-white">
         <div className="flex justify-center min-h-screen">
           <div
-            className="hidden bg-cover lg:block lg:w-2/5"
+            className="hidden bg-cover lg:block lg:w-1/3"
             style={{
               backgroundImage:
                 "url('https://www.indian-architects.com/images/Projects/88/59/40/bd48c6e62dca4a79acde62069f5966ad/bd48c6e62dca4a79acde62069f5966ad.6e7b65d0.jpg')",
             }}
           ></div>
 
-          <div className="flex items-center w-full max-w-3xl p-4 mx-auto lg:px-12 lg:w-3/5">
+          <div className="flex items-center w-full max-w-5xl p-2 px-20 mx-auto lg:w-2/3">
             <div className="w-full">
               <h1 className="text-2xl font-semibold mb-10 tracking-wider text-gray-800 capitalize dark:text-gray-800">
                 Get your account now.
@@ -212,20 +213,21 @@ const RegisterPage = () => {
 
               <div>
                 <div>
-                  <div className="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md">
-                    {[1, 2, 3, 4, 5].map((tabIndex) => (
+                  <div className="mb-4 flex space-x-2 p-2 bg-white rounded-lg shadow-md">
+                    {[1, 2, 3, 4, 5, 6].map((tabIndex) => (
                       <button
                         key={tabIndex}
                         onClick={() => setOpenTab(tabIndex)}
-                        className={`flex-1 py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
+                        className={`flex-1 py-2 px-2 rounded-md  focus:outline-none focus:shadow-outline-blue transition-all duration-300 ${
                           openTab === tabIndex ? "bg-gray-800 text-white" : ""
                         }`}
                       >
                         {tabIndex === 1 && "Personal"}
-                        {tabIndex === 2 && "Education"}
-                        {tabIndex === 3 && "Profession"}
+                        {tabIndex === 2 && "Profession"}
+                        {tabIndex === 3 && "Education"}
                         {tabIndex === 4 && "Contact"}
                         {tabIndex === 5 && "Other"}
+                        {tabIndex === 6 && "Software Experience"}
                       </button>
                     ))}
                   </div>
@@ -245,13 +247,13 @@ const RegisterPage = () => {
                             />
                           )}
                           {openTab === 2 && (
-                            <EducationInfo
+                            <ProfessionalInfo
                               handleNext={handleNext}
                               handlePrevious={handlePrevious}
                             />
                           )}
                           {openTab === 3 && (
-                            <ProfessionalInfo
+                            <EducationInfo
                               handleNext={handleNext}
                               handlePrevious={handlePrevious}
                             />
@@ -265,6 +267,12 @@ const RegisterPage = () => {
                           )}
                           {openTab === 5 && (
                             <OtherInfo
+                              handlePrevious={handlePrevious}
+                              handleNext={handleNext}
+                            />
+                          )}
+                          {openTab === 6 && (
+                            <SoftwareExperience
                               handlePrevious={handlePrevious}
                               isSubmitting={isSubmitting}
                             />

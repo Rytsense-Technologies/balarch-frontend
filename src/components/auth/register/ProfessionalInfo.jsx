@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import SelectField from "../../common/form/SelectField";
 import InputField from "./../../common/form/InputField";
 
 const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
@@ -69,8 +70,42 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
     return fields;
   };
 
+  const selectedoptions = [
+    { label: "Education", value: "Education" },
+    { label: "IT", value: "IT" },
+    { label: "Business", value: "Business" },
+    { label: "Architech", value: "Architech" },
+  ];
+
   return (
     <>
+      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div className="sm:col-span-3">
+          <SelectField
+            selectoptions={selectedoptions}
+            title={"Professional Position Category"}
+            name={"Profession"}
+            required
+          />
+        </div>
+
+        <div className="sm:col-span-3">
+          <InputField
+            type={"text"}
+            label={"Professional Position"}
+            name={"ProfessionPositionName"}
+            required
+          />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
+            type="number"
+            label="Industry Start Year"
+            name="StartYear"
+            required
+          />
+        </div>
+      </div>
       {renderExperienceFields()}
 
       <Link

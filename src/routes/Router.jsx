@@ -16,6 +16,7 @@ import RegisterPage from "../pages/auth/RegisterPage";
 import AddProjectPage from "../pages/dashboard/projects/AddProjectPage";
 import AllProjectList from "../pages/dashboard/projects/AllProjectList";
 import AllSubmissions from "../pages/dashboard/submission/AllSubmissions";
+import UserProfilePage from "../pages/dashboard/user-dashboard/UserProfilePage";
 import AllUserList from "../pages/dashboard/user/AllUserList";
 import ProductDetailPage from "./../pages/ProductDetailPage";
 
@@ -114,6 +115,15 @@ const Router = () => {
         element={
           <DashboardLayout>
             <AddProjectPage />
+          </DashboardLayout>
+        }
+      />
+
+      <Route
+        path="/user-profile"
+        element={
+          <DashboardLayout>
+            <UserProfilePage />
           </DashboardLayout>
         }
       />
