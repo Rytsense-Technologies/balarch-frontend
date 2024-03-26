@@ -216,7 +216,7 @@ const RegisterPage = () => {
               <div>
                 <div>
                   <div className="mb-4 flex space-x-2 p-2 bg-white rounded-lg shadow-md">
-                    {[1, 2, 3, 4, 5]
+                    {[1, 2, 3, 4, 5, 6]
                       .filter((tabIndex) => {
                         return !(
                           tabIndex === 3 &&
