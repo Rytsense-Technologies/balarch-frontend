@@ -97,16 +97,13 @@ const ProjectsList = () => {
               <img
                 src={project.Image1Main || noImg}
                 alt="Project"
-                className="w-full h-40 sm:h-60 shadow-md object-cover cursor-pointer"
+                className="w-full   shadow-md object-cover cursor-pointer"
               />
-              <div className="absolute inset-0  opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-40 text-white p-2">
-                <div className="border-2 border-gray-200  rounded-sm px-10 py-20">
-                  <div className="flex flex-col gap-2 items-center">
-                    <p className="text-sm sm:text-lg font-bold">
-                      {project.ProjectName}
-                    </p>
-                    <p className="text-xs sm:text-sm">{project.Country}</p>
-                  </div>
+              <div className="absolute inset-0  opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-40 text-white p-2 flex items-center justify-center">
+                <div className="border-2 border-gray-200 rounded-sm px-20 py-20 p-20">
+                  <p className="text-md font-bold flex justify-end">
+                    {project.ProjectName}
+                  </p>
                 </div>
               </div>
             </div>

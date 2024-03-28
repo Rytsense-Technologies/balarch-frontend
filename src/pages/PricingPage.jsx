@@ -34,7 +34,7 @@ const PricingPage = () => {
         <div className="bg-gray-100 px-10 min-h-screen rounded-lg">
           <div className="py-10 flex flex-col items-center gap-4 justify-center">
             <img src={logo} className="w-40" />
-            <h1 className="text-xl font-semibold">Select Your Profile Type</h1>
+            <h1 className="text-xl font-semibold">Select Your Occupation</h1>
             <ButtonGroup className="gap-4 p-2">
               <Button
                 className={`rounded-none ${

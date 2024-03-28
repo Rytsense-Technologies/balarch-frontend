@@ -1,8 +1,14 @@
+import { ErrorMessage, Field } from "formik";
 import React, { useState } from "react";
 import { IoMdAdd, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAppContext } from "../../../context/AppContext";
+import {
+  concentration,
+  concentrationProduct,
+  industry,
+} from "../../../mock/DropdownOptions";
 import SelectField from "../../common/form/SelectField";
 import InputField from "./../../common/form/InputField";
 
@@ -79,6 +85,46 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
     { label: "Architech", value: "Architech" },
   ];
 
+  const renderConcentrationField = () => {
+    return (
+      <div className="sm:col-span-3">
+        <div>
+          <label
+            htmlFor="concentration"
+            className="block text-sm font-medium leading-6 text-gray-500"
+          >
+            Concentration
+          </label>
+          <Field
+            as="select"
+            name="Concentration"
+            className="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:border-blue-500"
+          >
+            <option value="" disabled selected>
+              Select an option
+            </option>
+            {profileType === "Product"
+              ? concentrationProduct.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))
+              : concentration.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+          </Field>
+          <ErrorMessage
+            name="Concentration"
+            component="div"
+            className="text-red-500 text-xs"
+          />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -99,14 +145,37 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
             required
           />
         </div>
+
         <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Industry"}
-            name={"Industry"}
-            required
-          />
+          <div>
+            <label
+              htmlFor="industry"
+              className="block text-sm font-medium leading-6 text-gray-500"
+            >
+              Industry
+            </label>
+            <Field
+              as="select"
+              name="Industry"
+              className="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:border-blue-500"
+            >
+              <option value="" disabled selected>
+                Select an option
+              </option>
+              {industry.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage
+              name="Industry"
+              component="div"
+              className="text-red-500 text-xs"
+            />
+          </div>
         </div>
+
         <div className="sm:col-span-3">
           <InputField
             type="number"
@@ -115,6 +184,8 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
             required
           />
         </div>
+
+        {renderConcentrationField()}
       </div>
 
       {(profileType === "Professional" ||

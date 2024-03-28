@@ -16,7 +16,8 @@ const RegisterPage = () => {
   const [openTab, setOpenTab] = useState(1);
   const [selectedSoftwareLogos, setSelectedSoftwareLogos] = useState([]);
   const [profilePic, setProfilePic] = useState(
-    localStorage.getItem("profilePic") || null
+    localStorage.getItem("profilePic") ||
+      "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png"
   );
   const navigate = useNavigate();
   const { profileType } = useAppContext();
@@ -30,28 +31,28 @@ const RegisterPage = () => {
     EducationalInstitute1: "",
     EducationTitle1: "",
     EducationDegree1: "",
-    EducationYear1: 0,
+    EducationYear1: null,
     EducationalInstitute2: "",
     EducationTitle2: "",
     EducationDegree2: "",
-    EducationYear2: 0,
+    EducationYear2: null,
     EducationalInstitute3: "",
     EducationTitle3: "",
     EducationDegree3: "",
-    EducationYear3: 0,
+    EducationYear3: null,
     CompanyProfessionalExperience1: "",
     PositionProfessionalExperience1: "",
-    YearProfessionalExperience1: 0,
+    YearProfessionalExperience1: null,
     CompanyProfessionalExperience2: "",
     PositionProfessionalExperience2: "",
-    YearProfessionalExperience2: 0,
+    YearProfessionalExperience2: null,
     CompanyProfessionalExperience3: "",
     PositionProfessionalExperience3: "",
-    YearProfessionalExperience3: 0,
-    StartYear: 0,
+    YearProfessionalExperience3: null,
+    StartYear: null,
     WebsiteLink: "",
     ContactEmailAddress: "",
-    ContactPhoneNumber: 0,
+    ContactPhoneNumber: null,
     ProfilePicture: "",
     // Country: 0,
     MagazineShippingAddress: "",
@@ -61,7 +62,7 @@ const RegisterPage = () => {
     IssueIconLink: "",
     XIconLink: "",
     YoutubeIconLink: "",
-    YearExperience: 0,
+
     IconsOfProfessionalSoftwares: "",
     Occupation: "",
     Concentration: "",
@@ -132,7 +133,7 @@ const RegisterPage = () => {
       const selectedCountryId = values.Country;
       values.ProfilePicture = profilePic;
       values.Country = {
-        ['"countryId"']: parseInt(selectedCountryId),
+        countryId: parseInt(selectedCountryId),
       };
       values.SoftwareLogo = selectedSoftwareLogos;
       values.Occupation = profileType;
