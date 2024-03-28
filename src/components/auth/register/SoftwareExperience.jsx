@@ -61,6 +61,12 @@ const SoftwareExperience = ({
 
   return (
     <>
+      <label
+        htmlFor="password"
+        className="block text-sm font-medium leading-6 text-gray-500"
+      >
+        Select Software Experience (Max 6)
+      </label>
       <div className="flex flex-wrap gap-6 justify-center mt-10">
         {images.map((image, index) => (
           <div key={index} className="relative">

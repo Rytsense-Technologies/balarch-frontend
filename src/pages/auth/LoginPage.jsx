@@ -40,13 +40,21 @@ const LoginPage = () => {
       if (response.ok) {
         const data = await response.json();
         const accessToken = data.body.value.accessToken;
+        const role = data.body.value.role;
+        const email = data.body.value.email;
         localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("role", role);
+        localStorage.setItem("email", email);
 
-        const decodedToken = parseJwt(accessToken);
+        // const decodedToken = parseJwt(accessToken);
 
-        localStorage.setItem("userData", JSON.stringify(decodedToken));
+        // localStorage.setItem("userData", JSON.stringify(decodedToken));
 
-        navigate("/");
+        if (role === "SUPER_ADMIN") {
+          navigate("/all-users");
+        } else {
+          navigate("/");
+        }
         toast.success("Login successful");
       } else {
         const errorData = await response.json();
