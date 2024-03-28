@@ -1,30 +1,73 @@
 import { useState } from "react";
-import { FaBars, FaUserCircle } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isPopoverOpen, setPopoverOpen] = useState(false);
+  const token = localStorage.getItem("accessToken");
+
   const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const togglePopover = () => {
+    setPopoverOpen(!isPopoverOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <>
       <div>
         {/* Desktop Navbar */}
-        <div className="flex h-10 items-center gap-6 justify-end bg-gray-900 px-4 text-sm font-normal text-gray-200 sm:px-6 lg:px-40">
-          <div className="flex items-center gap-2 font-medium">
-            <p>Revisto Impresa</p>
-            <p>ESP / ING</p>
-          </div>
-          <div
-            className="flex items-center gap-2 font-medium cursor-pointer"
-            onClick={() => navigate("/login")}
-          >
-            <p>Ingresar</p>
-            <FaUserCircle className="text-lg" />
+        <div className="flex h-20 items-center gap-6 justify-end bg-gray-900 px-4 p-2 text-sm font-normal text-gray-200 sm:px-6 lg:px-40">
+          <div className="flex items-center gap-6 mt-5 mb-5">
+            <button
+              className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              type="button"
+            >
+              View Book
+            </button>
+            <button
+              className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              type="button"
+            >
+              View Magazine
+            </button>
+
+            {token ? (
+              <>
+                <button
+                  className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  type="button"
+                >
+                  Dashboard
+                </button>
+                <div className="flex items-center gap-2" onClick={handleLogout}>
+                  <img
+                    src="https://docs.material-tailwind.com/img/face-2.jpg"
+                    alt="avatar"
+                    className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center"
+                  />
+
+                  <p>Hi, User</p>
+                </div>
+              </>
+            ) : (
+              <button
+                className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="button"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
 

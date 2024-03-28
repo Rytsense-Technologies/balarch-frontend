@@ -14,6 +14,7 @@ import { useAppContext } from "../../context/AppContext";
 
 const RegisterPage = () => {
   const [openTab, setOpenTab] = useState(1);
+  const [selectedSoftwareLogos, setSelectedSoftwareLogos] = useState([]);
   const [profilePic, setProfilePic] = useState(
     localStorage.getItem("profilePic") || null
   );
@@ -52,7 +53,7 @@ const RegisterPage = () => {
     ContactEmailAddress: "",
     ContactPhoneNumber: 0,
     ProfilePicture: "",
-    Country: "",
+    // Country: 0,
     MagazineShippingAddress: "",
     OperationRange: "",
     FacebookIconLink: "",
@@ -65,6 +66,7 @@ const RegisterPage = () => {
     Occupation: "",
     Concentration: "",
     Industry: "",
+    SoftwareLogo: "",
   };
 
   const validationSchema = Yup.object({
@@ -72,33 +74,6 @@ const RegisterPage = () => {
       .email("Invalid email address")
       .required("Email is required"),
     Password: Yup.string().required("Password is required"),
-    Name: Yup.string().required("Name is required"),
-    ShortBio: Yup.string().required("Bio is required"),
-    Profession: Yup.string().required("Profession is required"),
-    ProfessionPositionName: Yup.string().required("Position name required"),
-    Occupation: Yup.string().required("Occupation is required"),
-    Concentration: Yup.string().required("Concentration is required"),
-    EducationalInstitute1: Yup.string().required("Institute is required"),
-    EducationTitle1: Yup.string().required("Career title is required"),
-    EducationDegree1: Yup.string().required("Degree is required"),
-    EducationYear1: Yup.number().required("Year is required"),
-    CompanyProfessionalExperience1: Yup.string().required(
-      "Company is required"
-    ),
-    PositionProfessionalExperience1: Yup.string().required(
-      "Position is required"
-    ),
-    YearProfessionalExperience1: Yup.number().required("Year is required"),
-    Industry: Yup.string().required("Industry is required"),
-    StartYear: Yup.number().required("Industry start year is required"),
-    ContactEmailAddress: Yup.string()
-      .email("Invalid email address")
-      .required("Email is required"),
-    ContactPhoneNumber: Yup.number().required("Contact phone is required"),
-
-    Country: Yup.string().required("Country is required"),
-    MagazineShippingAddress: Yup.string().required("Magazine address required"),
-    YearExperience: Yup.number().required("Year of experience is required"),
   });
 
   const accessKeyId = import.meta.env.VITE_AWS_ACCESS_KEY_ID;
@@ -154,7 +129,13 @@ const RegisterPage = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
+      const selectedCountryId = values.Country;
       values.ProfilePicture = profilePic;
+      values.Country = {
+        ['"countryId"']: parseInt(selectedCountryId),
+      };
+      values.SoftwareLogo = selectedSoftwareLogos;
+
       const response = await fetch(
         `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/create`,
         {
@@ -287,6 +268,10 @@ const RegisterPage = () => {
                             <SoftwareExperience
                               handlePrevious={handlePrevious}
                               isSubmitting={isSubmitting}
+                              selectedSoftwareLogos={selectedSoftwareLogos}
+                              setSelectedSoftwareLogos={
+                                setSelectedSoftwareLogos
+                              }
                             />
                           )}
 

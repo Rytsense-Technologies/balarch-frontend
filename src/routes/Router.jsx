@@ -28,9 +28,9 @@ const Router = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/otp-verify" element={<OtpVerify />} />
       <Route path="/reset-password" element={<NewPassword />} />
-      <Route path="/" element={<PricingPage />} />
+      <Route path="/pricing" element={<PricingPage />} />
       <Route
-        path="/home"
+        path="/"
         element={
           <Layout>
             <Home />

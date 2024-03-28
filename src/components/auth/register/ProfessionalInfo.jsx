@@ -101,6 +101,14 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
         </div>
         <div className="sm:col-span-3">
           <InputField
+            type={"text"}
+            label={"Industry"}
+            name={"Industry"}
+            required
+          />
+        </div>
+        <div className="sm:col-span-3">
+          <InputField
             type="number"
             label="Industry Start Year"
             name="StartYear"

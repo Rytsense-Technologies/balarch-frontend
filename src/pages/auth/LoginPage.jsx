@@ -7,6 +7,23 @@ import logo from "../../assets/images/logo.png";
 const LoginPage = () => {
   const navigate = useNavigate();
 
+  const parseJwt = (token) => {
+    try {
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+          .join("")
+      );
+
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      return null;
+    }
+  };
+
   const handleLogin = async (values) => {
     try {
       const response = await fetch(
@@ -143,7 +160,7 @@ const LoginPage = () => {
                         <span>Dont have an account?</span>
                         <Link
                           className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
-                          to="/register"
+                          to="/pricing"
                         >
                           Sign up
                         </Link>
