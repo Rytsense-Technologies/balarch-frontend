@@ -123,14 +123,7 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
             />
           </div>
         )}
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Occupation"}
-            name={"Occupation"}
-            required
-          />
-        </div>
+
         <div className="sm:col-span-3">
           <InputField
             type={"text"}

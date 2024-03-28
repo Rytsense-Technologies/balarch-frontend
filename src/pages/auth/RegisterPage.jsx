@@ -135,6 +135,7 @@ const RegisterPage = () => {
         ['"countryId"']: parseInt(selectedCountryId),
       };
       values.SoftwareLogo = selectedSoftwareLogos;
+      values.Occupation = profileType;
 
       const response = await fetch(
         `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/create`,
