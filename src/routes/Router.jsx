@@ -38,7 +38,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/proyectoss"
+        path="/projects"
         element={
           <Layout>
             <Projects />
@@ -46,7 +46,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/profesionaless"
+        path="/professionals"
         element={
           <Layout>
             <Professionals />
@@ -54,7 +54,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/productos"
+        path="/products"
         element={
           <Layout>
             <Productos />

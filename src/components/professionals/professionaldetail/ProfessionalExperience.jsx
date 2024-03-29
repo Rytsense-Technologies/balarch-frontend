@@ -3,34 +3,34 @@ import { useState } from "react";
 const ProfessionalExperience = () => {
   const [experiences, setExperiences] = useState([
     {
-      title: "Arquitecto Senior",
-      company: "IDOM Construcciones",
-      duration: "6 meses",
+      title: "Senior Architect",
+      company: "IDOM Constructions",
+      duration: "6 months",
     },
     {
-      title: "Arquitecto Senior",
-      company: "IDOM Construcciones",
-      duration: "6 meses",
+      title: "Senior Architect",
+      company: "IDOM Constructions",
+      duration: "6 months",
     },
     {
-      title: "Arquitecto Senior",
-      company: "IDOM Construcciones",
-      duration: "6 meses",
+      title: "Senior Architect",
+      company: "IDOM Constructions",
+      duration: "6 months",
     },
     {
-      title: "Arquitecto Senior",
-      company: "IDOM Construcciones",
-      duration: "6 meses",
+      title: "Senior Architect",
+      company: "IDOM Constructions",
+      duration: "6 months",
     },
     {
-      title: "Arquitecto Senior",
-      company: "IDOM Construcciones",
-      duration: "6 meses",
+      title: "Senior Architect",
+      company: "IDOM Constructions",
+      duration: "6 months",
     },
     {
-      title: "Arquitecto Senior",
-      company: "IDOM Construcciones",
-      duration: "6 meses",
+      title: "Senior Architect",
+      company: "IDOM Constructions",
+      duration: "6 months",
     },
   ]);
   const [visibleCount, setVisibleCount] = useState(3);
@@ -44,7 +44,7 @@ const ProfessionalExperience = () => {
         <div className="bg-gray-200 flex flex-wrap">
           <div className="w-full lg:w-1/2 p-6">
             <div className="flex items-center mb-5 gap-6">
-              <h1 className="font-bold">Experiencia</h1>
+              <h1 className="font-bold">Experience</h1>
               {experiences.length > visibleCount && (
                 <button
                   onClick={handleLoadMore}
@@ -71,7 +71,7 @@ const ProfessionalExperience = () => {
           </div>
           <div className="w-full lg:w-1/2 p-6">
             <div className="flex items-center mb-5 gap-6">
-              <h1 className="font-bold">Experiencia</h1>
+              <h1 className="font-bold">Experience</h1>
               {experiences.length > visibleCount && (
                 <button
                   onClick={handleLoadMore}

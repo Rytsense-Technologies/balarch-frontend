@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="lg:px-40 py-20">
         <div className="flex justify-center items-center gap-4 text-white text-xl font-bold">
           <span className="flex items-center gap-4 border-2 border-white p-2">
-            Publica tu Proyecto <FaArrowRightLong />
+            Publish your Project <FaArrowRightLong />
           </span>
         </div>
         <footer className="text-white body-font">
@@ -16,56 +16,56 @@ const Footer = () => {
                 <img src="https://stage-dihomx.com/wp-content/uploads/2023/10/Balarch-8-bco-1.png" />
               </a>
               <p className="mt-2 text-sm text-white">
-                Lorem ipsum neque porro quisquam est, qui dolorem ipsum quia
-                dolor sit amet, consectetur adipisci velit.
+                Lorem ipsum there is no one who loves pain itself, who seeks
+                after it and wants to have it, simply because it is pain.
               </p>
             </div>
             <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
               <div className="lg:w-1/3 md:w-1/2 w-full text-white px-4">
-                <h2 className="text-xl font-semibold  tracking-widest  mb-3">
-                  Explora
+                <h2 className="text-xl font-semibold tracking-widest mb-3">
+                  Explore
                 </h2>
                 <nav className="list-none mb-10">
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Proyectos</a>
+                    <a className="hover:text-gray-800">Projects</a>
                   </li>
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Profesionales</a>
+                    <a className="hover:text-gray-800">Professionals</a>
                   </li>
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Productos</a>
+                    <a className="hover:text-gray-800">Products</a>
                   </li>
                 </nav>
               </div>
               <div className="lg:w-1/3 md:w-1/2 w-full text-white px-4">
-                <h2 className="text-xl font-semibold  tracking-widest  mb-3">
-                  Explora
+                <h2 className="text-xl font-semibold tracking-widest mb-3">
+                  Explore
                 </h2>
                 <nav className="list-none mb-10">
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Proyectos</a>
+                    <a className="hover:text-gray-800">Projects</a>
                   </li>
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Profesionales</a>
+                    <a className="hover:text-gray-800">Professionals</a>
                   </li>
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Productos</a>
+                    <a className="hover:text-gray-800">Products</a>
                   </li>
                 </nav>
               </div>
               <div className="lg:w-1/3 md:w-1/2 w-full text-white px-4">
-                <h2 className="text-xl font-semibold  tracking-widest  mb-3">
-                  Explora
+                <h2 className="text-xl font-semibold tracking-widest mb-3">
+                  Explore
                 </h2>
                 <nav className="list-none mb-10">
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Proyectos</a>
+                    <a className="hover:text-gray-800">Projects</a>
                   </li>
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Profesionales</a>
+                    <a className="hover:text-gray-800">Professionals</a>
                   </li>
                   <li className="mb-5">
-                    <a className=" hover:text-gray-800">Productos</a>
+                    <a className="hover:text-gray-800">Products</a>
                   </li>
                 </nav>
               </div>
@@ -80,9 +80,9 @@ const Footer = () => {
               <a className="text-gray-900 rounded-full bg-gray-300 p-2">
                 <svg
                   fill="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >
@@ -92,9 +92,9 @@ const Footer = () => {
               <a className="ml-3 text-gray-900 rounded-full bg-gray-300 p-2">
                 <svg
                   fill="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >
@@ -105,9 +105,9 @@ const Footer = () => {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >

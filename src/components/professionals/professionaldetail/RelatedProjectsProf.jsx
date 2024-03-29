@@ -8,11 +8,9 @@ const RelatedProjectsProf = () => {
     <>
       <div className="lg:px-60 mt-10">
         <div className="flex flex-col lg:flex-row items-center">
-          <div className="text-4xl border-r border-gray-400 pr-4">
-            Proyectos
-          </div>
+          <div className="text-4xl border-r border-gray-400 pr-4">Projects</div>
           <div className="text-gray-500 font-semibold pl-4">
-            12 proyectos Agregados
+            12 projects added
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-5">

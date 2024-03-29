@@ -12,6 +12,9 @@ const ProjectsList = () => {
   const noImg =
     "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=";
 
+  const loader =
+    "https://res.cloudinary.com/bytesizedpieces/image/upload/v1656084931/article/a-how-to-guide-on-making-an-animated-loading-image-for-a-website/animated_loader_gif_n6b5x0.gif";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,6 +64,10 @@ const ProjectsList = () => {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="grid grid-cols-1 gap-4 px-4 py-10 lg:grid-cols-8 lg:px-40">
       <div className="lg:col-span-2">
@@ -71,14 +78,19 @@ const ProjectsList = () => {
         <div className="mb-5">
           <div className="flex  items-center">
             <div className="text-2xl border-r font-semibold border-gray-400 pr-4">
-              Lo más reciente
+              The most recent
             </div>
             <div className="text-gray-500 text-sm font-semibold pl-4">
-              {projects.length} PROYECTOS REGISTRADOS
+              {projects.length} REGISTERED PROJECTS
             </div>
           </div>
         </div>
         <hr />
+        {loading && (
+          <div className="flex justify-center ">
+            <img src={loader} />
+          </div>
+        )}
         {projects.length === 0 && (
           <div className="flex justify-center items-center h-screen">
             <img
@@ -95,13 +107,13 @@ const ProjectsList = () => {
               onClick={() => navigateToProjectDetail(project.ProjectId)}
             >
               <img
-                src={project.Image1Main || noImg}
+                src={project.ImageUrls[0] || noImg}
                 alt="Project"
                 className="w-full   shadow-md object-cover cursor-pointer"
               />
               <div className="absolute inset-0  opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-40 text-white p-2 flex items-center justify-center">
-                <div className="border-2 border-gray-200 rounded-sm px-20 py-20 p-20">
-                  <p className="text-md font-bold flex justify-end">
+                <div className="border-2 border-gray-200 rounded-sm px-20 py-18 p-10">
+                  <p className="text-sm font-bold text-center">
                     {project.ProjectName}
                   </p>
                 </div>

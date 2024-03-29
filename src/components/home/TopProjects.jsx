@@ -8,7 +8,7 @@ const TopProjects = () => {
     <>
       <div className="py-5 lg:py-10 px-5 lg:px-40">
         <h1 className="mb-5 lg:mb-10 flex items-center gap-2 lg:gap-10 justify-center text-xl lg:text-3xl font-semibold">
-          <VscDebugRestart /> Lo más reciente
+          <VscDebugRestart /> The most recent
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-8">
           {projects.map((project, index) => (

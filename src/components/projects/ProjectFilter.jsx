@@ -151,7 +151,7 @@ const filters = [
 const ProjectFilter = () => {
   return (
     <div className="py-5 lg:py-10">
-      <span className="text-lg text-gray-400 font-bold">Buscar proyectos</span>
+      <span className="text-lg text-gray-400 font-bold">Search projects</span>
       <div className="flex flex-col mt-3 lg:mt-5 p-2 font-bold gap-2">
         <form>
           {filters.map((section) => (

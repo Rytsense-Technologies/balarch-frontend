@@ -2,16 +2,16 @@ import { FaArrowRight } from "react-icons/fa";
 
 export const ProfessionalsFilter = () => {
   const filterNames = [
-    "Lo más reciente",
-    "especialidad",
-    "CIUDAD",
-    "tipo de proyectos",
-    "orden alfabético",
+    "Most Recent",
+    "Specialty",
+    "City",
+    "Project Type",
+    "Alphabetical Order",
   ];
   return (
     <div className="max-w-lg mx-auto px-4">
       <h1 className="text-lg text-gray-400 font-bold mt-8 mb-4">
-        Buscar profesionales
+        Search Professionals
       </h1>
       <div className="flex flex-col gap-4 font-semibold capitalize">
         {filterNames.map((filterName, index) => (

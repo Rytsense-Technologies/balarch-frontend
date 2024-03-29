@@ -8,18 +8,19 @@ const Projects = () => {
   return (
     <div className="">
       <PagesHeading
-        title={"Proyectos"}
-        subtitle={"17 PROYECTOS REGISTRADOS"}
+        title={"Projects"}
+        subtitle={"17 REGISTERED PROJECTS"}
         description={
-          "Explora y descubre obras residenciales, diseño interior, paisajismo, urbanismo y más. Inspírate de la cultura arquitectónica global en Balarch. Proyectos hechos por los arquitectos más inspiradores del momento."
+          "Explore and discover residential works, interior design, landscaping, urban planning, and more. Get inspired by the global architectural culture at Balarch. Projects created by the most inspiring architects of the moment."
         }
       />
+
       <BannerCarousal />
       <ProjectsList />
       <div className="bg-gray-200 py-5 lg:px-40">
         <ExploreProjects />
         <h1 className="flex items-center text-xl font-semibold justify-center gap-4 py-20 mb-5">
-          <LuEye /> Lo más visto
+          <LuEye /> Most viewed
         </h1>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-4 mb-20">
           <div className="relative grid h-[15rem] w-full max-w-[25rem] flex-col items-end justify-center overflow-hidden bg-white bg-clip-border text-center text-gray-700">
@@ -28,7 +29,7 @@ const Projects = () => {
             </div>
             <div className="relative p-6 px-6 py-14 md:px-12">
               <h2 className="mb-3 block font-sans text-sm font-medium leading-[1.5] tracking-normal text-white antialiased">
-                BMV Tower Corporativo, CDMX
+                BMV Tower Corporate, CDMX
               </h2>
             </div>
           </div>
@@ -38,7 +39,7 @@ const Projects = () => {
             </div>
             <div className="relative p-6 px-6 py-14 md:px-12">
               <h2 className="mb-3 block font-sans text-sm font-medium leading-[1.5] tracking-normal text-white antialiased">
-                Parque Corporativo Weiz, Bruselas
+                Weiz Corporate Park, Brussels
               </h2>
             </div>
           </div>
@@ -56,12 +57,14 @@ const Projects = () => {
         >
           <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-              <span className="mb-5">HAZ VISIBLE TU TRABAJO</span>
+              <span className="mb-5">MAKE YOUR WORK VISIBLE</span>
               <h1 className="title-font sm:text-5xl text-4xl mb-4 font-semibold text-white">
-                El espacio de exhibición de arquitectura más vanguardista del
-                momento.
+                The most avant-garde architecture exhibition space in the world
+                moment.
               </h1>
-              <span className="mt-5 underline">Crea tu perfil profesional</span>
+              <span className="mt-5 underline">
+                Create your professional profile
+              </span>
             </div>
             <div className="lg:max-w-lg lg:w-full md:w-1/2 top-0 w-5/6">
               <img

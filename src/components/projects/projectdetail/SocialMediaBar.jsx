@@ -8,7 +8,7 @@ export const SocialMediaBar = () => {
     <>
       <div className="py-5 bg-gray-200 p-4 flex justify-center">
         <div className="flex items-center text-xl text-gray-700 font-bold gap-4">
-          <span>compartir proyecto:</span>
+          <span>share project:</span>
 
           <FaFacebook />
           <FaLinkedin />

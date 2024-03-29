@@ -3,14 +3,14 @@ import PagesHeading from "../components/common/PagesHeading";
 import ProductCards from "../components/product/ProductCards";
 import ProductList from "../components/product/ProductList";
 
-const Productos = () => {
+const Products = () => {
   return (
     <div className="py-5">
       <PagesHeading
-        title={"Productos"}
-        subtitle={"967 productos registrados"}
+        title={"Products"}
+        subtitle={"967 registered products"}
         description={
-          "Encuentra proveedores y distribuidores de productos del sector de la construcción en el directorio especializado Balarch. Las mejores marcas y proveedores de materiales para la construcción para tu proyecto arquitectónico."
+          "Find suppliers and distributors of products in the construction sector in the specialized directory Balarch. The best brands and suppliers of construction materials for your architectural project."
         }
       />
       <ProductCards />
@@ -26,14 +26,14 @@ const Productos = () => {
               />
             </div>
             <div className="text-white px-5 flex flex-col justify-center">
-              <span className="text-sm">directorio profesional</span>
-              <h1 className="text-3xl">Crear tu perfil Comercial</h1>
-              <span className="text-sm">Registro Gratuito</span>
+              <span className="text-sm">professional directory</span>
+              <h1 className="text-3xl">Create your Commercial profile</h1>
+              <span className="text-sm">Free Registration</span>
             </div>
           </div>
           <div className="bg-gray-500 h-[10rem] w-full max-w-[25rem]">
             <div className="text-white px-5 flex justify-center">
-              <span className="text-sm py-20">Sponser</span>
+              <span className="text-sm py-20">Sponsor</span>
             </div>
           </div>
         </div>
@@ -42,4 +42,4 @@ const Productos = () => {
   );
 };
 
-export default Productos;
+export default Products;

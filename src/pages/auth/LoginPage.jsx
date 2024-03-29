@@ -42,6 +42,8 @@ const LoginPage = () => {
         const accessToken = data.body.value.accessToken;
         const role = data.body.value.role;
         const email = data.body.value.email;
+        const profilePicture = data.body.value.profilePicture;
+        localStorage.setItem("profilePicture", profilePicture);
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("role", role);
         localStorage.setItem("email", email);

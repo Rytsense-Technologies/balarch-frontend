@@ -26,7 +26,7 @@ const ProjectDetailPage = () => {
         <ProjectInfo projectDetails={projectDetails} />
 
         <div className="py-5 grid grid-cols-5 gap-8">
-          {images.map((img, index) => (
+          {projectDetails.ImageUrls.map((img, index) => (
             <div className="relative " key={index}>
               <img
                 src={img}

@@ -22,56 +22,56 @@ const ProjectInfo = ({ projectDetails }) => {
     {
       id: 2,
       icon: <TbMessageCircleMinus />,
-      title: "Ingeniería por",
-      desc: "Armando Asociados",
+      title: "Engineering by",
+      desc: "Armando Associates",
     },
     {
       id: 3,
       icon: <MdOutlineDatasetLinked />,
-      title: "Diseño Interior",
+      title: "Interior Design",
       desc: "Ítnika",
     },
     {
       id: 4,
       icon: <CiCamera />,
-      title: "Fotografías por",
+      title: "Photography by",
       desc: "Federico Armentia",
     },
     {
       id: 5,
       icon: <TbChartAreaLineFilled />,
-      title: "Área Total",
+      title: "Total Area",
       desc: projectDetails.Area,
     },
     {
       id: 6,
       icon: <CiLocationOn />,
-      title: "Ciudad",
-      desc: "CDMX",
+      title: "City",
+      desc: "Mexico City",
     },
     {
       id: 7,
       icon: <MdCalendarMonth />,
-      title: "Año",
+      title: "Year",
       desc: "2002",
     },
     {
       id: 8,
       icon: <HiBuildingOffice2 />,
-      title: "Categoría",
-      desc: "Corporativo",
+      title: "Category",
+      desc: "Corporate",
     },
     {
       id: 9,
       icon: <AiOutlineBuild />,
-      title: "Productos",
-      desc: "Lamilux, Cemex, Vidrimex Panels, más...",
+      title: "Products",
+      desc: "Lamilux, Cemex, Vidrimex Panels, and more...",
     },
     {
       id: 10,
       icon: <TbAffiliate />,
-      title: "Profesionales",
-      desc: "Enrique Centeno, Mauricio Islas, más...",
+      title: "Professionals",
+      desc: "Enrique Centeno, Mauricio Islas, and more...",
     },
   ];
   const columns = projectStat.reduce((acc, item, index) => {
@@ -91,7 +91,7 @@ const ProjectInfo = ({ projectDetails }) => {
   return (
     <>
       <div>
-        <img src={projectDetails.ImageMain1 || noimg} alt="" />
+        <img src={projectDetails.ImageUrls[0] || noimg} alt="" />
       </div>
       <div className="flex flex-col items-center justify-center gap-6 py-10 border-b-2 border-gray-300">
         <nav className="flex" aria-label="Breadcrumb">
@@ -99,7 +99,7 @@ const ProjectInfo = ({ projectDetails }) => {
             <li aria-current="page">
               <div className="flex items-center">
                 <span className="ms-1 text-md font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                  inicio
+                  Home
                 </span>
               </div>
             </li>
@@ -107,7 +107,7 @@ const ProjectInfo = ({ projectDetails }) => {
               <div className="flex items-center">
                 <IoIosArrowForward />
                 <span className="ms-1 text-md font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                  Proyectos
+                  Projects
                 </span>
               </div>
             </li>
@@ -115,7 +115,7 @@ const ProjectInfo = ({ projectDetails }) => {
               <div className="flex items-center">
                 <IoIosArrowForward />
                 <span className="ms-1 text-md font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                  Edificio corporativo cemex cdmx
+                  Cemex corporate building Mexico City
                 </span>
               </div>
             </li>

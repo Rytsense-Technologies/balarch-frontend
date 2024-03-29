@@ -6,7 +6,7 @@ const PatrocinosCards = () => {
       <section className="text-gray-600 mb-10 body-font">
         <div className="flex flex-col text-center w-full mt-5">
           <h1 className="text-sm title-font font-semibold text-gray-500">
-            PATROCINADOS
+            SPONSORED
           </h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">

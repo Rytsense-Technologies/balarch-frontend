@@ -1,16 +1,17 @@
 import ExploreProjects from "../components/common/ExploreProjects";
 import PagesHeading from "../components/common/PagesHeading";
-import PatrocinosCards from "../components/common/PatrocinosCards";
+
 import ProfessionalsList from "../components/professionals/ProfessionalsList";
+import PatrocinosCards from "./../components/common/PatrocinosCards";
 
 const Professionals = () => {
   return (
     <div className="py-5">
       <PagesHeading
-        title={"Profesionales"}
-        subtitle={"1,233 profesionales registrados"}
+        title={"Professionals"}
+        subtitle={"1,233 registered professionals"}
         description={
-          "Encuentra profesionales del sector de la construcción en el directorio especializado Balarch. Encuentra  arquitectos, ingenieros, contratistas, renderistas, y otros profesionales del sector. Hagamos comunidad."
+          "Find construction sector professionals in the specialized directory Balarch. Find architects, engineers, contractors, renderers, and other professionals in the sector. Let's build community."
         }
       />
       <PatrocinosCards />
@@ -26,14 +27,14 @@ const Professionals = () => {
               />
             </div>
             <div className="text-white px-5 flex flex-col justify-center">
-              <span className="text-sm">directorio profesional</span>
-              <h1 className="text-3xl">Crear tu perfil profesional</h1>
-              <span className="text-sm">Registro Gratuito</span>
+              <span className="text-sm">professional directory</span>
+              <h1 className="text-3xl">Create your professional profile</h1>
+              <span className="text-sm">Free Registration</span>
             </div>
           </div>
           <div className="bg-gray-500 h-[10rem] w-full max-w-[25rem]">
             <div className="text-white px-5 flex justify-center">
-              <span className="text-sm py-20">Sponser</span>
+              <span className="text-sm py-20">Sponsor</span>
             </div>
           </div>
         </div>
