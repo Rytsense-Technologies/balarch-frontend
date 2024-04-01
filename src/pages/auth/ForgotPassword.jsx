@@ -1,52 +1,39 @@
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 import logo from "../../assets/images/logo.png";
+import { forgotPasswordHandler } from "../../service/AuthService";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
-
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const initialValues = {
+    Email: "",
   };
 
-  const handleForgotPassword = async () => {
-    if (!email) {
-      toast.error("Please enter your email");
-      return;
-    }
-    try {
-      const response = await fetch(
-        `${
-          import.meta.env.VITE_APP_BASE_BACKEND_API_URL
-        }api/signup/forgot-password`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        }
-      );
+  const validationSchema = Yup.object({
+    Email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+  });
 
-      if (response.ok) {
-        navigate("/otp-verify");
-        toast.success("Please check your email for verification code");
-      } else {
-        const errorData = await response.json();
-        if (response.status === 500) {
-          throw new Error("Internal server error");
-        } else if (response.status === 400) {
-          throw new Error("Bad Request");
-        } else {
-          throw new Error(errorData.message || "An error occurred");
-        }
-      }
+  const handleForgotPassword = async (values) => {
+    setIsLoading(true);
+    try {
+      localStorage.setItem("forgotPasswordEmail", values.Email);
+      const data = await forgotPasswordHandler(values);
+
+      navigate("/otp-verify");
+      toast.success("Please check your email for verification code");
     } catch (error) {
-      console.error("Login error:", error);
+      setError(error.message || "Something went wrong");
       toast.error(error.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -77,29 +64,50 @@ const ForgotPassword = () => {
                   </p>
                 </div>
 
-                <div className="mb-6">
-                  <label
-                    className="block mb-1.5 text-sm text-gray-900 font-semibold"
-                    htmlFor=""
-                  >
-                    Email
-                  </label>
-                  <input
-                    className="w-full py-3 px-4 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-purple-500 focus:outline-purple rounded-lg"
-                    type="email"
-                    placeholder="john@gmail.com"
-                    value={email}
-                    onChange={handleEmailChange}
-                  />
-                </div>
-
-                <button
-                  className="relative group block w-full mb-6 py-3 px-5 text-center text-sm font-semibold text-orange-50 bg-gray-800 hover:bg-blue-gray-900 rounded-full overflow-hidden"
-                  type="submit"
-                  onClick={handleForgotPassword}
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={validationSchema}
+                  onSubmit={handleForgotPassword}
                 >
-                  <span className="relative">Get Verification code</span>
-                </button>
+                  {(formik) => (
+                    <Form>
+                      <div className="mb-6">
+                        <label
+                          className="block mb-1.5 text-sm text-gray-900 font-semibold"
+                          htmlFor="email"
+                        >
+                          Email
+                        </label>
+                        <Field
+                          name="Email"
+                          type="email"
+                          placeholder="john@gmail.com"
+                          className="w-full py-3 px-4 text-sm text-gray-900 placeholder-gray-400 border border-gray-200 focus:border-purple-500 focus:outline-purple rounded-lg"
+                        />
+                        <ErrorMessage
+                          name="Email"
+                          component="div"
+                          className="text-red-500 text-xs mt-1"
+                        />
+                      </div>
+
+                      <button
+                        className={`relative group block w-full mb-6 py-3 px-5 text-center text-sm font-semibold text-orange-50 bg-gray-800 ${
+                          formik.isValid
+                            ? "hover:bg-blue-gray-900"
+                            : "cursor-not-allowed opacity-50"
+                        } rounded-full overflow-hidden`}
+                        type="submit"
+                        disabled={!formik.isValid || formik.isSubmitting}
+                      >
+                        <span className="relative">
+                          {" "}
+                          {isLoading ? "Sending..." : "Get Verification code"}
+                        </span>
+                      </button>
+                    </Form>
+                  )}
+                </Formik>
               </div>
             </div>
           </div>

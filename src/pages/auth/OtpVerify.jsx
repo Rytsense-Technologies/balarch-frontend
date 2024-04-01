@@ -2,17 +2,16 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.png";
+import { otpVerifyHandler } from "../../service/AuthService";
 
 const OtpVerify = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const userDataString = localStorage.getItem("userData");
-
-  const userData = JSON.parse(userDataString);
-
-  const email = userData.email;
+  const email = localStorage.getItem("forgotPasswordEmail");
 
   const handleOtpVerify = async () => {
     const otpNumber = parseInt(otp.join(""), 10);
@@ -20,34 +19,16 @@ const OtpVerify = () => {
       toast.error("Please enter your OTP");
       return;
     }
+    setIsLoading(true);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/check-otp`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, otp: otpNumber }),
-        }
-      );
-
-      if (response.ok) {
-        navigate("/reset-password");
-        toast.success("Otp Verified Successfully");
-      } else {
-        const errorData = await response.json();
-        if (response.status === 500) {
-          throw new Error("Internal server error");
-        } else if (response.status === 400) {
-          throw new Error("Bad Request");
-        } else {
-          throw new Error(errorData.message || "An error occurred");
-        }
-      }
+      const data = await otpVerifyHandler({ email, otp: otpNumber });
+      navigate("/reset-password");
+      toast.success("Otp Verified Successfully");
     } catch (error) {
-      console.error("Login error:", error);
+      setError(error.message || "Something went wrong");
       toast.error(error.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -101,7 +82,10 @@ const OtpVerify = () => {
                 type="submit"
                 onClick={handleOtpVerify}
               >
-                <span className="relative">Verify Account</span>
+                <span className="relative">
+                  {" "}
+                  {isLoading ? "Verifying..." : "Verify"}
+                </span>
               </button>
               <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
                 <p>Didn't recieve code?</p>{" "}

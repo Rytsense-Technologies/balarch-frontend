@@ -203,7 +203,7 @@ export const Navbar = () => {
             PRODUCTS
           </NavLink>
           <NavLink
-            to="/all-users"
+            to="/upload-project"
             className={({ isActive }) =>
               isActive
                 ? "underline underline-offset-8"

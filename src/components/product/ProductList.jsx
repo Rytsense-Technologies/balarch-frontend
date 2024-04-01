@@ -1,14 +1,39 @@
 import { Button } from "@material-tailwind/react";
+import { useEffect, useState } from "react";
 import { BsBuildings, BsStack } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import loader from "../../assets/images/loader.gif";
+import { getAllProducts } from "./../../service/PublicService";
 import { ProductFilter } from "./ProductFilter";
 
 const ProductList = () => {
   const navigate = useNavigate();
   const items = Array.from({ length: 10 });
+
+  const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const projectsData = await getAllProducts();
+        setProducts(projectsData);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(products);
 
   return (
     <div className="grid grid-cols-1 gap-4 px-4 py-10 lg:grid-cols-8 lg:px-40">
@@ -31,8 +56,21 @@ const ProductList = () => {
         <div className="text-gray-500 text-sm font-semibold mt-2">
           REGISTERED PROJECTS
         </div>
+        {loading && (
+          <div className="flex justify-center ">
+            <img src={loader} />
+          </div>
+        )}
+        {error && (
+          <div className="flex justify-center items-center h-screen">
+            <img
+              src="https://cdn.dribbble.com/users/774806/screenshots/3823110/something-went-wrong.gif"
+              alt="Centered Image"
+            />
+          </div>
+        )}
         <div className="grid grid-cols-1 gap-4 mt-5 sm:grid-cols-2 lg:grid-cols-1">
-          {items.map((_, index) => (
+          {products.map((product, index) => (
             <div
               key={index}
               className="flex flex-col items-center bg-white border-2 border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -40,13 +78,13 @@ const ProductList = () => {
             >
               <img
                 className="rounded-full my-5 mx-5 shadow-lg w-36 h-36"
-                src="https://www.constructionweekonline.in/cloud/2021/11/25/qCFNKRvf-Cement-plant-1-9.jpg"
+                src={product.Image1Main}
                 alt="Extra large avatar"
               />
               <div className="flex flex-col justify-between p-4 leading-normal">
                 <div className="flex items-center">
                   <div className="text-xl border-r font-semibold border-gray-400 pr-4">
-                    West cement plant
+                    {product.ProductName}
                   </div>
                   <div className="text-gray-500 font-semibold pl-4">
                     Architecture

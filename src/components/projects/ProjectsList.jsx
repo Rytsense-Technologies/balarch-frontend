@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router";
+import loader from "../../assets/images/loader.gif";
 import ProjectFilter from "./ProjectFilter";
 
 const ProjectsList = () => {
@@ -11,9 +12,6 @@ const ProjectsList = () => {
 
   const noImg =
     "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=";
-
-  const loader =
-    "https://res.cloudinary.com/bytesizedpieces/image/upload/v1656084931/article/a-how-to-guide-on-making-an-animated-loading-image-for-a-website/animated_loader_gif_n6b5x0.gif";
 
   useEffect(() => {
     const fetchData = async () => {

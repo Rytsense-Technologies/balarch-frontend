@@ -6,21 +6,6 @@ import InputField from "./../../common/form/InputField";
 const PersonalInfo = ({ handleNext, isSubmitting }) => {
   const { profileType } = useAppContext();
   const [country, setCountry] = useState([]);
-  const selectedoptions = [
-    { label: "Education", value: "Education" },
-    { label: "IT", value: "IT" },
-    { label: "Business", value: "Business" },
-    { label: "Architech", value: "Architech" },
-  ];
-
-  const occupations = [
-    { label: "Student", value: "Student" },
-    { label: "company", value: "company" },
-    { label: "product", value: "product" },
-    { label: "professional", value: "professional" },
-  ];
-
-  const concentration = [{ label: "Residential", value: "Residential" }];
 
   useEffect(() => {
     const fetchData = async () => {

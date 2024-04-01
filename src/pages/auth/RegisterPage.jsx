@@ -11,6 +11,7 @@ import PersonalInfo from "../../components/auth/register/PersonalInfo";
 import ProfessionalInfo from "../../components/auth/register/ProfessionalInfo";
 import SoftwareExperience from "../../components/auth/register/SoftwareExperience";
 import { useAppContext } from "../../context/AppContext";
+import { registerUser } from "../../service/AuthService";
 
 const RegisterPage = () => {
   const [openTab, setOpenTab] = useState(1);
@@ -138,29 +139,18 @@ const RegisterPage = () => {
       values.SoftwareLogo = selectedSoftwareLogos;
       values.Occupation = profileType;
 
-      const response = await fetch(
-        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/create`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
+      if (!values.Occupation) {
+        navigate("/pricing");
+        return;
+      }
 
-      if (response.ok) {
+      const response = await registerUser(values);
+
+      if (response.header.code === 0) {
+        toast.error("Please fill required fields");
+      } else {
         navigate("/login");
         toast.success("Account created successfully");
-      } else {
-        const errorData = await response.json();
-        if (response.status === 500) {
-          throw new Error("Internal server error");
-        } else if (response.status === 400) {
-          throw new Error("Bad Request");
-        } else {
-          throw new Error(errorData.message || "An error occurred");
-        }
       }
     } catch (error) {
       console.error("Submission error:", error);

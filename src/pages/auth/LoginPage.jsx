@@ -1,76 +1,40 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import logo from "../../assets/images/logo.png";
+import { loginUser } from "../../service/AuthService";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-
-  const parseJwt = (token) => {
-    try {
-      const base64Url = token.split(".")[1];
-      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      const jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split("")
-          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-          .join("")
-      );
-
-      return JSON.parse(jsonPayload);
-    } catch (error) {
-      return null;
-    }
-  };
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (values) => {
+    setIsLoading(true);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
+      const data = await loginUser(values);
+      const accessToken = data.body.value.accessToken;
+      const role = data.body.value.role;
+      const email = data.body.value.email;
+      const profilePicture = data.body.value.profilePicture;
+      localStorage.setItem("profilePicture", profilePicture);
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("role", role);
+      localStorage.setItem("email", email);
 
-      if (response.ok) {
-        const data = await response.json();
-        const accessToken = data.body.value.accessToken;
-        const role = data.body.value.role;
-        const email = data.body.value.email;
-        const profilePicture = data.body.value.profilePicture;
-        localStorage.setItem("profilePicture", profilePicture);
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("role", role);
-        localStorage.setItem("email", email);
-
-        // const decodedToken = parseJwt(accessToken);
-
-        // localStorage.setItem("userData", JSON.stringify(decodedToken));
-
-        if (role === "SUPER_ADMIN") {
-          navigate("/all-users");
-        } else {
-          navigate("/");
-        }
-        toast.success("Login successful");
+      if (role === "SUPER_ADMIN") {
+        navigate("/all-users");
       } else {
-        const errorData = await response.json();
-        if (response.status === 500) {
-          throw new Error("Server error");
-        } else if (response.status === 400) {
-          throw new Error("Bad Request");
-        } else {
-          throw new Error(errorData.message || "An error occurred");
-        }
+        navigate("/");
       }
+      toast.success("Login successful");
     } catch (error) {
-      console.error("Login error:", error);
+      setError(error.message || "Something went wrong");
       toast.error(error.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -163,7 +127,10 @@ const LoginPage = () => {
                       type="submit"
                       disabled={!formik.isValid || formik.isSubmitting}
                     >
-                      <span className="relative">Log In</span>
+                      <span className="relative">
+                        {" "}
+                        {isLoading ? "Logging in..." : "Login"}
+                      </span>
                     </button>
                     <div className="text-center">
                       <span className="text-xs font-semibold text-gray-900">

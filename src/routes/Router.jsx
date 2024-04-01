@@ -8,6 +8,7 @@ import ProfessionalDetailPage from "../pages/ProfessionalDetailPage";
 import Professionals from "../pages/Professionals";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
 import Projects from "../pages/Projects";
+import UploadNewProject from "../pages/UploadNewProject";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import LoginPage from "../pages/auth/LoginPage";
 import NewPassword from "../pages/auth/NewPassword";
@@ -85,7 +86,15 @@ const Router = () => {
           </Layout>
         }
       />
-      <Route path="/pricing" element={<PricingPage />} />
+
+      <Route
+        path="/upload-project"
+        element={
+          <Layout>
+            <UploadNewProject />
+          </Layout>
+        }
+      />
 
       <Route
         path="/all-users"

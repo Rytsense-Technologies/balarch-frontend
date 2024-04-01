@@ -2,9 +2,12 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../../assets/images/logo.png";
+import { newPasswordHandler } from "../../service/AuthService";
 
 const NewPassword = () => {
   const [newpassword, setNewPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -23,34 +26,16 @@ const NewPassword = () => {
       toast.error("Please enter new password");
       return;
     }
+    setIsLoading(true);
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/signup/check-otp`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, newpassword }),
-        }
-      );
-
-      if (response.ok) {
-        navigate("/login");
-        toast.success("Password Reset Successfully");
-      } else {
-        const errorData = await response.json();
-        if (response.status === 500) {
-          throw new Error("Internal server error");
-        } else if (response.status === 400) {
-          throw new Error("Bad Request");
-        } else {
-          throw new Error(errorData.message || "An error occurred");
-        }
-      }
+      const data = await newPasswordHandler({ email, newpassword });
+      navigate("/login");
+      toast.success("Password Reset Successfully");
     } catch (error) {
-      console.error("Login error:", error);
+      setError(error.message || "Something went wrong");
       toast.error(error.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -102,7 +87,10 @@ const NewPassword = () => {
                   type="submit"
                   onClick={handleNewPassword}
                 >
-                  <span className="relative">Reset Password</span>
+                  <span className="relative">
+                    {" "}
+                    {isLoading ? "Resetting..." : "Reset Password"}
+                  </span>
                 </button>
               </div>
             </div>
