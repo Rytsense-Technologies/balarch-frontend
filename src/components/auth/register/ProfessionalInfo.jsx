@@ -34,7 +34,7 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
     for (let i = 1; i <= experienceCount; i++) {
       fields.push(
         <div key={i}>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mt-5">
             <span className="text-gray-900 mt-5 flex items-center gap-2 cursor-pointer">
               Professional Experience {i}
             </span>
@@ -93,7 +93,7 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
             htmlFor="concentration"
             className="block text-sm font-medium leading-6 text-gray-500"
           >
-            Concentration
+            Concentration <span className="text-red-500">*</span>
           </label>
           <Field
             as="select"
@@ -152,7 +152,7 @@ const ProfessionalInfo = ({ handleNext, handlePrevious }) => {
               htmlFor="industry"
               className="block text-sm font-medium leading-6 text-gray-500"
             >
-              Industry
+              Industry <span className="text-red-500">*</span>
             </label>
             <Field
               as="select"

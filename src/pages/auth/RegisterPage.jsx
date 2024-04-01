@@ -55,7 +55,7 @@ const RegisterPage = () => {
     ContactEmailAddress: "",
     ContactPhoneNumber: null,
     ProfilePicture: "",
-    // Country: 0,
+
     MagazineShippingAddress: "",
     OperationRange: "",
     FacebookIconLink: "",
@@ -63,12 +63,10 @@ const RegisterPage = () => {
     IssueIconLink: "",
     XIconLink: "",
     YoutubeIconLink: "",
-
-    IconsOfProfessionalSoftwares: "",
     Occupation: "",
     Concentration: "",
     Industry: "",
-    SoftwareLogo: "",
+    SoftwareLogo: [],
   };
 
   const validationSchema = Yup.object({
@@ -76,6 +74,37 @@ const RegisterPage = () => {
       .email("Invalid email address")
       .required("Email is required"),
     Password: Yup.string().required("Password is required"),
+    Name: Yup.string().required("Name is required"),
+    ShortBio: Yup.string().required("Short bio is required"),
+    Profession: Yup.string().required("Profession is required"),
+    ProfessionPositionName: Yup.string().required(
+      "Profession position name is required"
+    ),
+    Concentration: Yup.string().required("Concentration  is required"),
+    Industry: Yup.string().required("Industry is required"),
+    EducationalInstitute1: Yup.string().required(
+      "Educational institute is required"
+    ),
+    EducationTitle1: Yup.string().required("Education title is required"),
+    EducationDegree1: Yup.string().required("Education degree is required"),
+    EducationYear1: Yup.number().required("Education year is required"),
+    CompanyProfessionalExperience1: Yup.string().required(
+      "Company is required"
+    ),
+    PositionProfessionalExperience1: Yup.string().required(
+      "Position is required"
+    ),
+    YearProfessionalExperience1: Yup.number().required("Year is required"),
+    ContactEmailAddress: Yup.string().required("Email  is required"),
+    ContactPhoneNumber: Yup.number().required("Phone number is required"),
+    MagazineShippingAddress: Yup.string().required(
+      "Magazine Shipping Address is required"
+    ),
+    StartYear: Yup.number().required("Industry start year is required"),
+
+    SoftwareLogo: Yup.array()
+      .of(Yup.string())
+      .min(1, "At least one software logo must be selected"),
   });
 
   const accessKeyId = import.meta.env.VITE_AWS_ACCESS_KEY_ID;
@@ -129,6 +158,12 @@ const RegisterPage = () => {
     console.log("Current profilePic state:", profilePic);
   }, [profilePic]);
 
+  useEffect(() => {
+    if (!profileType) {
+      navigate("/pricing");
+    }
+  }, [profileType, navigate]);
+
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const selectedCountryId = values.Country;
@@ -138,11 +173,6 @@ const RegisterPage = () => {
       };
       values.SoftwareLogo = selectedSoftwareLogos;
       values.Occupation = profileType;
-
-      if (!values.Occupation) {
-        navigate("/pricing");
-        return;
-      }
 
       const response = await registerUser(values);
 

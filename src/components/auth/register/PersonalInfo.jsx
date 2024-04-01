@@ -47,21 +47,12 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
         <div className="sm:col-span-3">
           <InputField type={"text"} label={"Name"} name={"Name"} required />
         </div>
-
-        <div className="sm:col-span-3">
-          <InputField
-            type={"text"}
-            label={"Biography"}
-            name={"ShortBio"}
-            required
-          />
-        </div>
         <div className="sm:col-span-3">
           <label
             className="block text-sm font-medium leading-6 text-gray-500"
             for="small_size"
           >
-            Profile Picture
+            Profile Picture <span className="text-red-500">*</span>
           </label>
           <input
             className="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -70,13 +61,24 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
             name="ProfilePicture"
           />
         </div>
+        <div className="sm:col-span-full">
+          <InputField
+            type={"text"}
+            label={"Biography"}
+            name={"ShortBio"}
+            inputType={"textarea"}
+            rows={3}
+            required
+          />
+        </div>
+
         <div className="sm:col-span-3">
           <div>
             <label
               htmlFor="country"
               className="block text-sm font-medium leading-6 text-gray-500"
             >
-              Country
+              Country <span className="text-red-500">*</span>
             </label>
             <Field
               as="select"

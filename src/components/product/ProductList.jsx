@@ -6,6 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import loader from "../../assets/images/loader.gif";
+import { getProductDetails } from "../../service/PrivateService";
 import { getAllProducts } from "./../../service/PublicService";
 import { ProductFilter } from "./ProductFilter";
 
@@ -32,6 +33,17 @@ const ProductList = () => {
 
     fetchData();
   }, []);
+
+  const navigateToProductDetail = async (ProductId) => {
+    try {
+      const productDetails = await getProductDetails(ProductId);
+      navigate(`/product/${ProductId}`, {
+        state: { productDetails },
+      });
+    } catch (error) {
+      console.error("Error fetching project details:", error);
+    }
+  };
 
   console.log(products);
 
@@ -74,7 +86,7 @@ const ProductList = () => {
             <div
               key={index}
               className="flex flex-col items-center bg-white border-2 border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-              onClick={() => navigate("/productos/name")}
+              onClick={() => navigateToProductDetail(product.ProductId)}
             >
               <img
                 className="rounded-full my-5 mx-5 shadow-lg w-36 h-36"

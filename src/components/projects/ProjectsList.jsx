@@ -121,7 +121,7 @@ const ProjectsList = () => {
         </div>
 
         {projects.length > 0 && (
-          <div className="flex items-end justify-center text-xl py-5 gap-4 cursor-pointer">
+          <div className="flex items-end justify-center text-xl mt-10 gap-4 cursor-pointer">
             <FaArrowLeft /> 1/5 <FaArrowRight />
           </div>
         )}

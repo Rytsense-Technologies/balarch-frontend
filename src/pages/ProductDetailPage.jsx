@@ -1,11 +1,13 @@
 import { BsHeart } from "react-icons/bs";
 import { FiSend } from "react-icons/fi";
-
+import { useLocation } from "react-router";
 import PatrocinosCards from "../components/common/PatrocinosCards";
 import RelatedProfessionals from "../components/product/productdetail/RelatedProfessionals";
 import ProductInfoCards from "./../components/product/productdetail/ProductInfoCards";
 import RelatedProducts from "./../components/product/productdetail/RelatedProducts";
 const ProductDetailPage = () => {
+  const location = useLocation();
+  const { productDetails } = location.state;
   return (
     <>
       <div className="transform duration-200 easy-in-out">
@@ -27,7 +29,7 @@ const ProductDetailPage = () => {
         <div className="px-14 py-10">
           <div className="flex items-center justify-center">
             <div className="text-2xl border-r border-gray-400 pr-4">
-              Cementera de Occidente
+              {productDetails.ProductName}
             </div>
             <div className="flex items-center gap-4 text-gray-500 text-lg cursor-pointer font-semibold pl-4">
               <BsHeart />

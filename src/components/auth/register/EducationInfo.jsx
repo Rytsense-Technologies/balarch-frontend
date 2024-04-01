@@ -118,14 +118,7 @@ const EducationInfo = ({ handleNext, handlePrevious }) => {
           </div>
         </div>
       </div>
-      <div className="sm:col-span-3">
-        <InputField
-          type="number"
-          label="Software Experience"
-          name="YearExperience"
-          required
-        />
-      </div>
+
       <div className="mt-10">
         <button
           type="button"

@@ -1,7 +1,6 @@
 import React from "react";
 import { VscDebugRestart } from "react-icons/vsc";
 import { projects } from "../../mock/Data";
-import PatrocinosCards from "../common/PatrocinosCards";
 
 const TopProjects = () => {
   return (
@@ -30,7 +29,6 @@ const TopProjects = () => {
           ))}
         </div>
       </div>
-      <PatrocinosCards />
     </>
   );
 };

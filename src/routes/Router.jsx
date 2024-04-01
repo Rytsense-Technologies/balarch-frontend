@@ -79,7 +79,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/productos/name"
+        path="/product/:ProductId"
         element={
           <Layout>
             <ProductDetailPage />
