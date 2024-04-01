@@ -9,6 +9,8 @@ const ProjectsList = () => {
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
 
   const noImg =
     "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=";
@@ -17,7 +19,9 @@ const ProjectsList = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/getAll`
+          `${
+            import.meta.env.VITE_APP_BASE_BACKEND_API_URL
+          }api/getAll?page=${currentPage}&page=${itemsPerPage}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -32,7 +36,7 @@ const ProjectsList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   const navigateToProjectDetail = async (projectId) => {
     try {
@@ -62,6 +66,14 @@ const ProjectsList = () => {
     }
   };
 
+  const handlePagination = (direction) => {
+    if (direction === "prev") {
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    } else {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -86,14 +98,14 @@ const ProjectsList = () => {
         <hr />
         {loading && (
           <div className="flex justify-center ">
-            <img src={loader} />
+            <img src={loader} alt="Loading" />
           </div>
         )}
         {projects.length === 0 && (
           <div className="flex justify-center items-center h-screen">
             <img
               src="https://cdn.dribbble.com/users/774806/screenshots/3823110/something-went-wrong.gif"
-              alt="Centered Image"
+              alt="Error"
             />
           </div>
         )}
@@ -107,7 +119,7 @@ const ProjectsList = () => {
               <img
                 src={project.ImageUrls[0] || noImg}
                 alt="Project"
-                className="w-full   shadow-md object-cover cursor-pointer"
+                className="w-full h-44 shadow-md object-cover cursor-pointer"
               />
               <div className="absolute inset-0  opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-40 text-white p-2 flex items-center justify-center">
                 <div className="border-2 border-gray-200 rounded-sm px-20 py-18 p-10">
@@ -122,7 +134,9 @@ const ProjectsList = () => {
 
         {projects.length > 0 && (
           <div className="flex items-end justify-center text-xl mt-10 gap-4 cursor-pointer">
-            <FaArrowLeft /> 1/5 <FaArrowRight />
+            <FaArrowLeft onClick={() => handlePagination("prev")} />{" "}
+            {currentPage}/{Math.ceil(projects.length / itemsPerPage)}{" "}
+            <FaArrowRight onClick={() => handlePagination("next")} />
           </div>
         )}
       </div>

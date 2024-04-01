@@ -17,26 +17,7 @@ const ProjectDetailInfo = ({ projectDetails }) => {
             <img src={ss1} />
             <img src="https://s3-alpha-sig.figma.com/img/e825/8ed5/f69fb4e54f5e0e9286918cb0576cd5b4?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gU~VOjrhlPH7sJUpCZz2t1Q4SlLmTaZWSaaIjIbRDuSuFoxSDb-uIrBZyjbsJ9JpwperoW-sgs-RYiS28ln~Lc8OkEH3K-Jvk3VYc2Ssay-VjquuzzukBsc8N6ewrBUb0ObigpLiv7AABgnzRJd1LDtLNdb-x8~UmL4HnhRLvKVPbV7Ng3h9G~ojXCLe6vh4Bx5SqSQTPmaLJHY2eM7dogQhs2nJmO7-6TVewcjiz89kDYZhLK74ZlfQLPpytXKhFpgBWZcLMOOjWUWJcVcC94MAuZfcuzmQTPYDuvQNbVZheh1IT-AN6eeztTyPnCQtTtRa-MxvOnvRxoKic~5w9g__" />
           </div>
-          <h1 className="text-2xl font-semibold">Conclusions</h1>
-          <span className="text-md">
-            Donec a efficitur enim, fermentum feugiat tellus. Nullam dignissim
-            bibendum aliquet. Aliquam malesuada mattis turpis, non rhoncus quam
-            placerat aliquam. Aliquam id eros ac nisl tempor lacinia et pulvinar
-            eros. Cras vitae purus ac metus tincidunt hendrerit vel eget tortor.
-            Quisque luctus placerat diam sit amet fermentum. Praesent placerat
-            magna erat, a rhoncus sem tincidunt et. Pellentesque convallis non
-            dolor vel elementum. Quisque porttitor eleifend est, id condimentum
-            massa hendrerit nec. Sed non mollis neque, et gravida nisl. Nunc a
-            venenatis arcu, id volutpat metus. Vivamus non tortor non massa
-            pellentesque aliquam ut at risus. Duis at maximus leo. Sed odio
-            nisl, ornare sed turpis at, facilisis porttitor magna. Integer sit
-            amet libero sed tellus venenatis ultrices.
-          </span>
-          <h1 className="text-2xl font-semibold">Location</h1>
-          <span className="text-md">
-            Av. Reforma No. 324 Col. Cuauhtémoc, CP. 06740, CDMX
-          </span>
-          <img src="https://s3-alpha-sig.figma.com/img/7518/7127/073ea1d5dde2df37d3d26ab05c93b123?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=i8IV8kb~V4mkhArPjidRRWmvJVa2zDpmNKEFfzhB72zoHVMlQLzU5K9ZiSlF2-~hpXXI41JVW5Gl12Y7cfh7BRPhCPSQBaueWp2fn72MjETsopGSrON73c1KzwEndVbJXaKPO0LtBpqcoJbLtPIK1PIZqrkpHpCffnMLYkXY2XYeaP4XVWI8g4JvuzRZXO9oLlWJY2KOncLo26NzzTbqk5Q7y8-zrCoVA7UHnJoVi671pXbbpvrZfcfpqtYCYEFh0UfmZx9iKjMceOqQ9lj8BBOtosRuuH6EtSnQXiN1ahlN4LVdRfLZICK6N5t57PbUWSCQZm80UFum-mrRLR7d7A__" />
+
           <SocialMediaBar />
           <div className="bg-gray-300 flex justify-center p-12">
             <h1>Sponsor</h1>

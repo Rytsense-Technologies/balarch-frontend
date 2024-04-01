@@ -129,7 +129,7 @@ const LoginPage = () => {
                     >
                       <span className="relative">
                         {" "}
-                        {isLoading ? "Logging in..." : "Login"}
+                        {isLoading ? "Logging in..." : "Log In"}
                       </span>
                     </button>
                     <div className="text-center">
@@ -139,7 +139,7 @@ const LoginPage = () => {
                           className="inline-block ml-1 text-sky-500 font-bold hover:text-orange-700"
                           to="/pricing"
                         >
-                          Sign up
+                          Sign In
                         </Link>
                       </span>
                     </div>
