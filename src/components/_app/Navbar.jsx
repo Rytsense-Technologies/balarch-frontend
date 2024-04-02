@@ -48,29 +48,22 @@ export const Navbar = () => {
           <div className="flex items-center gap-6 mt-5 mb-5">
             <button
               type="button"
-              className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               View Book
             </button>
             <button
               type="button"
-              className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               View Magazine
             </button>
 
             {token ? (
               <>
-                <button
-                  className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                  type="button"
-                  onClick={() => navigate("/user-profile")}
-                >
-                  Dashboard
-                </button>
                 <div className="flex items-center gap-2 relative">
                   <button
-                    className="rounded-full border border-gray-100 py-1 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    className="rounded-full  py-1 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
                     onClick={togglePopover}
                     ref={popoverRef}
@@ -102,7 +95,7 @@ export const Navbar = () => {
             ) : (
               <button
                 type="button"
-                className="px-3 py-2 me-2  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                className="px-3 py-2 me-2  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-800 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                 onClick={() => navigate("/login")}
               >
                 Log In
@@ -202,16 +195,29 @@ export const Navbar = () => {
           >
             PRODUCTS
           </NavLink>
-          <NavLink
-            to="/upload-project"
-            className={({ isActive }) =>
-              isActive
-                ? "underline underline-offset-8"
-                : "hover:underline hover:underline-offset-8"
-            }
-          >
-            PUBLISH
-          </NavLink>
+          {token ? (
+            <NavLink
+              to="/user-profile"
+              className={({ isActive }) =>
+                isActive
+                  ? "underline underline-offset-8"
+                  : "hover:underline hover:underline-offset-8"
+              }
+            >
+              PUBLISH
+            </NavLink>
+          ) : (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? "underline underline-offset-8"
+                  : "hover:underline hover:underline-offset-8"
+              }
+            >
+              PUBLISH
+            </NavLink>
+          )}
         </div>
       </div>
     </>

@@ -1,8 +1,9 @@
 import { BsHeart } from "react-icons/bs";
-import { FiSend } from "react-icons/fi";
+import { FiAlertCircle } from "react-icons/fi";
 import { useLocation } from "react-router";
-import PatrocinosCards from "../components/common/PatrocinosCards";
+import PublishButton from "../components/common/PublishButton";
 import ProfessionalInfo from "../components/professionals/professionaldetail/ProfessionalInfo";
+import RelatedCollaborators from "../components/professionals/professionaldetail/RelatedCollaborators";
 import RelatedProjectsProf from "../components/professionals/professionaldetail/RelatedProjectsProf";
 import ProfessionalExperience from "./../components/professionals/professionaldetail/ProfessionalExperience";
 
@@ -35,7 +36,7 @@ const ProfessionalDetailPage = () => {
             </div>
             <div className="flex items-center gap-4 text-gray-500 text-lg cursor-pointer font-semibold pl-4">
               <BsHeart />
-              <FiSend />
+              <FiAlertCircle />
             </div>
           </div>
         </div>
@@ -47,7 +48,8 @@ const ProfessionalDetailPage = () => {
         <ProfessionalInfo userDetails={userDetails} />
         <ProfessionalExperience />
         <RelatedProjectsProf />
-        <PatrocinosCards />
+        <RelatedCollaborators />
+        <PublishButton />
       </div>
     </>
   );

@@ -1,65 +1,12 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import { Form, Formik } from "formik";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import InputField from "../../../components/dashboard/common/InputField";
+import TopHeader from "../../../components/dashboard/user-dashboard/TopHeader";
 
-const InputField = ({
-  label,
-  id,
-  name,
-  type,
-  autoComplete,
-  textarea,
-  rows,
-}) => {
-  if (textarea) {
-    return (
-      <div className="sm:col-span-2">
-        <label className="block text-sm font-medium leading-6 text-gray-900">
-          {label}
-        </label>
-        <div className="mt-2">
-          <Field
-            as="textarea"
-            name={name}
-            autoComplete={autoComplete}
-            rows={rows}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-        <ErrorMessage
-          name={name}
-          component="div"
-          className="text-red-500 text-xs"
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div className="sm:col-span-2">
-        <label className="block text-sm font-medium leading-6 text-gray-900">
-          {label}
-        </label>
-        <div className="mt-2">
-          <Field
-            name={name}
-            type={type}
-            autoComplete={autoComplete}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-        <ErrorMessage
-          name={name}
-          component="div"
-          className="text-red-500 text-xs"
-        />
-      </div>
-    );
-  }
-};
-
-const UploadNewProject = () => {
+const AddNewProject = () => {
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
   const initialValues = {
@@ -139,15 +86,9 @@ const UploadNewProject = () => {
     );
     setImages((prevImages) => [...prevImages, ...newImages]);
   };
-
-  console.log(images);
   return (
-    <div className="px-20 py-10">
-      <div className="flex justify-center">
-        <h1 className="text-2xl font-semibold underline underline-offset-1">
-          Upload New Project
-        </h1>
-      </div>
+    <div>
+      <TopHeader tabName={"Upload new Project"} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -279,7 +220,7 @@ const UploadNewProject = () => {
               </button>
               <button
                 type="submit"
-                className="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded"
+                className="flex items-center gap-2 text-gray-900 bg-gradient-to-r from-cyan-200 via-cyan-300 to-cyan-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
               >
                 {isSubmitting ? "Uploading..." : "Upload"}
               </button>
@@ -291,4 +232,4 @@ const UploadNewProject = () => {
   );
 };
 
-export default UploadNewProject;
+export default AddNewProject;

@@ -8,7 +8,6 @@ import ProfessionalDetailPage from "../pages/ProfessionalDetailPage";
 import Professionals from "../pages/Professionals";
 import ProjectDetailPage from "../pages/ProjectDetailPage";
 import Projects from "../pages/Projects";
-import UploadNewProject from "../pages/UploadNewProject";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import LoginPage from "../pages/auth/LoginPage";
 import NewPassword from "../pages/auth/NewPassword";
@@ -17,7 +16,12 @@ import RegisterPage from "../pages/auth/RegisterPage";
 import AddProjectPage from "../pages/dashboard/projects/AddProjectPage";
 import AllProjectList from "../pages/dashboard/projects/AllProjectList";
 import AllSubmissions from "../pages/dashboard/submission/AllSubmissions";
+import AddNewProduct from "../pages/dashboard/user-dashboard/AddNewProduct";
+import AddNewProject from "../pages/dashboard/user-dashboard/AddNewProject";
+import UserCollaborators from "../pages/dashboard/user-dashboard/UserCollaborators";
+import UserMembership from "../pages/dashboard/user-dashboard/UserMembership";
 import UserProfilePage from "../pages/dashboard/user-dashboard/UserProfilePage";
+import UserProjectsList from "../pages/dashboard/user-dashboard/UserProjectsList";
 import AllUserList from "../pages/dashboard/user/AllUserList";
 import ProductDetailPage from "./../pages/ProductDetailPage";
 
@@ -88,15 +92,6 @@ const Router = () => {
       />
 
       <Route
-        path="/upload-project"
-        element={
-          <Layout>
-            <UploadNewProject />
-          </Layout>
-        }
-      />
-
-      <Route
         path="/all-users"
         element={
           <DashboardLayout>
@@ -129,11 +124,57 @@ const Router = () => {
         }
       />
 
+      {/* user dashboard routes*/}
+
       <Route
         path="/user-profile"
         element={
           <DashboardLayout>
             <UserProfilePage />
+          </DashboardLayout>
+        }
+      />
+      <Route
+        path="/user-projects"
+        element={
+          <DashboardLayout>
+            <UserProjectsList />
+          </DashboardLayout>
+        }
+      />
+
+      <Route
+        path="/user-collaborators"
+        element={
+          <DashboardLayout>
+            <UserCollaborators />
+          </DashboardLayout>
+        }
+      />
+
+      <Route
+        path="/user-membership"
+        element={
+          <DashboardLayout>
+            <UserMembership />
+          </DashboardLayout>
+        }
+      />
+
+      <Route
+        path="/add-new-project"
+        element={
+          <DashboardLayout>
+            <AddNewProject />
+          </DashboardLayout>
+        }
+      />
+
+      <Route
+        path="/add-new-product"
+        element={
+          <DashboardLayout>
+            <AddNewProduct />
           </DashboardLayout>
         }
       />

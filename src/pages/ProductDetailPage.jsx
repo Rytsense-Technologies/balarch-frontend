@@ -5,6 +5,7 @@ import PatrocinosCards from "../components/common/PatrocinosCards";
 import RelatedProfessionals from "../components/product/productdetail/RelatedProfessionals";
 import ProductInfoCards from "./../components/product/productdetail/ProductInfoCards";
 import RelatedProducts from "./../components/product/productdetail/RelatedProducts";
+import RelatedCollaborators from "./../components/professionals/professionaldetail/RelatedCollaborators";
 const ProductDetailPage = () => {
   const location = useLocation();
   const { productDetails } = location.state;
@@ -55,6 +56,7 @@ const ProductDetailPage = () => {
         <ProductInfoCards />
         <RelatedProducts />
         <RelatedProfessionals />
+        <RelatedCollaborators />
       </div>
       <PatrocinosCards />
     </>

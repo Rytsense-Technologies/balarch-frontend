@@ -2,13 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { projects } from "../../../mock/Data";
 
-const RelatedProjectsProf = () => {
+const RelatedCollaborators = () => {
   const navigate = useNavigate();
   return (
     <>
       <div className="lg:px-60 mt-10">
         <div className="flex flex-col lg:flex-row items-center">
-          <div className="text-3xl border-r border-gray-400 pr-4">Projects</div>
+          <div className="text-3xl border-r border-gray-400 pr-4">
+            Collaborators
+          </div>
           <div className="text-gray-500 font-semibold pl-4">
             12 projects added
           </div>
@@ -37,4 +39,4 @@ const RelatedProjectsProf = () => {
   );
 };
 
-export default RelatedProjectsProf;
+export default RelatedCollaborators;
