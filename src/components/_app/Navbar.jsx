@@ -44,17 +44,17 @@ export const Navbar = () => {
     <>
       <div>
         {/* Desktop Navbar */}
-        <div className="flex h-20 items-center gap-6 justify-end bg-gray-900 px-4 p-2 text-sm font-normal text-gray-200 sm:px-6 lg:px-40">
+        <div className="flex sticky h-16 items-center gap-6 justify-end bg-gray-900 px-4 p-2 text-sm font-normal text-gray-200 sm:px-6 lg:px-20">
           <div className="flex items-center gap-6 mt-5 mb-5">
             <button
-              className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
+              className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               View Book
             </button>
             <button
-              className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
+              className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               View Magazine
             </button>
@@ -62,7 +62,7 @@ export const Navbar = () => {
             {token ? (
               <>
                 <button
-                  className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                   type="button"
                   onClick={() => navigate("/user-profile")}
                 >
@@ -101,11 +101,11 @@ export const Navbar = () => {
               </>
             ) : (
               <button
-                className="select-none rounded-lg border border-gray-100 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button"
+                className="px-3 py-2 me-2  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                 onClick={() => navigate("/login")}
               >
-                Login
+                Log In
               </button>
             )}
           </div>
@@ -163,7 +163,7 @@ export const Navbar = () => {
         )}
 
         {/* Desktop Navigation Links */}
-        <div className="py-5 flex items-center justify-center text-gray-900 font-bold gap-12 hidden sm:flex">
+        <div className="py-5 flex items-center justify-center text-gray-900 font-bold gap-24 hidden sm:flex">
           <NavLink
             to="/projects"
             className={({ isActive }) =>

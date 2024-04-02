@@ -6,7 +6,7 @@ const token = localStorage.getItem("accessToken");
 
 export async function getProductDetails(ProductId) {
   try {
-    const response = await axios.post(
+    const response = await axios.get(
       `${BASE_URL}api/products/getByProductId`,
       { ProductId: ProductId },
       {
