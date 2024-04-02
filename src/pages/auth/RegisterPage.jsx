@@ -106,10 +106,7 @@ const RegisterPage = () => {
       .min(1, "At least one software logo must be selected"),
   });
 
-  const handleImageUpload = (event) => {
-    if (event.target.files[0]) {
-    }
-  };
+  const handleImageUpload = (event) => {};
 
   useEffect(() => {
     if (!profileType) {
