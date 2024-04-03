@@ -13,8 +13,10 @@ import LoginPage from "../pages/auth/LoginPage";
 import NewPassword from "../pages/auth/NewPassword";
 import OtpVerify from "../pages/auth/OtpVerify";
 import RegisterPage from "../pages/auth/RegisterPage";
+import Tags from "../pages/dashboard/Tags";
 import AddProjectPage from "../pages/dashboard/projects/AddProjectPage";
 import AllProjectList from "../pages/dashboard/projects/AllProjectList";
+import ScamReport from "../pages/dashboard/scam/ScamReport";
 import AllSubmissions from "../pages/dashboard/submission/AllSubmissions";
 import AddNewProduct from "../pages/dashboard/user-dashboard/AddNewProduct";
 import AddNewProject from "../pages/dashboard/user-dashboard/AddNewProject";
@@ -107,11 +109,37 @@ const Router = () => {
           </DashboardLayout>
         }
       />
+
+      <Route
+        path="/scam-report"
+        element={
+          <DashboardLayout>
+            <ScamReport />
+          </DashboardLayout>
+        }
+      />
+      <Route
+        path="/tags"
+        element={
+          <DashboardLayout>
+            <Tags />
+          </DashboardLayout>
+        }
+      />
       <Route
         path="/all-submissions"
         element={
           <DashboardLayout>
             <AllSubmissions />
+          </DashboardLayout>
+        }
+      />
+
+      <Route
+        path="/scam-report"
+        element={
+          <DashboardLayout>
+            <ScamReport />
           </DashboardLayout>
         }
       />

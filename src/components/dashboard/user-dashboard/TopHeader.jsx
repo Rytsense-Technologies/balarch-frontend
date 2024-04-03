@@ -2,6 +2,7 @@ import React from "react";
 import { IoMdLogOut } from "react-icons/io";
 
 const TopHeader = ({ tabName }) => {
+  const role = localStorage.getItem("role");
   return (
     <div className="flex items-center justify-between mb-5">
       <h1 className="text-md font-semibold">{tabName}</h1>
@@ -12,7 +13,7 @@ const TopHeader = ({ tabName }) => {
           alt="Rounded avatar"
         />
         <div className="flex flex-col items-center text-sm">
-          <p>Hello User</p>
+          <p>{role === "SUPER_ADMIN" ? "Hello Superadmin" : "Hello User"}</p>
           <p className="text-xs flex items-center gap-1 text-red-500 cursor-pointer">
             {" "}
             <IoMdLogOut /> Sign Out

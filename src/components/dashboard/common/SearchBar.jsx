@@ -4,7 +4,7 @@ import { IoFilterSharp } from "react-icons/io5";
 const SearchBar = () => {
   return (
     <>
-      <form className="py-20">
+      <form className="py-5">
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
