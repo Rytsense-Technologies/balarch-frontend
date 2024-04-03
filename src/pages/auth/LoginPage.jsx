@@ -24,11 +24,8 @@ const LoginPage = () => {
       localStorage.setItem("role", role);
       localStorage.setItem("email", email);
 
-      if (role === "SUPER_ADMIN") {
-        navigate("/all-users");
-      } else {
-        navigate("/");
-      }
+      navigate("/");
+
       toast.success("Login successful");
     } catch (error) {
       setError(error.message || "Something went wrong");

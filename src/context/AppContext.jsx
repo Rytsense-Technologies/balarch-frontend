@@ -4,6 +4,7 @@ const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const [profileType, setProfileType] = useState("");
+  const [open, setOpen] = useState(true);
   const [accessToken, setAccessToken] = useState(
     localStorage.getItem("accessToken")
   );
@@ -26,9 +27,20 @@ export const AppContextProvider = ({ children }) => {
     localStorage.removeItem("accessToken");
   };
 
+  const openModal = () => setOpen(true);
+  const closeModal = () => setOpen(false);
+
   return (
     <AppContext.Provider
-      value={{ profileType, setProfileType, isLoggedIn, login, logout }}
+      value={{
+        profileType,
+        setProfileType,
+        isLoggedIn,
+        login,
+        logout,
+        openModal,
+        closeModal,
+      }}
     >
       {children}
     </AppContext.Provider>

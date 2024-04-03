@@ -7,6 +7,7 @@ export const Navbar = () => {
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const token = localStorage.getItem("accessToken");
   const email = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
   const profilePicture = localStorage.getItem("profilePicture");
   const navigate = useNavigate();
   const popoverRef = useRef(null);
@@ -40,6 +41,14 @@ export const Navbar = () => {
     navigate("/login");
   };
 
+  const navigateToDashboard = () => {
+    if (role === "SUPER_ADMIN") {
+      navigate("/all-users");
+    } else {
+      navigate("/user-profile");
+    }
+  };
+
   return (
     <>
       <div>
@@ -62,6 +71,13 @@ export const Navbar = () => {
             {token ? (
               <>
                 <div className="flex items-center gap-2 relative">
+                  <button
+                    type="button"
+                    className="px-3 py-2 me-2  text-sm font-medium text-white focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    onClick={navigateToDashboard}
+                  >
+                    View Dashboard
+                  </button>
                   <button
                     className="rounded-full  py-1 px-2 text-center align-middle font-sans text-xs font-bold uppercase text-gray-100 transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                     type="button"
@@ -197,7 +213,7 @@ export const Navbar = () => {
           </NavLink>
           {token ? (
             <NavLink
-              to="/user-profile"
+              to="/add-new-project"
               className={({ isActive }) =>
                 isActive
                   ? "underline underline-offset-8"

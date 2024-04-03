@@ -2,6 +2,7 @@ import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import { HiDotsVertical } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../../../components/dashboard/common/SearchBar";
+import TopHeader from "../../../components/dashboard/user-dashboard/TopHeader";
 
 const AllProjectList = () => {
   const navigate = useNavigate();
@@ -22,10 +23,10 @@ const AllProjectList = () => {
           <td className="px-6 py-4">XXX</td>
 
           <td className="px-6 py-4 flex items-center gap-4">
-            <span className="text-red-600">Reject</span>
-            <span className="bg-blue-500 text-white text-xs font-bold me-2 px-2.5 py-1.5 rounded-full dark:bg-green-900 dark:text-green-300">
-              Approval
-            </span>
+            <div className="bg-blue-100 flex items-center gap-2 text-blue-400 text-xs font-bold me-2 px-2.5 py-2.5 rounded-full dark:bg-green-900 dark:text-green-300">
+              <span className="w-3.5 h-3.5 bg-blue-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+              Approved
+            </div>
           </td>
           <td className="px-6 py-4">
             <HiDotsVertical />
@@ -39,15 +40,7 @@ const AllProjectList = () => {
 
   return (
     <>
-      <div className="float-right">
-        <button
-          type="button"
-          className=" flex items-center gap-2 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          onClick={() => navigate("/add-project")}
-        >
-          Add Project
-        </button>
-      </div>
+      <TopHeader />
       <SearchBar />
 
       <div className="relative overflow-x-auto">
@@ -80,13 +73,13 @@ const AllProjectList = () => {
             <FaArrowLeftLong /> Previous
           </div>
           <nav aria-label="Page navigation example">
-            <ul class="flex items-center -space-x-px h-8 text-sm">
+            <ul className="flex items-center -space-x-px h-8 text-sm">
               <li>
                 <a
                   href="#"
-                  class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
-                  <span class="sr-only">Previous</span>
+                  <span className="sr-only">Previous</span>
                   <svg
                     class="w-2.5 h-2.5 rtl:rotate-180"
                     aria-hidden="true"
@@ -107,7 +100,7 @@ const AllProjectList = () => {
               <li>
                 <a
                   href="#"
-                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   1
                 </a>
@@ -115,7 +108,7 @@ const AllProjectList = () => {
               <li>
                 <a
                   href="#"
-                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   2
                 </a>
@@ -124,7 +117,7 @@ const AllProjectList = () => {
                 <a
                   href="#"
                   aria-current="page"
-                  class="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                  className="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                 >
                   3
                 </a>
@@ -132,7 +125,7 @@ const AllProjectList = () => {
               <li>
                 <a
                   href="#"
-                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   4
                 </a>
@@ -140,7 +133,7 @@ const AllProjectList = () => {
               <li>
                 <a
                   href="#"
-                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
                   5
                 </a>
@@ -148,11 +141,11 @@ const AllProjectList = () => {
               <li>
                 <a
                   href="#"
-                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                 >
-                  <span class="sr-only">Next</span>
+                  <span className="sr-only">Next</span>
                   <svg
-                    class="w-2.5 h-2.5 rtl:rotate-180"
+                    className="w-2.5 h-2.5 rtl:rotate-180"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

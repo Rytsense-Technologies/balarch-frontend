@@ -12,7 +12,6 @@ const UserProfilePage = () => {
     { key: "Settings", label: "Settings", content: <Security /> },
     { key: "Notifications", label: "Notifications" },
     { key: "Billing", label: "Billing" },
-    { key: "Delete Account", label: "Delete Account" },
   ];
 
   const handleTabClick = (tabKey) => {

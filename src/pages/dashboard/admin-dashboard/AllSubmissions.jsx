@@ -1,6 +1,12 @@
+import { useState } from "react";
+import AlertModal from "../../../components/dashboard/common/AlertModal";
+import TopHeader from "../../../components/dashboard/user-dashboard/TopHeader";
+
 export default function AllSubmissions() {
+  const [open, setOpen] = useState(false);
   return (
     <>
+      <TopHeader />
       <div className="flex items-center gap-4">
         <div className="inline-flex rounded-md shadow-sm mb-10" role="group">
           <button
@@ -40,8 +46,16 @@ export default function AllSubmissions() {
                 </p>
 
                 <div className="flex items-center gap-4 mt-2">
-                  <span className="text-red-600">Reject</span>
-                  <span className="bg-blue-500 text-white text-xs font-bold me-2 px-2.5 py-1.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                  <span
+                    className="text-red-600 cursor-pointer"
+                    onClick={() => setOpen(true)}
+                  >
+                    Reject
+                  </span>
+                  <span
+                    className="bg-blue-500 text-white text-xs font-bold me-2 px-2.5 py-1.5 rounded-full dark:bg-green-900 dark:text-green-300 cursor-pointer"
+                    onClick={() => setOpen(true)}
+                  >
                     Approval
                   </span>
                 </div>
@@ -50,6 +64,7 @@ export default function AllSubmissions() {
           </ul>
         ))}
       </div>
+      <AlertModal open={open} setOpen={setOpen} />
     </>
   );
 }

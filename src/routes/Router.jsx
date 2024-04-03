@@ -13,18 +13,18 @@ import LoginPage from "../pages/auth/LoginPage";
 import NewPassword from "../pages/auth/NewPassword";
 import OtpVerify from "../pages/auth/OtpVerify";
 import RegisterPage from "../pages/auth/RegisterPage";
-import Tags from "../pages/dashboard/Tags";
-import AddProjectPage from "../pages/dashboard/projects/AddProjectPage";
-import AllProjectList from "../pages/dashboard/projects/AllProjectList";
-import ScamReport from "../pages/dashboard/scam/ScamReport";
-import AllSubmissions from "../pages/dashboard/submission/AllSubmissions";
+import AllProjectList from "../pages/dashboard/admin-dashboard/AllProjectList";
+import AllSubmissions from "../pages/dashboard/admin-dashboard/AllSubmissions";
+import AllUserList from "../pages/dashboard/admin-dashboard/AllUserList";
+import ScamReport from "../pages/dashboard/admin-dashboard/ScamReport";
+
+import AllTags from "../pages/dashboard/admin-dashboard/AllTags";
 import AddNewProduct from "../pages/dashboard/user-dashboard/AddNewProduct";
 import AddNewProject from "../pages/dashboard/user-dashboard/AddNewProject";
 import UserCollaborators from "../pages/dashboard/user-dashboard/UserCollaborators";
 import UserMembership from "../pages/dashboard/user-dashboard/UserMembership";
 import UserProfilePage from "../pages/dashboard/user-dashboard/UserProfilePage";
 import UserProjectsList from "../pages/dashboard/user-dashboard/UserProjectsList";
-import AllUserList from "../pages/dashboard/user/AllUserList";
 import ProductDetailPage from "./../pages/ProductDetailPage";
 
 const Router = () => {
@@ -118,14 +118,7 @@ const Router = () => {
           </DashboardLayout>
         }
       />
-      <Route
-        path="/tags"
-        element={
-          <DashboardLayout>
-            <Tags />
-          </DashboardLayout>
-        }
-      />
+
       <Route
         path="/all-submissions"
         element={
@@ -143,11 +136,12 @@ const Router = () => {
           </DashboardLayout>
         }
       />
+
       <Route
-        path="/add-project"
+        path="/tags"
         element={
           <DashboardLayout>
-            <AddProjectPage />
+            <AllTags />
           </DashboardLayout>
         }
       />

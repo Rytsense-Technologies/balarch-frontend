@@ -73,40 +73,13 @@ const RegisterPage = () => {
       .email("Invalid email address")
       .required("Email is required"),
     Password: Yup.string().required("Password is required"),
-    Name: Yup.string().required("Name is required"),
-    ShortBio: Yup.string().required("Short bio is required"),
-    Profession: Yup.string().required("Profession is required"),
-    ProfessionPositionName: Yup.string().required(
-      "Profession position name is required"
-    ),
-    Concentration: Yup.string().required("Concentration  is required"),
-    Industry: Yup.string().required("Industry is required"),
-    EducationalInstitute1: Yup.string().required(
-      "Educational institute is required"
-    ),
-    EducationTitle1: Yup.string().required("Education title is required"),
-    EducationDegree1: Yup.string().required("Education degree is required"),
-    EducationYear1: Yup.number().required("Education year is required"),
-    CompanyProfessionalExperience1: Yup.string().required(
-      "Company is required"
-    ),
-    PositionProfessionalExperience1: Yup.string().required(
-      "Position is required"
-    ),
-    YearProfessionalExperience1: Yup.number().required("Year is required"),
-    ContactEmailAddress: Yup.string().required("Email  is required"),
-    ContactPhoneNumber: Yup.number().required("Phone number is required"),
-    MagazineShippingAddress: Yup.string().required(
-      "Magazine Shipping Address is required"
-    ),
-    StartYear: Yup.number().required("Industry start year is required"),
-
-    SoftwareLogo: Yup.array()
-      .of(Yup.string())
-      .min(1, "At least one software logo must be selected"),
   });
 
-  const handleImageUpload = (event) => {};
+  const handleImageUpload = (event) => {
+    if (event.target.files[0]) {
+      setProfilePic(event.target.files[0]);
+    }
+  };
 
   useEffect(() => {
     if (!profileType) {

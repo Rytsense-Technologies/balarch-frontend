@@ -38,7 +38,7 @@ const AllUserList = () => {
             </div>
           </td>
           <td className="px-6 py-4">Copper</td>
-          <td className="px-6 py-4">+234 5656 5555</td>
+          <td className="px-6 py-4">Software Developer</td>
           <td className="px-6 py-4">eberemoses56677@gmail.com</td>
           <td className="px-6 py-4">
             <div className="bg-green-100 flex items-center gap-2 text-green-800 text-xs font-bold me-2 px-2.5 py-2.5 rounded-full dark:bg-green-900 dark:text-green-300">
@@ -74,7 +74,7 @@ const AllUserList = () => {
                 Plan
               </th>
               <th scope="col" className="px-6 py-3">
-                Phone Number
+                Occupation
               </th>
               <th scope="col" className="px-6 py-3">
                 Email Address
