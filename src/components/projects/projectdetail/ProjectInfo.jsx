@@ -2,7 +2,7 @@ import { AiOutlineBuild } from "react-icons/ai";
 import { BsHeart } from "react-icons/bs";
 import { CiCamera, CiLocationOn } from "react-icons/ci";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { FiSend } from "react-icons/fi";
+import { FcCollaboration } from "react-icons/fc";
 import { HiBuildingOffice2 } from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdCalendarMonth, MdOutlineDatasetLinked } from "react-icons/md";
@@ -127,7 +127,7 @@ const ProjectInfo = ({ projectDetails }) => {
           </div>
           <div className="flex items-center gap-4 text-gray-500 text-lg cursor-pointer font-semibold pl-4">
             <BsHeart />
-            <FiSend />
+            <FcCollaboration />
           </div>
         </div>
         <div className="px-20 grid grid-cols-3 gap-4">

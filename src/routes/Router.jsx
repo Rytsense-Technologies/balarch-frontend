@@ -15,10 +15,9 @@ import OtpVerify from "../pages/auth/OtpVerify";
 import RegisterPage from "../pages/auth/RegisterPage";
 import AllProjectList from "../pages/dashboard/admin-dashboard/AllProjectList";
 import AllSubmissions from "../pages/dashboard/admin-dashboard/AllSubmissions";
+import AllTags from "../pages/dashboard/admin-dashboard/AllTags";
 import AllUserList from "../pages/dashboard/admin-dashboard/AllUserList";
 import ScamReport from "../pages/dashboard/admin-dashboard/ScamReport";
-
-import AllTags from "../pages/dashboard/admin-dashboard/AllTags";
 import AddNewProduct from "../pages/dashboard/user-dashboard/AddNewProduct";
 import AddNewProject from "../pages/dashboard/user-dashboard/AddNewProject";
 import UserCollaborators from "../pages/dashboard/user-dashboard/UserCollaborators";
@@ -85,7 +84,7 @@ const Router = () => {
         }
       />
       <Route
-        path="/product/:ProductId"
+        path="/product/:productId"
         element={
           <Layout>
             <ProductDetailPage />

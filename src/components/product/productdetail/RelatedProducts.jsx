@@ -4,13 +4,13 @@ import { projects } from "../../../mock/Data";
 const RelatedProducts = () => {
   return (
     <>
-      <div className="lg:px-60">
+      <div className="lg:px-60 mt-10">
         <div className="flex flex-col items-center md:flex-row">
-          <div className="text-4xl border-b border-gray-400 mb-4 md:mb-0 md:pr-4">
-            Productos
+          <div className="text-3xl border-b border-gray-400 mb-4 md:mb-0 md:pr-4">
+            Products
           </div>
           <div className="text-gray-500 font-semibold pl-4">
-            12 productos relacionados
+            12 related products
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-5">

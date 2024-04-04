@@ -6,13 +6,11 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import loader from "../../assets/images/loader.gif";
-import { getProductDetails } from "../../service/PrivateService";
 import { getAllProducts } from "./../../service/PublicService";
 import { ProductFilter } from "./ProductFilter";
 
 const ProductList = () => {
   const navigate = useNavigate();
-  const items = Array.from({ length: 10 });
 
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
@@ -34,11 +32,28 @@ const ProductList = () => {
     fetchData();
   }, []);
 
-  const navigateToProductDetail = async (ProductId) => {
+  const navigateToProductDetail = async (productId) => {
     try {
-      const productDetails = await getProductDetails(ProductId);
-      navigate(`/product/${ProductId}`, {
-        state: { productDetails },
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_APP_BASE_BACKEND_API_URL
+        }api/products/getByProductId`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ProductId: productId }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch project details");
+      }
+
+      const data = await response.json();
+      navigate(`/product/${productId}`, {
+        state: { productDetails: data.Result },
       });
     } catch (error) {
       console.error("Error fetching project details:", error);
@@ -85,7 +100,7 @@ const ProductList = () => {
           {products.map((product, index) => (
             <div
               key={index}
-              className="flex flex-col items-center bg-white border-2 border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+              className="flex flex-col items-center bg-white border-2 border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 cursor-pointer"
               onClick={() => navigateToProductDetail(product.ProductId)}
             >
               <img
@@ -103,9 +118,12 @@ const ProductList = () => {
                   </div>
                 </div>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris volutpat suscipit elit ac euismod. Curabitur sed erat
-                  sit amet neque viverra tempus.
+                  Bricks are a type of building material typically made of
+                  concrete, sand, lime, or clay. They are generally used to
+                  construct walls, pavements, and other types of architecture.
+                  Bricks can be produced in a variety of shapes and types
+                  depending on the materials used to make them and the use for
+                  which they are intended.
                 </p>
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div className="flex items-center gap-2 text-sm font-medium">

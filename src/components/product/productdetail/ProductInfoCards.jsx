@@ -11,31 +11,31 @@ const ProductInfoCards = () => {
      lg:px-60"
     >
       <div className="md:w-1/2 p-6 bg-gray-900 text-gray-300">
-        <h1 className="text-center mb-5">Datos Clave</h1>
+        <h1 className="text-center mb-5">Key Data</h1>
         <ul className="px-10 flex flex-col gap-4 border-blue-gray-50">
           <li className="flex items-center gap-4">
             <span>
               <FaRegCircleUser />
             </span>
-            <p className="font-normal">Relacionado con 6 Profesionale</p>
+            <p className="font-normal">Related to 6 Professional</p>
           </li>
           <li className="flex items-center gap-4">
             <span>
               <AiFillBoxPlot />
             </span>
-            <p className="font-normal">Construcción</p>
+            <p className="font-normal">Construction</p>
           </li>
           <li className="flex items-center gap-4">
             <span>
               <BsStack />
             </span>
-            <p className="font-normal">Participa en 9 Proyectos</p>
+            <p className="font-normal">Participate in 9 Projects</p>
           </li>
         </ul>
       </div>
 
       <div className="md:w-1/2 p-6 bg-gray-300 text-gray-800">
-        <h1 className="text-center mb-5">Datos Clave</h1>
+        <h1 className="text-center mb-5">Key Data</h1>
         <ul className="px-10 flex flex-col gap-4 border-blue-gray-50">
           <li className="flex items-center gap-4">
             <span>

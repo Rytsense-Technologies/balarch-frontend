@@ -1,11 +1,25 @@
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const token = localStorage.getItem("accessToken");
+  const navigate = useNavigate();
+
+  const handlePublish = () => {
+    if (token) {
+      navigate("/add-new-project");
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="bg-gray-900">
       <div className="lg:px-40 py-20">
         <div className="flex justify-center items-center gap-4 text-white text-xl font-bold">
-          <span className="flex items-center gap-4 border-2 border-white p-2">
+          <span
+            className="flex items-center gap-4 border-2 border-white p-2 cursor-pointer"
+            onClick={handlePublish}
+          >
             Publish your Project <FaArrowRightLong />
           </span>
         </div>

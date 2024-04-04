@@ -10,18 +10,16 @@ const ProjectsList = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 10;
 
   const noImg =
-    "https://media.istockphoto.com/id/1055079680/vector/black-linear-photo-camera-like-no-image-available.jpg?s=612x612&w=0&k=20&c=P1DebpeMIAtXj_ZbVsKVvg-duuL0v9DlrOZUvPG6UJk=";
+    "https://stage-dihomx.com/wp-content/uploads/2023/09/casa-quinchuyaku-emilio-lopez-herrera-arquitecto_3.jpg";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${
-            import.meta.env.VITE_APP_BASE_BACKEND_API_URL
-          }api/getAll?page=${currentPage}&page=${itemsPerPage}`
+          `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/getAll`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -115,13 +113,11 @@ const ProjectsList = () => {
               <img
                 src={project.ImageUrls[0] || noImg}
                 alt="Project"
-                className="w-full h-44 shadow-md object-cover cursor-pointer"
+                className="w-full h-56 shadow-md object-cover cursor-pointer"
               />
               <div className="absolute inset-0  opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-40 text-white p-2 flex items-center justify-center">
                 <div className="border-2 border-gray-200 rounded-sm px-20 py-18 p-10">
-                  <p className="text-sm font-bold text-center">
-                    {project.ProjectName}
-                  </p>
+                  <p className="text-sm  text-center">{project.ProjectName}</p>
                 </div>
               </div>
             </div>

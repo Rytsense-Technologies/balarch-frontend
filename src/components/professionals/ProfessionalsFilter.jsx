@@ -1,6 +1,5 @@
 import { Disclosure } from "@headlessui/react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/20/solid";
-import { Option, Select } from "@material-tailwind/react";
 
 const filters = [
   {
@@ -11,30 +10,135 @@ const filters = [
     id: "color",
     name: "Occupation",
     options: [
-      { value: "Micro", label: "Up to 500 sq. ft." },
-      { value: "Mini", label: "501 - 2,000 sq. ft." },
-      { value: "Small", label: "2,001 - 10,000 sq. ft." },
-      { value: "Medium", label: "10,001 - 50,000 sq. ft." },
-      { value: "Large", label: "50,001 - 200,000 sq. ft." },
-      { value: "Major", label: "200,001 - 1,000,000 sq. ft." },
-      { value: "Urban", label: "1,000,001 - 10,000,000 sq. ft." },
-      { value: "Master", label: "10,000,001 sq. ft - +" },
+      { value: "Professional Profiles", label: "Professional Profiles" },
+      { value: "Student Profiles", label: "Student Profiles" },
+      { value: "Professors Profiles", label: "Architecture" },
+      { value: "Company Profiles", label: "Company Profiles" },
+      { value: "Product Profiles", label: "Product Profiles" },
     ],
   },
   {
-    id: "category",
+    id: "Industry",
     name: "Industry",
-    options: [{ value: "new-arrivals", label: "Todos" }],
+    options: [
+      { value: "Architecture", label: "Architecture" },
+      { value: "Landscape Architecture", label: "Landscape Architecture" },
+      { value: "Interior Design", label: "Interior Design" },
+      { value: "Electrical Engineering", label: "Electrical Engineering" },
+      { value: "Structural Engineering", label: "Structural Engineering" },
+      { value: "Civil Engineering", label: "Civil Engineering" },
+      { value: "Mechanical Engineering", label: "Mechanical Engineering" },
+      { value: "Geotechnical Engineering", label: "Geotechnical Engineering" },
+      {
+        value: "Construction and Building Industry",
+        label: "Construction and Building Industry",
+      },
+      {
+        value: "Urban and Regional Planning",
+        label: "Urban and Regional Planning",
+      },
+      {
+        value: "Environmental and Sustainability Design",
+        label: "Environmental and Sustainability Design",
+      },
+      { value: "Lighting Design", label: "Lighting Design" },
+      { value: "Acoustic Design", label: "Acoustic Design" },
+      {
+        value: "Technology and Information Systems in Architecture",
+        label: "Technology and Information Systems in Architecture",
+      },
+      {
+        value: "Accessibility and Inclusive Design",
+        label: "Accessibility and Inclusive Design",
+      },
+      { value: "Graphic Design", label: "Graphic Design" },
+      { value: "Architectural Rendering", label: "Architectural Rendering" },
+      { value: "Professional Photography", label: "Professional Photography" },
+      { value: "Building Materials", label: "Building Materials" },
+    ],
   },
   {
-    id: "size",
+    id: "Concentration",
     name: "Concentration",
-    options: [{ value: "2l", label: "2002" }],
+    options: [
+      { value: "Residential", label: "Residential" },
+      { value: "Commercial & Retail", label: "Commercial & Retail" },
+      { value: "Cultural & Civic", label: "Cultural & Civic" },
+      {
+        value: "Industrial & Manufacturing Architecture",
+        label: "Industrial & Manufacturing Architecture",
+      },
+      {
+        value: "Healthcare & Wellness Architecture",
+        label: "Healthcare & Wellness Architecture",
+      },
+      {
+        value: "Public Infrastructure & Civic Buildings",
+        label: "Public Infrastructure & Civic Buildings",
+      },
+      {
+        value: "Historical & Heritage Architecture",
+        label: "Historical & Heritage Architecture",
+      },
+      {
+        value: "Recreation & Sports Architecture",
+        label: "Recreation & Sports Architecture",
+      },
+      {
+        value: "Environmental & Sustainable Architecture",
+        label: "Environmental & Sustainable Architecture",
+      },
+      {
+        value: "Urban Planning & Master Planning",
+        label: "Urban Planning & Master Planning",
+      },
+      {
+        value: "Interior Design & Interiors",
+        label: "Interior Design & Interiors",
+      },
+      {
+        value: "Landscape Architecture & Design",
+        label: "Landscape Architecture & Design",
+      },
+      {
+        value: "Temporary & Installation Architecture",
+        label: "Temporary & Installation Architecture",
+      },
+      {
+        value: "Emerging & Experimental Architecture",
+        label: "Emerging & Experimental Architecture",
+      },
+      {
+        value: "Sustainability & Green Building",
+        label: "Sustainability & Green Building",
+      },
+      { value: "Multidisciplinary", label: "Multidisciplinary" },
+      { value: "Accessibility", label: "Accessibility" },
+      { value: "Bathroom and Kitchen", label: "Bathroom and Kitchen" },
+      { value: "Furniture and Storage", label: "Furniture and Storage" },
+      { value: "Lighting and Electrical", label: "Lighting and Electrical" },
+      {
+        value: "Architectural Elements and Systems",
+        label: "Architectural Elements and Systems",
+      },
+      { value: "Materials and Finishes", label: "Materials and Finishes" },
+      { value: "Outdoor and Landscape", label: "Outdoor and Landscape" },
+      { value: "Plumbing and HVAC", label: "Plumbing and HVAC" },
+      { value: "Technology and Equipment", label: "Technology and Equipment" },
+      { value: "Hardware and Fixtures", label: "Hardware and Fixtures" },
+      { value: "Miscellaneous", label: "Miscellaneous" },
+    ],
   },
   {
-    id: "size",
+    id: "Location",
     name: "Location",
-    options: [{ value: "2l", label: "2002" }],
+    options: [
+      { value: "New York", label: "New York" },
+      { value: "Los Angeles", label: "Los Angeles" },
+      { value: "Chicago", label: "Chicago" },
+      { value: "Houston", label: "Houston" },
+      { value: "Phoenix", label: "Phoenix" },
+    ],
   },
 ];
 
@@ -71,22 +175,19 @@ export const ProfessionalsFilter = () => {
                   <div className="space-y-3">
                     {section?.options?.map((option, optionIdx) => (
                       <div key={option.value} className="flex items-center">
-                        {section.name === "ORDEN" ? (
-                          <Select variant="standard" label="Select Version">
-                            <Option>Material Tailwind HTML</Option>
-                            <Option>Material Tailwind React</Option>
-                            <Option>Material Tailwind Vue</Option>
-                            <Option>Material Tailwind Angular</Option>
-                            <Option>Material Tailwind Svelte</Option>
-                          </Select>
-                        ) : (
+                        <div>
+                          <input
+                            id={`filter-${section.id}-${optionIdx}`}
+                            type="checkbox"
+                            className="form-checkbox h-5 w-5 text-indigo-600 transition duration-150 ease-in-out"
+                          />
                           <label
                             htmlFor={`filter-${section.id}-${optionIdx}`}
                             className="ml-3 text-sm lg:text-md font-normal text-gray-600"
                           >
                             {option.label}
                           </label>
-                        )}
+                        </div>
                       </div>
                     ))}
                   </div>

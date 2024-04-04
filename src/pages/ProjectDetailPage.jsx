@@ -1,6 +1,7 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useLocation } from "react-router";
 import ss2 from "../assets/images/ss2.png";
+import PublishButton from "../components/common/PublishButton";
 import ProjectDetailInfo from "../components/projects/projectdetail/ProjectDetailInfo";
 import ProjectInfo from "../components/projects/projectdetail/ProjectInfo";
 import { SocialMediaBar } from "../components/projects/projectdetail/SocialMediaBar";
@@ -47,6 +48,7 @@ const ProjectDetailPage = () => {
       <div>
         <img src={ss2} alt="" />
       </div>
+      <PublishButton />
     </>
   );
 };
