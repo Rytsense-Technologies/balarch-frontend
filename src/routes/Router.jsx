@@ -3,6 +3,7 @@ import { Layout } from "../components/_app/Layout";
 import DashboardLayout from "../components/dashboard/_app/DashboardLayout";
 import Home from "../pages/Home";
 import PricingPage from "../pages/PricingPage";
+import ProductItemPage from "../pages/ProductItemPage";
 import Productos from "../pages/Productos";
 import ProfessionalDetailPage from "../pages/ProfessionalDetailPage";
 import Professionals from "../pages/Professionals";
@@ -88,6 +89,14 @@ const Router = () => {
         element={
           <Layout>
             <ProductDetailPage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/product/item"
+        element={
+          <Layout>
+            <ProductItemPage />
           </Layout>
         }
       />

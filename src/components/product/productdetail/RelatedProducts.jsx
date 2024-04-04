@@ -1,7 +1,9 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import { projects } from "../../../mock/Data";
 
 const RelatedProducts = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="lg:px-60 mt-10">
@@ -15,7 +17,11 @@ const RelatedProducts = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-5">
           {projects.map((project, index) => (
-            <div className="relative" key={index}>
+            <div
+              className="relative cursor-pointer"
+              key={index}
+              onClick={() => navigate("/product/item")}
+            >
               <img
                 src={project.img}
                 alt={`Image ${index + 1}`}
