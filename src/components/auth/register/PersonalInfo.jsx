@@ -11,7 +11,7 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/getAllCountries`
+          "http://54.167.20.39:8080/api/getAllCountries"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
