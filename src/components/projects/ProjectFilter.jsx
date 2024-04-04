@@ -476,35 +476,6 @@ const filters = [
       { value: "Yellow", label: "Yellow" },
     ],
   },
-  {
-    id: "size",
-    name: "Certifications",
-    options: [
-      { value: "LEED", label: "LEED" },
-      { value: "BREEAM", label: "BREEAM" },
-      { value: "WELL Building Standard", label: "WELL Building Standard" },
-      { value: "Green Star", label: "Green Star" },
-      { value: "EDGE", label: "EDGE" },
-      {
-        value: "Passive House Certification",
-        label: "Passive House Certification",
-      },
-      { value: "HQE", label: "HQE" },
-      { value: "DGNB", label: "DGNB" },
-      { value: "CASBEE", label: "CASBEE" },
-      { value: "Green Globes", label: "Green Globes" },
-      {
-        value: "Estidama Pearl Rating System",
-        label: "Estidama Pearl Rating System",
-      },
-      { value: "GRESB", label: "GRESB" },
-      {
-        value: "Zero Energy Certification",
-        label: "Zero Energy Certification",
-      },
-      { value: "NABERS", label: "NABERS" },
-    ],
-  },
 ];
 
 const ProjectFilter = () => {

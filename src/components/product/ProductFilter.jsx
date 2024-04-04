@@ -375,36 +375,7 @@ const filters = [
       { value: "acoustical_solutions", label: "Acoustical Solutions" },
     ],
   },
-  {
-    id: "Certifications",
-    name: "Certifications",
-    options: [
-      { value: "LEED", label: "LEED" },
-      { value: "ENERGY STAR", label: "ENERGY STAR" },
-      { value: "Green Seal", label: "Green Seal" },
-      { value: "BREEAM", label: "BREEAM" },
-      { value: "ISO 9001", label: "ISO 9001 (Quality Management)" },
-      { value: "ISO 14001", label: "ISO 14001 (Environmental Management)" },
-      { value: "WELL Building Standard", label: "WELL Building Standard" },
-      { value: "Passive House", label: "Passive House" },
-      {
-        value: "Cradle to Cradle Certified",
-        label: "Cradle to Cradle Certified",
-      },
-      { value: "FSC", label: "FSC (Forest Stewardship Council)" },
-      { value: "Greenguard Certification", label: "Greenguard Certification" },
-      { value: "EPEAT", label: "EPEAT" },
-      {
-        value: "Living Building Challenge",
-        label: "Living Building Challenge",
-      },
-      {
-        value: "SITES for sustainable landscapes",
-        label: "SITES for sustainable landscapes",
-      },
-      { value: "WaterSense", label: "WaterSense" },
-    ],
-  },
+
   {
     id: "Materials",
     name: "Materials",
