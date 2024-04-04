@@ -18,9 +18,7 @@ const ProjectsList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/getAll`
-        );
+        const response = await fetch("http://54.167.20.39:8080/api/getAll");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -40,7 +38,7 @@ const ProjectsList = () => {
     try {
       const token = localStorage.getItem("accessToken");
       const response = await fetch(
-        `${import.meta.env.VITE_APP_BASE_BACKEND_API_URL}api/getByProjectId`,
+        "http://54.167.20.39:8080/api/getByProjectId",
         {
           method: "POST",
           headers: {

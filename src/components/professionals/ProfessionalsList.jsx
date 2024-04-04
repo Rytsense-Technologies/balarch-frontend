@@ -27,9 +27,7 @@ const ProfessionalsList = () => {
       try {
         const token = localStorage.getItem("accessToken");
         const response = await fetch(
-          `${
-            import.meta.env.VITE_APP_BASE_BACKEND_API_URL
-          }api/signup/getAllUsers`,
+          "http://54.167.20.39:8080/api/signup/getAllUsers",
           {
             method: "GET",
             headers: {
@@ -64,9 +62,7 @@ const ProfessionalsList = () => {
       }
 
       const response = await fetch(
-        `${
-          import.meta.env.VITE_APP_BASE_BACKEND_API_URL
-        }api/signup/getByUserId`,
+        "http://54.167.20.39:8080/api/signup/getByUserId",
         {
           method: "POST",
           headers: {

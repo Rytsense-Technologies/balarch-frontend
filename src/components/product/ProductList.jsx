@@ -35,9 +35,7 @@ const ProductList = () => {
   const navigateToProductDetail = async (productId) => {
     try {
       const response = await fetch(
-        `${
-          import.meta.env.VITE_APP_BASE_BACKEND_API_URL
-        }api/products/getByProductId`,
+        "http://54.167.20.39:8080/api/products/getByProductId",
         {
           method: "POST",
           headers: {

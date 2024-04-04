@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_APP_BASE_BACKEND_API_URL;
+const BASE_URL = "http://54.167.20.39:8080/";
 
 export const getAllProducts = async () => {
   try {
