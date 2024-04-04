@@ -5,7 +5,6 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { ProfessionalsFilter } from "./ProfessionalsFilter";
 
 const ProfessionalsList = () => {
@@ -55,11 +54,6 @@ const ProfessionalsList = () => {
   const navigateToProfessionalDetail = async (UserId) => {
     try {
       const token = localStorage.getItem("accessToken");
-
-      if (!token) {
-        toast.warn("Please log in to view user details.");
-        return;
-      }
 
       const response = await fetch(
         "http://54.167.20.39:8080/api/signup/getByUserId",
