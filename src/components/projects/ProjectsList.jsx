@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router";
 import loader from "../../assets/images/loader.gif";
+import { getAllProjects, getProjectById } from "../../service/MainService";
 import ProjectFilter from "./ProjectFilter";
 
 const ProjectsList = () => {
@@ -17,13 +18,10 @@ const ProjectsList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        const response = await fetch("http://54.167.20.39:8080/api/getAll");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setProjects(data.Result);
+        const projectsData = await getAllProjects();
+        setProjects(projectsData);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -32,30 +30,14 @@ const ProjectsList = () => {
     };
 
     fetchData();
-  }, [currentPage]);
+  }, []);
 
   const navigateToProjectDetail = async (projectId) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const response = await fetch(
-        "http://54.167.20.39:8080/api/getByProjectId",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ ProjectId: projectId }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch project details");
-      }
-
-      const data = await response.json();
+      const projectDetails = await getProjectById(projectId, token);
       navigate(`/project/${projectId}`, {
-        state: { projectDetails: data.Result },
+        state: { projectDetails },
       });
     } catch (error) {
       console.error("Error fetching project details:", error);

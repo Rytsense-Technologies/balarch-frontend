@@ -1,33 +1,9 @@
-import { ErrorMessage, Field } from "formik";
-import { useEffect, useState } from "react";
 import { useAppContext } from "../../../context/AppContext";
+import CountrySelect from "../../common/form/CountrySelect";
 import InputField from "./../../common/form/InputField";
 
 const PersonalInfo = ({ handleNext, isSubmitting }) => {
   const { profileType } = useAppContext();
-  const [country, setCountry] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "http://54.167.20.39:8080/api/getAllCountries"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setCountry(data.Result);
-      } catch (error) {
-        console.error(
-          "There has been a problem with your fetch country:",
-          error
-        );
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <>
@@ -73,33 +49,7 @@ const PersonalInfo = ({ handleNext, isSubmitting }) => {
         </div>
 
         <div className="sm:col-span-3">
-          <div>
-            <label
-              htmlFor="country"
-              className="block text-sm font-medium leading-6 text-gray-500"
-            >
-              Country <span className="text-red-500">*</span>
-            </label>
-            <Field
-              as="select"
-              name="Country"
-              className="w-full border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:border-blue-500"
-            >
-              <option value="" disabled selected>
-                Select an option
-              </option>
-              {country.map((option) => (
-                <option key={option.CountryId} value={option.CountryId}>
-                  {option.CountryName}
-                </option>
-              ))}
-            </Field>
-            <ErrorMessage
-              name="Country"
-              component="div"
-              className="text-red-500 text-xs"
-            />
-          </div>
+          <CountrySelect />
         </div>
         {(profileType === "Company" || profileType === "Product") && (
           <div className="sm:col-span-3">

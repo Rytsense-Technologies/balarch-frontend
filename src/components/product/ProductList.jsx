@@ -6,7 +6,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import loader from "../../assets/images/loader.gif";
-import { getAllProducts } from "./../../service/PublicService";
+import { getAllProducts, getProductById } from "../../service/MainService";
 import { ProductFilter } from "./ProductFilter";
 
 const ProductList = () => {
@@ -20,8 +20,8 @@ const ProductList = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const projectsData = await getAllProducts();
-        setProducts(projectsData);
+        const productsData = await getAllProducts();
+        setProducts(productsData);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -34,31 +34,15 @@ const ProductList = () => {
 
   const navigateToProductDetail = async (productId) => {
     try {
-      const response = await fetch(
-        "http://54.167.20.39:8080/api/products/getByProductId",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ProductId: productId }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch project details");
-      }
-
-      const data = await response.json();
+      const token = localStorage.getItem("accessToken");
+      const productDetails = await getProductById(productId, token);
       navigate(`/product/${productId}`, {
-        state: { productDetails: data.Result },
+        state: { productDetails },
       });
     } catch (error) {
       console.error("Error fetching project details:", error);
     }
   };
-
-  console.log(products);
 
   return (
     <div className="grid grid-cols-1 gap-4 px-4 py-10 lg:grid-cols-8 lg:px-40">

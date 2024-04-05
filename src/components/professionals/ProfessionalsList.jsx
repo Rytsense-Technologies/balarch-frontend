@@ -5,6 +5,10 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import {
+  getAllProfessionals,
+  getProfessionalById,
+} from "../../service/MainService";
 import { ProfessionalsFilter } from "./ProfessionalsFilter";
 
 const ProfessionalsList = () => {
@@ -23,24 +27,10 @@ const ProfessionalsList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        const token = localStorage.getItem("accessToken");
-        const response = await fetch(
-          "http://54.167.20.39:8080/api/signup/getAllUsers",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setProfessionals(data.Result);
+        const professionalsData = await getAllProfessionals();
+        setProfessionals(professionalsData);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -51,38 +41,17 @@ const ProfessionalsList = () => {
     fetchData();
   }, []);
 
-  const navigateToProfessionalDetail = async (UserId) => {
+  const navigateToProfessionalDetail = async (userId) => {
     try {
       const token = localStorage.getItem("accessToken");
-
-      const response = await fetch(
-        "http://54.167.20.39:8080/api/signup/getByUserId",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ UserId: UserId }),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch project details");
-      }
-
-      const data = await response.json();
-      navigate(`/professionals/${UserId}`, {
-        state: { userDetails: data.Result },
+      const userDetails = await getProfessionalById(userId, token);
+      navigate(`/professionals/${userId}`, {
+        state: { userDetails },
       });
     } catch (error) {
       console.error("Error fetching project details:", error);
     }
   };
-
-  if (error) {
-    return <div>Something went wrong: {error}</div>;
-  }
 
   return (
     <div className="grid grid-cols-1 gap-4 px-4 py-10 lg:grid-cols-8 lg:px-40">
